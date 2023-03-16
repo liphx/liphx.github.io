@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="configgit config 进行配置 123git config --global user.name &lt;name&gt;git config --global user.email &lt;email&gt;git config -l, --list  .gitconfig 配置文件  &#x2F;etc&#x2F;gitconfig 系统中对所有用户 git config --system 读写这个文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git">
+<meta property="og:url" content="https://lipenghua.com/codes/git/">
+<meta property="og:site_name" content="李鹏华的主页">
+<meta property="og:description" content="configgit config 进行配置 123git config --global user.name &lt;name&gt;git config --global user.email &lt;email&gt;git config -l, --list  .gitconfig 配置文件  &#x2F;etc&#x2F;gitconfig 系统中对所有用户 git config --system 读写这个文">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-13T16:00:00.000Z">
+<meta property="article:author" content="liph">
+<meta property="article:tag" content="tools">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Git</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/tools/tmux/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/codes/git/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/codes/git/&text=Git"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/codes/git/&title=Git"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/codes/git/&is_video=false&description=Git"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Git&body=Check out this article: https://lipenghua.com/codes/git/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/codes/git/&title=Git"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/codes/git/&title=Git"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/codes/git/&title=Git"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/codes/git/&title=Git"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/codes/git/&name=Git&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/codes/git/&t=Git"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#config"><span class="toc-number">1.</span> <span class="toc-text">config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#init"><span class="toc-number">2.</span> <span class="toc-text">init</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clone"><span class="toc-number">3.</span> <span class="toc-text">clone</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#status"><span class="toc-number">4.</span> <span class="toc-text">status</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#add"><span class="toc-number">5.</span> <span class="toc-text">add</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#diff"><span class="toc-number">6.</span> <span class="toc-text">diff</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#commit"><span class="toc-number">7.</span> <span class="toc-text">commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rm-mv"><span class="toc-number">8.</span> <span class="toc-text">rm, mv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#log"><span class="toc-number">9.</span> <span class="toc-text">log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#remote"><span class="toc-number">10.</span> <span class="toc-text">remote</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fetch"><span class="toc-number">11.</span> <span class="toc-text">fetch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#push"><span class="toc-number">12.</span> <span class="toc-text">push</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tag"><span class="toc-number">13.</span> <span class="toc-text">tag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#branch"><span class="toc-number">14.</span> <span class="toc-text">branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#merge"><span class="toc-number">15.</span> <span class="toc-text">merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rebase"><span class="toc-number">16.</span> <span class="toc-text">rebase</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reset"><span class="toc-number">17.</span> <span class="toc-text">reset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitignore"><span class="toc-number">18.</span> <span class="toc-text">gitignore</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh%E5%AF%86%E9%92%A5%E5%A4%8D%E5%88%B6"><span class="toc-number">19.</span> <span class="toc-text">ssh密钥复制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bisect"><span class="toc-number">20.</span> <span class="toc-text">bisect</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sshkey-error"><span class="toc-number">21.</span> <span class="toc-text">sshkey error</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Git
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">liph</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-12-31T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-01-01</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/tools/" rel="tag">tools</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p><code>git config</code> 进行配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &lt;name&gt;</span><br><span class="line">git config --global user.email &lt;email&gt;</span><br><span class="line">git config -l, --list</span><br></pre></td></tr></table></figure>
+
+<p><code>.gitconfig</code> 配置文件</p>
+<ul>
+<li><code>/etc/gitconfig</code> 系统中对所有用户 <code>git config --system</code> 读写这个文件</li>
+<li><code>~/.gitconfig</code> 适用于当前用户 <code>git config --global</code> 读写这个文件</li>
+<li><code>$&#123;dir&#125;/.git/config</code> 针对当前项目有效 <code>git config --local</code> 读写这个文件</li>
+</ul>
+<p>每一个级别的配置都会覆盖上层的相同配置</p>
+<h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><ul>
+<li><code>git init</code> 在现有目录中初始化仓库</li>
+<li><code>git init dir</code> 创建<code>dir</code>目录并初始化成git项目</li>
+</ul>
+<h2 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h2><p><code>git clone</code> 克隆现有的仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone [&lt;options&gt;] [--] &lt;repo&gt; [&lt;dir&gt;]</span><br><span class="line">git clone git@github.com:liphx/example.git -b master my_dir</span><br></pre></td></tr></table></figure>
+
+<h2 id="status"><a href="#status" class="headerlink" title="status"></a>status</h2><p><code>git status</code> 检查当前文件状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git status</span></span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git status -s <span class="comment"># 以更为紧凑的格式输出</span></span></span><br><span class="line"> M file1</span><br><span class="line">MM file2</span><br><span class="line">A  file3</span><br><span class="line">M  file4</span><br><span class="line">?? file5</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>?? 标记：新添加的未跟踪文件</li>
+<li>A  标记：新添加到暂存区中的文件</li>
+<li>M  标记：修改过的文件</li>
+</ul>
+<p>出现在右边的 M 表示该文件被修改了但是还没放入暂存区，出现在靠左边的 M 表示该文件被修改了并放入了暂存区</p>
+<h2 id="add"><a href="#add" class="headerlink" title="add"></a>add</h2><p><code>git add</code> 跟踪新文件、暂存已修改文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;files&gt;</span><br><span class="line">git add -u</span><br></pre></td></tr></table></figure>
+
+<h2 id="diff"><a href="#diff" class="headerlink" title="diff"></a>diff</h2><p><code>git diff</code> 比较差异</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--name-only</span><br><span class="line">--name-status</span><br></pre></td></tr></table></figure>
+
+<h2 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h2><p><code>git commit</code> 提交更新</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit -m <span class="string">&quot;first commit&quot;</span></span></span><br><span class="line">[master (root-commit) 07baa89] first commit</span><br><span class="line"> 1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 file1</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit -a -m <span class="string">&quot;second commit&quot;</span> <span class="comment"># 把所有已经跟踪过的文件暂存起来一并提交</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="rm-mv"><a href="#rm-mv" class="headerlink" title="rm, mv"></a>rm, mv</h2><p><code>git rm</code> 移除文件</p>
+<p>从暂存区域移除，并连带从工作目录中删除指定的文件</p>
+<p>如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项 -f</p>
+<p>把文件从 Git 仓库中删除（亦即从暂存区域移除），但仍然希望保留在当前工作目录中 –cached</p>
+<p><code>git mv</code> 移动文件</p>
+<p>这条命令等价于</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv file1 file2</span><br><span class="line">git rm file1</span><br><span class="line">git add file2</span><br></pre></td></tr></table></figure>
+
+<h2 id="log"><a href="#log" class="headerlink" title="log"></a>log</h2><p><code>git log</code> 查看提交历史</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git log --oneline</span><br><span class="line">git log --all</span><br><span class="line">git log -n 5</span><br><span class="line">git log --graph</span><br></pre></td></tr></table></figure>
+
+<h2 id="remote"><a href="#remote" class="headerlink" title="remote"></a>remote</h2><p><code>git remote</code> 远程仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git remote</span><br><span class="line">git remote -v</span><br><span class="line">git remote show origin</span><br><span class="line">git remote add &lt;name&gt; &lt;url&gt; # 添加远程仓库</span><br><span class="line">git remote remove &lt;name&gt; # 移除远程仓库</span><br><span class="line">git remote rename &lt;old&gt; &lt;new&gt; # 重命名远程仓库</span><br></pre></td></tr></table></figure>
+
+<h2 id="fetch"><a href="#fetch" class="headerlink" title="fetch"></a>fetch</h2><p><code>git fetch</code> 从远程仓库中获得数据</p>
+<h2 id="push"><a href="#push" class="headerlink" title="push"></a>push</h2><p><code>git push</code> 推送到远程仓库</p>
+<h2 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h2><p><code>git tag</code> 标签</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git tag # 列出标签</span><br><span class="line">git tag -a v1.0 -m &#x27;my version 1.0&#x27; # -a 创建附注标签 -m 指定存储在标签中的信息</span><br><span class="line">git show v1.0 # 查看标签信息与对应的提交信息</span><br><span class="line">git tag v1.1-lw # 无-a 选项，创建轻量标签，它只是一个特定提交的引用</span><br><span class="line">git tag -a v0.9 &lt;commit&gt; # 对过去的提交打标签</span><br><span class="line">git push origin [tagname] # 传送标签到远程仓库服务器</span><br><span class="line">git tag -d &lt;tagname&gt; # 删除本地仓库标签</span><br><span class="line">git push &lt;remote&gt;:refs/tags/&lt;tagname&gt; # 更新远程仓库标签</span><br></pre></td></tr></table></figure>
+
+<h2 id="branch"><a href="#branch" class="headerlink" title="branch"></a>branch</h2><p><code>git branch</code> git分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git branch # 显示当前所有分支， -v 还会显示各分支最后一次提交， --merged 与 --no-merged显示已合并与未合并的分支</span><br><span class="line">git branch new-branch # 创建新分支</span><br><span class="line">git checkout new-branch # 切换到已存在分支， HEAD 现在指向 new-branch</span><br><span class="line">git checkout -b iss99 # 创建新分支并切换</span><br><span class="line">git branch -d iss99 # 删除分支</span><br></pre></td></tr></table></figure>
+
+<h2 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h2><p><code>git merge</code> 分支合并</p>
+<h2 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h2><p><code>git rebase</code> 变基</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/22992543/how-do-i-git-rebase-the-first-commit">https://stackoverflow.com/questions/22992543/how-do-i-git-rebase-the-first-commit</a><br><code>git rebase -i --root</code></p>
+<h2 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h2><p><code>git reset</code> 回退</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard [commit_id]</span><br></pre></td></tr></table></figure>
+
+<h2 id="gitignore"><a href="#gitignore" class="headerlink" title="gitignore"></a>gitignore</h2><p><code>.gitignore</code> 忽略文件</p>
+<p>文件 .gitignore 的格式规范如下：</p>
+<ul>
+<li>所有空行或者以 ＃ 开头的行都会被 Git 忽略。</li>
+<li>可以使用标准的 glob 模式匹配。</li>
+<li>匹配模式可以以（&#x2F;）开头防止递归。</li>
+<li>匹配模式可以以（&#x2F;）结尾指定目录。</li>
+<li>要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号（!）取反。</li>
+</ul>
+<p>所谓的 glob 模式是指 shell 所使用的简化了的正则表达式。</p>
+<h2 id="ssh密钥复制"><a href="#ssh密钥复制" class="headerlink" title="ssh密钥复制"></a>ssh密钥复制</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chmod 600 ~/.ssh/id_rsa</span><br><span class="line">eval &quot;$(ssh-agent -s)&quot;</span><br><span class="line">ssh-add</span><br><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="bisect"><a href="#bisect" class="headerlink" title="bisect"></a>bisect</h2><p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2018/12/git-bisect.html">https://www.ruanyifeng.com/blog/2018/12/git-bisect.html</a></p>
+<h2 id="sshkey-error"><a href="#sshkey-error" class="headerlink" title="sshkey error"></a>sshkey error</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/69875520/git-error-no-matching-host-key-type-found-their-offer-ssh-rsa">https://stackoverflow.com/questions/69875520/git-error-no-matching-host-key-type-found-their-offer-ssh-rsa</a></li>
+<li><a target="_blank" rel="noopener" href="https://help.gitee.com/enterprise/code-manage/%E6%9D%83%E9%99%90%E4%B8%8E%E8%AE%BE%E7%BD%AE/%E9%83%A8%E7%BD%B2%E5%85%AC%E9%92%A5%E7%AE%A1%E7%90%86/SSH%20Key%20%E7%AA%81%E7%84%B6%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94%E5%8F%8A%E5%A4%84%E7%90%86%E5%8A%9E%E6%B3%95">https://help.gitee.com/enterprise/code-manage/%E6%9D%83%E9%99%90%E4%B8%8E%E8%AE%BE%E7%BD%AE/%E9%83%A8%E7%BD%B2%E5%85%AC%E9%92%A5%E7%AE%A1%E7%90%86/SSH%20Key%20%E7%AA%81%E7%84%B6%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94%E5%8F%8A%E5%A4%84%E7%90%86%E5%8A%9E%E6%B3%95</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/readme">关于</a></li>
+        
+          <li><a href="/resume">简历</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#config"><span class="toc-number">1.</span> <span class="toc-text">config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#init"><span class="toc-number">2.</span> <span class="toc-text">init</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clone"><span class="toc-number">3.</span> <span class="toc-text">clone</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#status"><span class="toc-number">4.</span> <span class="toc-text">status</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#add"><span class="toc-number">5.</span> <span class="toc-text">add</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#diff"><span class="toc-number">6.</span> <span class="toc-text">diff</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#commit"><span class="toc-number">7.</span> <span class="toc-text">commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rm-mv"><span class="toc-number">8.</span> <span class="toc-text">rm, mv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#log"><span class="toc-number">9.</span> <span class="toc-text">log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#remote"><span class="toc-number">10.</span> <span class="toc-text">remote</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fetch"><span class="toc-number">11.</span> <span class="toc-text">fetch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#push"><span class="toc-number">12.</span> <span class="toc-text">push</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tag"><span class="toc-number">13.</span> <span class="toc-text">tag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#branch"><span class="toc-number">14.</span> <span class="toc-text">branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#merge"><span class="toc-number">15.</span> <span class="toc-text">merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rebase"><span class="toc-number">16.</span> <span class="toc-text">rebase</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reset"><span class="toc-number">17.</span> <span class="toc-text">reset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitignore"><span class="toc-number">18.</span> <span class="toc-text">gitignore</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh%E5%AF%86%E9%92%A5%E5%A4%8D%E5%88%B6"><span class="toc-number">19.</span> <span class="toc-text">ssh密钥复制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bisect"><span class="toc-number">20.</span> <span class="toc-text">bisect</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sshkey-error"><span class="toc-number">21.</span> <span class="toc-text">sshkey error</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/codes/git/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/codes/git/&text=Git"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/codes/git/&title=Git"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/codes/git/&is_video=false&description=Git"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Git&body=Check out this article: https://lipenghua.com/codes/git/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/codes/git/&title=Git"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/codes/git/&title=Git"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/codes/git/&title=Git"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/codes/git/&title=Git"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/codes/git/&name=Git&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/codes/git/&t=Git"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023-2024
+    liph
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

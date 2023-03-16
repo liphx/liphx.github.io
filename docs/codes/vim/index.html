@@ -1,0 +1,2329 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="vim 命令行 vim [file ..]  vim 不带任何参数, 开始一个空白的缓冲区   vim - 从标准输入读取文本   vim file 编辑单个文件, 为避免以&#96;-&#96; 开头的文件被识别成命令行选项, 需在文件名前加 &#96;--&#96;, 例如文件名是&#96;-txt&#96;, 输入&#96;vim -- -txt&#96;   vim file1 file2 ... 编辑多个文件, 读入缓冲区列表, 其中第一个文件会成为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VIM - Vi IMproved">
+<meta property="og:url" content="https://lipenghua.com/codes/vim/">
+<meta property="og:site_name" content="李鹏华的主页">
+<meta property="og:description" content="vim 命令行 vim [file ..]  vim 不带任何参数, 开始一个空白的缓冲区   vim - 从标准输入读取文本   vim file 编辑单个文件, 为避免以&#96;-&#96; 开头的文件被识别成命令行选项, 需在文件名前加 &#96;--&#96;, 例如文件名是&#96;-txt&#96;, 输入&#96;vim -- -txt&#96;   vim file1 file2 ... 编辑多个文件, 读入缓冲区列表, 其中第一个文件会成为">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-26T06:20:33.525Z">
+<meta property="article:author" content="liph">
+<meta property="article:tag" content="tools">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>VIM - Vi IMproved</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/codes/uno/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/tools/tmux/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/codes/vim/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/codes/vim/&text=VIM - Vi IMproved"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/codes/vim/&title=VIM - Vi IMproved"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/codes/vim/&is_video=false&description=VIM - Vi IMproved"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=VIM - Vi IMproved&body=Check out this article: https://lipenghua.com/codes/vim/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/codes/vim/&title=VIM - Vi IMproved"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/codes/vim/&title=VIM - Vi IMproved"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/codes/vim/&title=VIM - Vi IMproved"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/codes/vim/&title=VIM - Vi IMproved"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/codes/vim/&name=VIM - Vi IMproved&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/codes/vim/&t=VIM - Vi IMproved"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-number">1.</span> <span class="toc-text">vim 命令行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Normal-%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">Normal 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E4%B8%8E%E6%BB%9A%E5%B1%8F"><span class="toc-number">3.1.</span> <span class="toc-text">移动与滚屏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%96%87%E6%9C%AC"><span class="toc-number">3.2.</span> <span class="toc-text">插入文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">3.3.</span> <span class="toc-text">文本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.4.</span> <span class="toc-text">文本对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E5%88%86%E9%9A%94%E7%AC%A6"><span class="toc-number">3.4.1.</span> <span class="toc-text">操作分隔符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%96%87%E6%9C%AC%E5%9D%97"><span class="toc-number">3.4.2.</span> <span class="toc-text">操作文本块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%8F%AF%E8%A7%86"><span class="toc-number">3.5.</span> <span class="toc-text">文本可视</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D"><span class="toc-number">3.6.</span> <span class="toc-text">定位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%A9%E8%BF%9B"><span class="toc-number">3.7.</span> <span class="toc-text">缩进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-number">3.8.</span> <span class="toc-text">其他命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Visual-%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">Visual 模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ex-%E5%91%BD%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">Ex 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E5%8C%BA%E6%93%8D%E4%BD%9C"><span class="toc-number">5.1.</span> <span class="toc-text">缓冲区操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Insert-%E6%A8%A1%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">Insert 模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">7.</span> <span class="toc-text">寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2"><span class="toc-number">8.</span> <span class="toc-text">搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2"><span class="toc-number">9.</span> <span class="toc-text">替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#global-%E5%91%BD%E4%BB%A4"><span class="toc-number">10.</span> <span class="toc-text">global 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%B1%BB%E5%91%BD%E4%BB%A4"><span class="toc-number">11.</span> <span class="toc-text">设置类命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%AE%E5%8A%A9"><span class="toc-number">12.</span> <span class="toc-text">帮助</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">13.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%A8"><span class="toc-number">14.</span> <span class="toc-text">补全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="toc-number">15.</span> <span class="toc-text">自定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-root-%E7%94%A8%E6%88%B7%E6%96%87%E4%BB%B6"><span class="toc-number">16.</span> <span class="toc-text">修改 root 用户文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8F"><span class="toc-number">17.</span> <span class="toc-text">宏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F-1"><span class="toc-number">18.</span> <span class="toc-text">模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-number">19.</span> <span class="toc-text">工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-vimgrep"><span class="toc-number">19.1.</span> <span class="toc-text">:grep :vimgrep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="toc-number">19.2.</span> <span class="toc-text">自动补全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%BC%E5%86%99%E6%A3%80%E6%9F%A5"><span class="toc-number">19.3.</span> <span class="toc-text">拼写检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">19.4.</span> <span class="toc-text">自动命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bash-%E7%BB%91%E5%AE%9A-vi-%E9%94%AE%E4%BD%8D"><span class="toc-number">19.5.</span> <span class="toc-text">bash 绑定 vi 键位</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ctags"><span class="toc-number">20.</span> <span class="toc-text">ctags</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="toc-number">20.1.</span> <span class="toc-text">安装与使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-%E8%B7%B3%E8%BD%AC"><span class="toc-number">20.2.</span> <span class="toc-text">vim 跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8vim%E6%97%B6%E8%B7%B3%E8%BD%AC"><span class="toc-number">20.3.</span> <span class="toc-text">启动vim时跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C-stdc-tags"><span class="toc-number">20.4.</span> <span class="toc-text">制作 stdc++ tags</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D"><span class="toc-number">21.</span> <span class="toc-text">会话</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E4%BC%9A%E8%AF%9D"><span class="toc-number">21.1.</span> <span class="toc-text">保存会话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%BD%E5%85%A5%E4%BC%9A%E8%AF%9D"><span class="toc-number">21.2.</span> <span class="toc-text">载入会话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E6%92%A4%E9%94%80"><span class="toc-number">21.3.</span> <span class="toc-text">持久化撤销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6-obsession"><span class="toc-number">21.4.</span> <span class="toc-text">插件 obsession</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E4%B8%8E%E6%A0%87%E7%AD%BE%E9%A1%B5"><span class="toc-number">22.</span> <span class="toc-text">窗口与标签页</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8vim%E6%97%B6%E5%88%86%E5%89%B2"><span class="toc-number">22.1.</span> <span class="toc-text">启动vim时分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3"><span class="toc-number">22.2.</span> <span class="toc-text">窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E9%97%B4%E5%88%87%E6%8D%A2"><span class="toc-number">22.2.1.</span> <span class="toc-text">窗口间切换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3"><span class="toc-number">22.2.2.</span> <span class="toc-text">关闭窗口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B9%E5%8F%98%E7%AA%97%E5%8F%A3%E5%A4%A7%E5%B0%8F%E5%8F%8A%E9%87%8D%E6%96%B0%E6%8E%92%E5%88%97%E7%AA%97%E5%8F%A3"><span class="toc-number">22.2.3.</span> <span class="toc-text">改变窗口大小及重新排列窗口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E9%A1%B5"><span class="toc-number">22.3.</span> <span class="toc-text">标签页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vimdiff"><span class="toc-number">23.</span> <span class="toc-text">vimdiff</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-%E7%BB%88%E7%AB%AF"><span class="toc-number">24.</span> <span class="toc-text">vim 终端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#quickfix"><span class="toc-number">25.</span> <span class="toc-text">quickfix</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6%E5%A4%96%E9%83%A8%E7%BC%96%E8%AF%91%E5%99%A8"><span class="toc-number">25.1.</span> <span class="toc-text">定制外部编译器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-script"><span class="toc-number">26.</span> <span class="toc-text">vim script</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hello-vim"><span class="toc-number">26.1.</span> <span class="toc-text">hello.vim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">26.2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">26.3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">26.3.1.</span> <span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-number">26.3.2.</span> <span class="toc-text">变量类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vim-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-number">26.4.</span> <span class="toc-text">Vim 自定义命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6-plugin-%E5%8C%85-package"><span class="toc-number">27.</span> <span class="toc-text">插件(plugin), 包(package)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#plugin"><span class="toc-number">27.1.</span> <span class="toc-text">plugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#package"><span class="toc-number">27.2.</span> <span class="toc-text">package</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E5%8C%85%E9%87%8C%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="toc-number">27.3.</span> <span class="toc-text">在包里安装插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vim-%E6%8F%92%E4%BB%B6"><span class="toc-number">28.</span> <span class="toc-text">Vim 插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vimcdoc"><span class="toc-number">28.1.</span> <span class="toc-text">vimcdoc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NERDTree"><span class="toc-number">28.2.</span> <span class="toc-text">NERDTree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YouCompleteMe"><span class="toc-number">28.3.</span> <span class="toc-text">YouCompleteMe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fzf"><span class="toc-number">28.4.</span> <span class="toc-text">fzf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dispatch"><span class="toc-number">28.5.</span> <span class="toc-text">dispatch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#commentary"><span class="toc-number">28.6.</span> <span class="toc-text">commentary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#base16-vim"><span class="toc-number">28.7.</span> <span class="toc-text">base16-vim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#airline"><span class="toc-number">28.8.</span> <span class="toc-text">airline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#surround"><span class="toc-number">28.9.</span> <span class="toc-text">surround</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fugitive"><span class="toc-number">28.10.</span> <span class="toc-text">fugitive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ALE-Asynchronous-Lint-Engine"><span class="toc-number">28.11.</span> <span class="toc-text">ALE(Asynchronous Lint Engine)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grepper"><span class="toc-number">28.12.</span> <span class="toc-text">grepper</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-test"><span class="toc-number">28.13.</span> <span class="toc-text">vim-test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#goyo"><span class="toc-number">28.14.</span> <span class="toc-text">goyo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-gutentags"><span class="toc-number">28.15.</span> <span class="toc-text">vim-gutentags</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rainbow"><span class="toc-number">28.16.</span> <span class="toc-text">rainbow</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#neovim"><span class="toc-number">29.</span> <span class="toc-text">neovim</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8-1"><span class="toc-number">29.1.</span> <span class="toc-text">安装与使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-1"><span class="toc-number">29.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#neovim-provider"><span class="toc-number">29.3.</span> <span class="toc-text">neovim provider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#neovim-remote"><span class="toc-number">29.4.</span> <span class="toc-text">neovim-remote</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#neovim-%E7%BB%88%E7%AB%AF%E6%A8%A1%E6%8B%9F%E5%99%A8"><span class="toc-number">29.5.</span> <span class="toc-text">neovim 终端模拟器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">29.6.</span> <span class="toc-text">参考</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%AB%99"><span class="toc-number">29.6.1.</span> <span class="toc-text">网站</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B9%A6%E7%B1%8D"><span class="toc-number">29.6.2.</span> <span class="toc-text">书籍</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        VIM - Vi IMproved
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">liph</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-08-10T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-08-11</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/tools/" rel="tag">tools</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="vim-命令行"><a href="#vim-命令行" class="headerlink" title="vim 命令行"></a>vim 命令行</h2><ul>
+<li><p><code>vim [file ..]</code></p>
+<ul>
+<li><p><code>vim</code></p>
+<pre><code>不带任何参数, 开始一个空白的缓冲区
+</code></pre>
+</li>
+<li><p><code>vim -</code></p>
+<pre><code>从标准输入读取文本
+</code></pre>
+</li>
+<li><p><code>vim file</code></p>
+<pre><code>编辑单个文件, 为避免以`-` 开头的文件被识别成命令行选项, 需在文件名前加 `--`, 例如文件名是`-txt`, 输入`vim -- -txt`
+</code></pre>
+</li>
+<li><p><code>vim file1 file2 ...</code></p>
+<pre><code>编辑多个文件, 读入缓冲区列表, 其中第一个文件会成为当前文件
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>定位</p>
+<ul>
+<li><p><code>vim file +[n]</code></p>
+<pre><code>光标定位在第 n 行, 如果不加 n 则定位在最后一行
+</code></pre>
+</li>
+<li><p><code>vim file +/&#123;pat&#125;</code></p>
+<pre><code>从光标位置(viminfo 中上次的位置)开始匹配 `pat` 并定位到这一行, `vim +5 +/abc` 从第5行开始匹配 abc
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>模式</p>
+<ul>
+<li><p><code>vim -e</code></p>
+<pre><code>以 Ex 模式启动
+</code></pre>
+</li>
+<li><p><code>vim -R</code></p>
+<pre><code>以只读模式启动
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>执行</p>
+<ul>
+<li><p><code>vim +&#123;cmd&#125;</code></p>
+</li>
+<li><p><code>vim -c &#123;cmd&#125;</code></p>
+<pre><code>读入第一个文件后执行 `cmd`
+</code></pre>
+</li>
+<li><p><code>vim --cmd &#123;cmd&#125;</code></p>
+<pre><code>在处理任何 `vimrc` 文件之前执行命令 `cmd`
+</code></pre>
+</li>
+<li><p><code>vim -u &#123;vimrc&#125;</code></p>
+<pre><code>读入文件 `vimrc` 执行初始化, `-u` 参数导致开启 `compatible`
+</code></pre>
+</li>
+<li><p><code>vim -u NONE</code></p>
+<pre><code>跳过所有文件和环境变量的初始化
+</code></pre>
+</li>
+<li><p><code>vim -u NORC</code></p>
+<pre><code>同 `NONE`,  但不跳过插件的载入
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>兼容</p>
+<ul>
+<li><p><code>vim -C</code></p>
+<pre><code>兼容模式
+</code></pre>
+</li>
+<li><p><code>vim -N</code></p>
+<pre><code>不兼容模式
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><ol>
+<li><p><code>Normal mode</code></p>
+<p> 也称<code>Command mode</code>, 进入 vim 的初始模式, 其他模式下输入 <code>ESC</code> 回到 <code>Normal</code>, <code>Ex</code> 模式下输入 <code>vi[sual]</code> 回到 <code>Normal</code></p>
+</li>
+<li><p><code>Visual mode</code></p>
+<p> 可视模式, <code>Normal</code> 下输入 <code>v</code>, <code>V</code> 或 <code>&lt;C-V&gt;</code> 进入</p>
+</li>
+<li><p><code>Select mode</code></p>
+<p> 选择模式, <code>Visual</code> 下输入 <code>&lt;C-G&gt;</code> 进入, 选择模式下, 输入字符将删除高亮的文本并替换成新的字符, 进入 <code>Insert</code></p>
+</li>
+<li><p><code>Insert mode</code></p>
+<p>插入模式, <code>Normal</code> 下输入 <code>i</code>, <code>I</code>, <code>a</code>, <code>A</code>, <code>o</code>, <code>O</code>, <code>s</code>, <code>S</code>  等进入</p>
+</li>
+<li><p><code>Command-line mode</code></p>
+<p> 命令行模式, <code>Normal</code> 下输入 <code>:</code>, <code>/</code>, <code>?</code>, <code>!</code> 进入, 执行完 <code>Ex</code> 命令后回到 <code>Normal</code></p>
+</li>
+<li><p><code>Ex mode</code></p>
+<p>类似 <code>Command-line</code>, 执行完 <code>Ex</code> 命令后还在 <code>Ex</code> 模式, <code>Normal</code> 下输入 <code>Q</code> 或 <code>gQ</code> 进入</p>
+</li>
+</ol>
+<h2 id="Normal-模式"><a href="#Normal-模式" class="headerlink" title="Normal 模式"></a><code>Normal</code> 模式</h2><h3 id="移动与滚屏"><a href="#移动与滚屏" class="headerlink" title="移动与滚屏"></a>移动与滚屏</h3><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>h</code> <code>←</code></td>
+<td>向左移动</td>
+</tr>
+<tr>
+<td><code>j</code> <code>↓</code></td>
+<td>向下移动</td>
+</tr>
+<tr>
+<td><code>k</code> <code>↑</code></td>
+<td>向上移动</td>
+</tr>
+<tr>
+<td><code>l</code> <code>→</code></td>
+<td>向右移动</td>
+</tr>
+<tr>
+<td><code>gk</code> <code>gj</code></td>
+<td>屏幕行上下移动</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>移动到下一个单词开头</td>
+</tr>
+<tr>
+<td><code>W</code></td>
+<td>移动到下一个字串开头</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>反向移动一个单词至开头</td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td>反向移动一个字串至开头</td>
+</tr>
+<tr>
+<td><code>e</code></td>
+<td>移动到单词末尾</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td>移动到字串末尾</td>
+</tr>
+<tr>
+<td><code>ge</code></td>
+<td>反向移动到单词末尾</td>
+</tr>
+<tr>
+<td><code>gE</code></td>
+<td>反向移动到字串末尾</td>
+</tr>
+<tr>
+<td><code>nw</code> <code>ne</code></td>
+<td>移动n(输入的数字)个单词</td>
+</tr>
+<tr>
+<td><code>0</code> <code>&lt;Home&gt;</code></td>
+<td>移动到行首</td>
+</tr>
+<tr>
+<td><code>$</code> <code>&lt;End&gt;</code></td>
+<td>移动到行尾</td>
+</tr>
+<tr>
+<td><code>g0</code></td>
+<td>移动到屏幕行行首</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>移动到行首第一个非空字符</td>
+</tr>
+<tr>
+<td><code>g^</code></td>
+<td>移动到屏幕行行首第一个非空字符</td>
+</tr>
+<tr>
+<td><code>g$</code></td>
+<td>移动到屏幕行行尾</td>
+</tr>
+<tr>
+<td><code>3$</code></td>
+<td>移动到下面第3行行尾，本行是第一行</td>
+</tr>
+<tr>
+<td><code>3^</code></td>
+<td>依然作用于本行, 计数对 <code>^</code> 无效</td>
+</tr>
+<tr>
+<td><code>&lt;C-U&gt;</code></td>
+<td>上移半屏</td>
+</tr>
+<tr>
+<td><code>&lt;C-D&gt;</code></td>
+<td>下移半屏</td>
+</tr>
+<tr>
+<td><code>&lt;C-Y&gt;</code></td>
+<td>上移一行</td>
+</tr>
+<tr>
+<td><code>&lt;C-E&gt;</code></td>
+<td>下移一行</td>
+</tr>
+<tr>
+<td><code>&lt;C-B&gt;</code></td>
+<td>上移一屏</td>
+</tr>
+<tr>
+<td><code>&lt;C-F&gt;</code></td>
+<td>下移一屏</td>
+</tr>
+<tr>
+<td><code>zz</code></td>
+<td>将当前行置于屏幕中央</td>
+</tr>
+<tr>
+<td><code>zt</code></td>
+<td>将当前行置顶</td>
+</tr>
+<tr>
+<td><code>zb</code></td>
+<td>将当前行置底</td>
+</tr>
+</tbody></table>
+<p>一些解释</p>
+<ul>
+<li><p>实际行与屏幕行</p>
+<p>  对于很长的一行文字, 屏幕上一行显示不全的情况, 一行实际行就对应多行屏幕行, <code>set number</code> 显示的行号就是实际行</p>
+</li>
+<li><p>单词与字串</p>
+<ul>
+<li>单词(<code>word</code>): 以非字母分隔(一串没有标点的中文为一个单词)</li>
+<li>字串(<code>WORD</code>): 以空白符分隔</li>
+</ul>
+</li>
+<li><p>移动行与滚屏</p>
+<p>  移动行就是在行之间移动, 如无必要, 不会移动屏幕, 例如当前屏幕下显示 <code>20 - 60</code> 行, 从第 25 行移动到 31 行并不会移动屏幕,<br>  但移动到第 61 行会导致屏幕下移一行; 移屏同理, 必要时才会导致行的移动</p>
+</li>
+</ul>
+<h3 id="插入文本"><a href="#插入文本" class="headerlink" title="插入文本"></a>插入文本</h3><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>i</code></td>
+<td>在光标处插入文本</td>
+</tr>
+<tr>
+<td><code>ni</code></td>
+<td>在光标处插入字符n次</td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td>在行首插入文本, 即 <code>^i</code></td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>在光标后插入文本</td>
+</tr>
+<tr>
+<td><code>na</code></td>
+<td>在光标后插入字符n次</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>在行尾添加文本, 即 <code>$a</code></td>
+</tr>
+<tr>
+<td><code>o</code></td>
+<td>在光标下行插入一行并进入插入模式</td>
+</tr>
+<tr>
+<td><code>O</code></td>
+<td>在光标上行插入一行并进入插入模式</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>在光标处替换字符</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>在光标处连续替换字符</td>
+</tr>
+<tr>
+<td><code>c&lt;CR&gt;</code></td>
+<td>删除当前行并(在下一行)进入插入模式</td>
+</tr>
+<tr>
+<td><code>S</code> <code>^c</code></td>
+<td>删除当前行并进入插入模式</td>
+</tr>
+<tr>
+<td><code>cl</code> <code>s</code></td>
+<td>删除一个字符并进入插入模式</td>
+</tr>
+<tr>
+<td><code>ce</code> <code>cw</code></td>
+<td>删除一个单词并进入插入模式</td>
+</tr>
+<tr>
+<td><code>c$</code> <code>C</code></td>
+<td>删除至行尾并进入插入模式</td>
+</tr>
+</tbody></table>
+<h3 id="文本操作"><a href="#文本操作" class="headerlink" title="文本操作"></a>文本操作</h3><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>x</code></td>
+<td>删除光标所在位置的字符</td>
+</tr>
+<tr>
+<td><code>dw</code></td>
+<td>从当前光标当前位置直到下一个单词起始处</td>
+</tr>
+<tr>
+<td><code>de</code></td>
+<td>从当前光标当前位置直到单词末尾</td>
+</tr>
+<tr>
+<td><code>d$</code> <code>D</code></td>
+<td>从当前光标删除到行末</td>
+</tr>
+<tr>
+<td><code>dnw</code></td>
+<td>删除n个单词</td>
+</tr>
+<tr>
+<td><code>dd</code></td>
+<td>删除整行</td>
+</tr>
+<tr>
+<td><code>ndd</code></td>
+<td>删除n行</td>
+</tr>
+<tr>
+<td><code>daw</code></td>
+<td>删除光标所在的单词及其后的空格</td>
+</tr>
+<tr>
+<td><code>J</code></td>
+<td>删除两行之间的换行符</td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td>在可视状态下输入y进行复制</td>
+</tr>
+<tr>
+<td><code>yw</code> <code>yy</code></td>
+<td>复制单词&#x2F;整行</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>在光标后粘贴</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>在光标前粘贴</td>
+</tr>
+<tr>
+<td><code>gp</code> <code>gP</code></td>
+<td>同 <code>p</code> <code>P</code>, 但光标停留在新文本之后</td>
+</tr>
+</tbody></table>
+<p>一些解释</p>
+<ol>
+<li>vim 术语: <code>delete</code>, <code>yank</code> 与 <code>put</code></li>
+</ol>
+<h3 id="文本对象"><a href="#文本对象" class="headerlink" title="文本对象"></a>文本对象</h3><h4 id="操作分隔符"><a href="#操作分隔符" class="headerlink" title="操作分隔符"></a>操作分隔符</h4><table>
+<thead>
+<tr>
+<th>文本对象</th>
+<th>选择区域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a) 或 ab</td>
+<td>一对圆括号(parentheses)</td>
+</tr>
+<tr>
+<td>i) 或 ib</td>
+<td>圆括号(parentheses)内部</td>
+</tr>
+<tr>
+<td>a} 或 aB</td>
+<td>一对花括号{braces}</td>
+</tr>
+<tr>
+<td>i} 或 iB</td>
+<td>花括号{braces}内部</td>
+</tr>
+<tr>
+<td>a]</td>
+<td>一对方括号[brackets]</td>
+</tr>
+<tr>
+<td>i]</td>
+<td>方括号[brackets]内部</td>
+</tr>
+<tr>
+<td>a&gt;</td>
+<td>一对尖括号</td>
+</tr>
+<tr>
+<td>i&gt;</td>
+<td>尖括号内部</td>
+</tr>
+<tr>
+<td>a’</td>
+<td>一对单引号’single quotes’</td>
+</tr>
+<tr>
+<td>i’</td>
+<td>单引号’single quotes’内部</td>
+</tr>
+<tr>
+<td>a”</td>
+<td>一对双引号”double quotes”</td>
+</tr>
+<tr>
+<td>i”</td>
+<td>双引号”double quotes”内部</td>
+</tr>
+<tr>
+<td>a`</td>
+<td>一对反引号</td>
+</tr>
+<tr>
+<td>i`</td>
+<td>反引号内部</td>
+</tr>
+<tr>
+<td>at</td>
+<td>一对XML标签<xml>tags</xml></td>
+</tr>
+<tr>
+<td>it</td>
+<td>XML标签内部</td>
+</tr>
+</tbody></table>
+<h4 id="操作文本块"><a href="#操作文本块" class="headerlink" title="操作文本块"></a>操作文本块</h4><table>
+<thead>
+<tr>
+<th>文本对象</th>
+<th>选择范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>iw</td>
+<td>当前单词</td>
+</tr>
+<tr>
+<td>aw</td>
+<td>当前单词及一个空格</td>
+</tr>
+<tr>
+<td>iW</td>
+<td>当前字串</td>
+</tr>
+<tr>
+<td>aW</td>
+<td>当前字串及一个空格</td>
+</tr>
+<tr>
+<td>is</td>
+<td>当前句子</td>
+</tr>
+<tr>
+<td>as</td>
+<td>当前句子及一个空格</td>
+</tr>
+<tr>
+<td>ip</td>
+<td>当前段落</td>
+</tr>
+<tr>
+<td>ap</td>
+<td>当前段落及一个空行</td>
+</tr>
+</tbody></table>
+<h3 id="文本可视"><a href="#文本可视" class="headerlink" title="文本可视"></a>文本可视</h3><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>viw</code></td>
+<td>可视一个单词</td>
+</tr>
+<tr>
+<td><code>v</code></td>
+<td>面向字符的可视模式</td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td>面向行的可视模式</td>
+</tr>
+<tr>
+<td><code>&lt;C-v&gt;</code></td>
+<td>面向列块的可视模式</td>
+</tr>
+<tr>
+<td><code>gv</code></td>
+<td>重选上次的高亮选区</td>
+</tr>
+<tr>
+<td><code>vi&#125;</code></td>
+<td>高亮选中{}内部的文本</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>撤消最后执行的命令</td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td>撤消对整行的修改, <code>U</code> 本身是一个修改动作，因此用 <code>u</code> 来撤销 <code>U</code></td>
+</tr>
+<tr>
+<td><code>&lt;C-R&gt;</code></td>
+<td>撤销之前的撤销,取消一个 <code>u</code></td>
+</tr>
+</tbody></table>
+<h3 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h3><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;C-g&gt;</code></td>
+<td>显示当前编辑的文件名和文件中光标位置</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>跳到文件最后一行</td>
+</tr>
+<tr>
+<td><code>gg</code></td>
+<td>跳到文件第一行</td>
+</tr>
+<tr>
+<td><code>nG</code></td>
+<td>跳到 n 行</td>
+</tr>
+<tr>
+<td><code>50%</code></td>
+<td>移动到中间的位置</td>
+</tr>
+<tr>
+<td><code>90%</code></td>
+<td>移动到90%的位置</td>
+</tr>
+<tr>
+<td><code>&lt;C-o&gt;</code></td>
+<td>回到之前的位置</td>
+</tr>
+<tr>
+<td><code>&lt;C-i&gt;</code> <code>&lt;Tab&gt;</code></td>
+<td>回到新的位置</td>
+</tr>
+<tr>
+<td><code>m&#123;a-zA-Z&#125;</code></td>
+<td>设置标记位，小写位置标记只在每个缓冲区里局部可见，而大写位置标记则全局可见</td>
+</tr>
+<tr>
+<td><code>&#39;&#123;mark&#125;</code></td>
+<td>命令跳到位置标记所在行，并把光标置于该行第一个非空白字符上</td>
+</tr>
+<tr>
+<td>`{mark}</td>
+<td>命令把光标移动到设置此位置标记时光标所在之处，它同时恢复行、列的位置</td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td><code>()[]&#123;&#125;</code> 间跳转</td>
+</tr>
+<tr>
+<td><code>(</code></td>
+<td>跳转到上一句开头</td>
+</tr>
+<tr>
+<td><code>)</code></td>
+<td>跳转到下一句开头</td>
+</tr>
+<tr>
+<td><code>&#123;</code></td>
+<td>跳转到上一段开头</td>
+</tr>
+<tr>
+<td><code>&#125;</code></td>
+<td>跳转到下一段开头</td>
+</tr>
+<tr>
+<td><code>H/M/L</code></td>
+<td>跳到屏幕最上方&#x2F;正中间&#x2F;最下方</td>
+</tr>
+<tr>
+<td><code>gf</code></td>
+<td>跳转到光标下的文件名, <code>:set suffixesadd+=</code> 可以加上扩展名</td>
+</tr>
+<tr>
+<td><code>&lt;C-]&gt;</code></td>
+<td>跳转到光标下关键字的定义之处</td>
+</tr>
+</tbody></table>
+<p>自动位置标记</p>
+<table>
+<thead>
+<tr>
+<th>位置标记</th>
+<th>跳转到</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>``</td>
+<td>当前文件中上次跳转动作之前的位置</td>
+</tr>
+<tr>
+<td>‘’</td>
+<td>同``</td>
+</tr>
+<tr>
+<td>`.</td>
+<td>上次修改的地方</td>
+</tr>
+<tr>
+<td>`^</td>
+<td>上次插入的地方</td>
+</tr>
+<tr>
+<td>`[</td>
+<td>上次修改或复制的起始位置</td>
+</tr>
+<tr>
+<td>`]</td>
+<td>上次修改或复制的结束位置</td>
+</tr>
+<tr>
+<td>`&lt;</td>
+<td>上次高亮选区的起始位置</td>
+</tr>
+<tr>
+<td>`&gt;</td>
+<td>上次高亮选区的结束位置</td>
+</tr>
+</tbody></table>
+<h3 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h3><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&gt;&gt;</code> <code>&gt;0</code></td>
+<td>当前行缩进</td>
+</tr>
+<tr>
+<td><code>&gt;n</code></td>
+<td>当前行及以下n行缩进</td>
+</tr>
+<tr>
+<td><code>&gt;G</code></td>
+<td>当前行至文档尾缩进</td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>减少缩进</td>
+</tr>
+<tr>
+<td><code>=</code></td>
+<td>自动缩进</td>
+</tr>
+<tr>
+<td><code>gg=G</code></td>
+<td>自动缩进整个文件</td>
+</tr>
+</tbody></table>
+<h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h3><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ZZ</code></td>
+<td>保存后退出</td>
+</tr>
+<tr>
+<td><code>ga</code></td>
+<td>显示字符编码</td>
+</tr>
+<tr>
+<td><code>q:</code> <code>q/</code></td>
+<td>命令行窗口</td>
+</tr>
+<tr>
+<td><code>@:</code></td>
+<td>重复上次的 Ex 命令</td>
+</tr>
+<tr>
+<td><code>&lt;C-^&gt;</code></td>
+<td>切换当前文件与轮换文件</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>重复上一次命令, 移动命令不会重复</td>
+</tr>
+<tr>
+<td>n<code>&lt;C-a&gt;</code></td>
+<td>对数字执行 +n 操作</td>
+</tr>
+<tr>
+<td>n<code>&lt;C-x&gt;</code></td>
+<td>对数字执行 -n 操作</td>
+</tr>
+<tr>
+<td><code>g~</code></td>
+<td>切换大小写</td>
+</tr>
+<tr>
+<td><code>gu</code></td>
+<td>切换成小写</td>
+</tr>
+<tr>
+<td><code>gU</code></td>
+<td>切换成大写</td>
+</tr>
+</tbody></table>
+<h2 id="Visual-模式"><a href="#Visual-模式" class="headerlink" title="Visual 模式"></a><code>Visual</code> 模式</h2><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>o</code></td>
+<td>切换高亮选区的活动端</td>
+</tr>
+</tbody></table>
+<h2 id="Ex-命令"><a href="#Ex-命令" class="headerlink" title="Ex 命令"></a>Ex 命令</h2><p><code>Normal</code> 下输入 <code>:</code> 或 <code>Q</code> 进入相应的模式, 可以执行 <code>Ex</code> 命令(输入完命令后回车执行)</p>
+<p>输入 <code>ESC</code> 或 <code>&lt;C-[&gt;</code> 可以回到正常模式或者撤消一个不想输入或部分完整的命令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[range]delete [x]</code></td>
+<td>删除指定范围内的行[到寄存器x中]</td>
+</tr>
+<tr>
+<td><code>[range]yank [x]</code></td>
+<td>复制指定范围的行[到寄存器x中]</td>
+</tr>
+<tr>
+<td><code>[line]put [x]</code></td>
+<td>在指定行后粘贴寄存器x中的内容</td>
+</tr>
+<tr>
+<td><code>[range]copy &#123;address&#125;</code></td>
+<td>把指定范围内的行拷贝到{address} 所指定的行之下, 不使用寄存器 简写为 :t, :co</td>
+</tr>
+<tr>
+<td><code>[range]move &#123;address&#125;</code></td>
+<td>把指定范围内的行移动到{address}所指定的行之下 简写为 :m</td>
+</tr>
+<tr>
+<td><code>[range]join</code></td>
+<td>连接指定范围内的行</td>
+</tr>
+<tr>
+<td><code>[range]normal &#123;commands&#125;</code></td>
+<td>对指定范围内的每一行执行普通模式命令{commands}</td>
+</tr>
+<tr>
+<td><code>[range]substitute/&#123;pattern&#125;/ &#123;string&#125;/[flags]</code></td>
+<td>把指定范围内出现{pattern}的地方替换为{string}</td>
+</tr>
+<tr>
+<td><code>[range]global/&#123;pattern&#125;/[cmd]</code></td>
+<td>对指定范围内匹配{pattern}的所有行，在其上执行Ex 命令{cmd}</td>
+</tr>
+<tr>
+<td><code>[range]print[flags]</code></td>
+<td>显示 [range] 范围里的行 (缺省是当前行) 简写为 :p</td>
+</tr>
+<tr>
+<td><code>&lt;C-f&gt;</code></td>
+<td>切换到命令行窗口</td>
+</tr>
+<tr>
+<td><code>!&#123;cmd&#125;</code></td>
+<td>执行 shell 命令, 命令行中 <code>%</code> 代表当前文件名</td>
+</tr>
+<tr>
+<td><code>read !&#123;cmd&#125;</code></td>
+<td>把{cmd}命令的输出读入当前缓冲区中, 缓冲区即文件在内存中的映像</td>
+</tr>
+<tr>
+<td><code>write !&#123;cmd&#125;</code></td>
+<td>把缓冲区内容作为指定{cmd}的标准输入</td>
+</tr>
+<tr>
+<td><code>pwd</code></td>
+<td>打印当前目录</td>
+</tr>
+<tr>
+<td><code>reg &quot;&#123;reg&#125;</code></td>
+<td>查看寄存器内容</td>
+</tr>
+</tbody></table>
+<p>一些解释</p>
+<ul>
+<li><code>range: &#123;start,end&#125;</code><ul>
+<li><code>0</code> 虚拟行，位于文件第一行上方</li>
+<li><code>1</code> 文件的第一行</li>
+<li><code>.</code> 当前行</li>
+<li><code>$</code> 最后一行</li>
+<li><code>%</code> 所有行</li>
+<li><code>start</code>, <code>end</code> 可以是数字也可以是模式</li>
+<li><code>&#123;address&#125;+n</code> 地址偏移</li>
+<li><code>&#39;m</code> 包含位置标记m的行</li>
+<li><code>&#39;&lt;</code> 高亮选区的起始行</li>
+<li><code>&#39;&gt;</code> 高亮选区的结束行</li>
+</ul>
+</li>
+</ul>
+<h3 id="缓冲区操作"><a href="#缓冲区操作" class="headerlink" title="缓冲区操作"></a>缓冲区操作</h3><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>w[rite]</code></td>
+<td>把缓冲区内容写入磁盘</td>
+</tr>
+<tr>
+<td><code>w file</code></td>
+<td>保存在文件 file 中</td>
+</tr>
+<tr>
+<td><code>q[uit]!</code></td>
+<td>丢弃修改退出</td>
+</tr>
+<tr>
+<td><code>e[dit]!</code></td>
+<td>把磁盘文件内容读入缓冲区(即回滚所做修改)</td>
+</tr>
+<tr>
+<td><code>qa[ll]!</code></td>
+<td>关闭所有窗口，摒弃修改而无需警告</td>
+</tr>
+<tr>
+<td><code>wa[ll]!</code></td>
+<td>把所有改变的缓冲区写入磁盘</td>
+</tr>
+<tr>
+<td><code>wq</code></td>
+<td>保存后退出</td>
+</tr>
+<tr>
+<td><code>ls</code></td>
+<td>查看缓冲区列表</td>
+</tr>
+<tr>
+<td><code>bnext</code></td>
+<td>切换到列表中的下一个缓冲区</td>
+</tr>
+<tr>
+<td><code>bnext!</code></td>
+<td>强制(未保存)切换缓冲区</td>
+</tr>
+<tr>
+<td><code>bprev</code></td>
+<td>切换到列表中的上一个缓冲区</td>
+</tr>
+<tr>
+<td><code>bfirst</code></td>
+<td>切换到列表中的第一个缓冲区</td>
+</tr>
+<tr>
+<td><code>blast</code></td>
+<td>切换到列表中的最后一个缓冲区</td>
+</tr>
+<tr>
+<td><code>buffer N</code> <code>:buffer &#123;bufname&#125;</code></td>
+<td>直接跳转到一个缓冲区</td>
+</tr>
+<tr>
+<td><code>bdelete N1 N2 N3</code> <code>:N,M bdelete</code></td>
+<td>删除缓冲区</td>
+</tr>
+<tr>
+<td><code>args</code></td>
+<td>查看参数列表, [] 指明了参数列表中的哪个文件是活动文件</td>
+</tr>
+<tr>
+<td><code>args &#123;arglist&#125;</code></td>
+<td>设置参数列表</td>
+</tr>
+<tr>
+<td><code>argdo</code></td>
+<td>在列表中的每个缓冲区上执行同一条命令</td>
+</tr>
+<tr>
+<td><code>e[dit] file</code></td>
+<td>通过文件的绝对路径或相对路径来打开文件</td>
+</tr>
+<tr>
+<td><code>find</code></td>
+<td>查找打开文件</td>
+</tr>
+<tr>
+<td><code>set path+=</code></td>
+<td>设置 find 路径</td>
+</tr>
+<tr>
+<td><code>r file</code></td>
+<td>将file文件的内容插入进来</td>
+</tr>
+<tr>
+<td><code>changes</code></td>
+<td>查看改变列表</td>
+</tr>
+<tr>
+<td><code>jumps</code></td>
+<td>查看跳转列表</td>
+</tr>
+<tr>
+<td><code>marks</code></td>
+<td>查看标记列表</td>
+</tr>
+</tbody></table>
+<p><code>ls</code>  的输出中</p>
+<ul>
+<li><code>%</code> 指明哪个缓冲区在当前窗口中可见</li>
+<li><code>#</code> 代表轮换文件</li>
+<li><code>+</code> 表示这个缓冲区被修改过了</li>
+<li><code>a</code> 表示活动缓冲区</li>
+<li><code>h</code> 表示隐藏缓冲区</li>
+</ul>
+<h2 id="Insert-模式"><a href="#Insert-模式" class="headerlink" title="Insert 模式"></a><code>Insert</code> 模式</h2><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ESC</code> <code>&lt;C-[&gt;</code></td>
+<td>回到正常模式</td>
+</tr>
+<tr>
+<td><code>&lt;C-o&gt;</code></td>
+<td>插入-普通模式: 执行一次普遍模式命令后回到插入模式</td>
+</tr>
+<tr>
+<td><code>&lt;C-r&gt;=</code></td>
+<td>把执行的结果插入到文档的当前位置</td>
+</tr>
+<tr>
+<td><code>&lt;C-v&gt;&#123;code&#125;</code></td>
+<td>用字符编码插入非常用字符</td>
+</tr>
+<tr>
+<td>退格键 <code>&lt;C-h&gt;</code></td>
+<td>删除前一个字符</td>
+</tr>
+<tr>
+<td><code>&lt;C-w&gt;</code></td>
+<td>删除前一个单词</td>
+</tr>
+<tr>
+<td><code>&lt;C-u&gt;</code></td>
+<td>删至行首</td>
+</tr>
+<tr>
+<td><code>&lt;C-r&gt;&#123;register&#125;</code></td>
+<td>插入模式下粘贴寄存器中的文本, + 寄存器保存剪切板中的内容</td>
+</tr>
+<tr>
+<td><code>&lt;C-r&gt;&lt;C-p&gt;&#123;register&#125;</code> 按原义插入寄存器内的文本，并修正任何不必要的缩进</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h2><table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&quot;&quot;</code></td>
+<td>无名寄存器, “”p 等同 p</td>
+</tr>
+<tr>
+<td><code>&quot;&#123;register&#125;</code></td>
+<td>有名寄存器 <code>[a–zA-Z]</code>, 使用小写有名寄存器会覆盖寄存器的内容，大写有名寄存器则添加到后面</td>
+</tr>
+<tr>
+<td><code>&quot;0</code></td>
+<td>复制专用寄存器</td>
+</tr>
+<tr>
+<td><code>&quot;_</code></td>
+<td>黑洞寄存器</td>
+</tr>
+<tr>
+<td><code>&quot;+</code></td>
+<td>X11剪贴板，用剪切、复制与粘贴命令操作</td>
+</tr>
+<tr>
+<td><code>&quot;*</code></td>
+<td>X11主剪贴板, 用鼠标中键操作</td>
+</tr>
+<tr>
+<td><code>&quot;=</code></td>
+<td>表达式寄存器</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>只读寄存器</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“%</td>
+<td>当前文件名</td>
+</tr>
+<tr>
+<td>“#</td>
+<td>轮换文件名</td>
+</tr>
+<tr>
+<td>“.</td>
+<td>上次插入的文本</td>
+</tr>
+<tr>
+<td>“:</td>
+<td>上次执行的Ex命令</td>
+</tr>
+<tr>
+<td>“&#x2F; (可用 :let 修改)</td>
+<td>上次查找的模式</td>
+</tr>
+</tbody></table>
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><p><code>/string + 回车</code> 向下查找 要查找特殊字符需要用’&#39;来转义 <code>.*[]^%/\?~$</code><br><code>?string + 回车</code> 逆向查找<br><code>n</code> 查找下一个<br><code>3n</code> 查找下面第3个<br><code>N</code> 查找上一个<br><code>/&lt;CR&gt;</code> 正向跳转至相同模式的下一处匹配<br><code>?&lt;CR&gt;</code> 反向跳转至相同模式的上一处匹配<br><code>%</code> 匹配括号，在<code>([&#123;&#125;])</code> 处按<code>%</code>会跳到匹配的括号处(再按一次就会回到之前的括号处)<br><code>f&#123;char&#125;</code> 到右侧第 [count] 次出现的字符 {char}。光标放在 {char}上<br><code>t&#123;char&#125;</code> 同f。光标放在 {char}左侧<br><code>F&#123;char&#125;</code> 同f。在左侧匹配<br><code>T&#123;char&#125;</code> 同f。在左侧匹配,光标放在{char}右侧<br><code>;</code> 重复上次的 f、t、F 或者 T 命令 [count] 次<br><code>,</code> 反方向重复上次的 f、t、F 或者 T 命令 [count] 次<br><code>f F t T ; ,</code> 只作用于本行<br><code>*</code> 正向查找第 [count] 次出现距离当前光标最近的单词的地方<br><code>#</code> 同 <code>*</code>，但反向查找<br><code>:nohlsearch</code> 暂时关闭查找高亮功能, 直到执行新的或重复的查找命令为止<br><code>&lt;C-r&gt;&lt;C-w&gt;</code> 根据预览结果对查找域自动补全<br><code>//e&lt;CR&gt;</code> 查找偏移<br><code>\&gt;</code> 标记单词结尾，<code>\&lt;标记开头</code><br><code>* #</code> 默认使用了<code>\&lt;</code> <code>\&gt;</code> 使用<code>g*</code> <code>g#</code> 来部分匹配</p>
+<h2 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h2><p><code>:[range]s[ubstitute]/&#123;pattern&#125;/&#123;string&#125;/[flags]</code></p>
+<p><code>:s/old/new</code> 改变光标所在行的第一个匹配串<br><code>:s/old/new/g</code> 替换全行的匹配串<br><code>:%s/old/new/g</code> 替换整个文件中的每个匹配串<br><code>%s/old/new/gc</code> 找到整个文件中的每个匹配串，并且对每个匹配串提示是否进行替换<br><code>:#,#s/old/new/g</code> 替换两行之间出现的每个匹配串，#,# 代表的是替换操作的若干行中首尾两行的行号<br><code>:%s///gn</code> 统计当前匹配模式的个数, n 抑制正常的替换行为<br>标志位e专门用于屏蔽这些错误提示<br>标志位&amp;仅仅用于指示Vim重用上一次substitute命令所用过的标志位<br><code>:&amp;&amp;</code> 命令重新执行替换操作, 本身只作用于当前行<br><code>:&#39;&lt;,&#39;&gt;&amp;&amp;</code>  作用于高亮选区<br><code>:%&amp;&amp;</code> <code>g&amp;</code> 作用于整个文件  </p>
+<p>替换域中的特殊字符</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\r</code></td>
+<td>插入一个换行符</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>插入一个制表符</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>插入一个反斜杠</td>
+</tr>
+<tr>
+<td><code>\1</code></td>
+<td>插入第1个子匹配</td>
+</tr>
+<tr>
+<td><code>\2</code></td>
+<td>插入第2个子匹配（以此类推，最多到\9）</td>
+</tr>
+<tr>
+<td><code>\0</code></td>
+<td>插入匹配模式的所有内容</td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td>插入匹配模式的所有内容</td>
+</tr>
+<tr>
+<td><code>~</code></td>
+<td>使用上一次调用:substitute时的{string}</td>
+</tr>
+<tr>
+<td><code>\=</code></td>
+<td>{Vim script}执行{Vim Script}表达式；并将返回的结果作为替换{string}</td>
+</tr>
+</tbody></table>
+<h2 id="global-命令"><a href="#global-命令" class="headerlink" title="global 命令"></a>global 命令</h2><p><code>:[range] global[!] /&#123;pattern&#125;/ [cmd]</code></p>
+<p>在缺省情况下，:global命令的作用范围是整个文件<br>[cmd] 可以是除:global命令之外的任何Ex命, 缺省使用:print<br>:global! :vglobal（v表示invert）反转<br><code>:g/re/d</code> 删除所有行<br><code>:v/re/d</code> 只保留匹配行  </p>
+<h2 id="设置类命令"><a href="#设置类命令" class="headerlink" title="设置类命令"></a>设置类命令</h2><p><code>:set</code><br><code>ic</code> <code>ignorecase</code> 查找时忽略字母大小写<br><code>is</code> <code>incsearch</code> 查找短语时显示部分匹配<br><code>hls</code> <code>hlsearch</code> 高亮显示所有的匹配短语<br><code>/string\c</code> 在一次查找中忽略大小写<br>在选项前加上 no 可以关闭选项</p>
+<table>
+<thead>
+<tr>
+<th>set</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>set ignorecase</td>
+<td>打开功能</td>
+</tr>
+<tr>
+<td>set noignorecase</td>
+<td>关闭</td>
+</tr>
+<tr>
+<td>set ignorecase!</td>
+<td>反转</td>
+</tr>
+<tr>
+<td>set ignorecase?</td>
+<td>查询</td>
+</tr>
+<tr>
+<td>set ignorecase&amp;</td>
+<td>设为默认</td>
+</tr>
+<tr>
+<td>set tabstop&#x3D;2</td>
+<td>设置值</td>
+</tr>
+</tbody></table>
+<p><code>:edit $MYVIMRC</code> 编辑 vimrc<br><code>:source &#123;file&#125;</code> 加载配置<br><code>:source $MYVIMRC</code> 如果vimrc文件恰好是当前活动的缓冲区，则可把此命令简化为 :so %</p>
+<h2 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h2><p><code>:help</code> <code>F1</code> 显示一般性的帮助信息<br><code>:help cmd</code> 显示cmd的帮助信息<br><code>CTRL W</code> 在窗口间跳转</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><code>~/.vimrc</code>文件</p>
+<h2 id="补全"><a href="#补全" class="headerlink" title="补全"></a>补全</h2><p><code>:set nocp</code> 不与Vi兼容模式<br><code>&lt;TAB&gt;</code> 尝试自动补全<br><code>CTRL D</code> 显示命令列表</p>
+<h2 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h2><p><code>:map-operator</code> 自定义操作符<br><code>omap-info</code> 自定义动作命令</p>
+<h2 id="修改-root-用户文件"><a href="#修改-root-用户文件" class="headerlink" title="修改 root 用户文件"></a>修改 root 用户文件</h2><p><code>:w !sudo tee % &gt; /dev/null</code></p>
+<h2 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h2><p>录制宏</p>
+<p><code>q&#123;register&#125;</code> 开始录制<br><code>q</code> 停止<br><code>@&#123;register&#125;</code> 执行指定寄存器的内容<br><code>@@</code> 重复最近调用过的宏<br>如果宏执行动作命令失败了，Vim将中止执行宏的其余命令<br><code>qa</code> 会替换之前创建的宏，<code>qA</code> 则追加到之前的宏</p>
+<h2 id="模式-1"><a href="#模式-1" class="headerlink" title="模式"></a>模式</h2><p>设置查找时大小写不敏感 <code>:set ignorecase</code>, 同时也会影响vim关键字的自动补全<br>查找时使用元字符 \c \C 可使这次查找忽略&#x2F;不或略大小写<br><code>:set smartcase</code> 在全小写是忽略大小写，在含有大写时不忽略<br><code>\v</code> 开启very magic搜索模式，假定除 <code>_</code> 大小写字母以及数字0到9之外的所有字符都具有特殊含义<br><code>\V</code> 开启very nomagic搜索模式，即按原义查找文本<br>圆括号用以捕获，\1 \2 .. \9 表示第n个捕获项，\0 匹配整个串<br><code>\_s</code> 匹配空白符或换行符<br>very magic搜索模式下，用  &lt;与&gt;符号表示单词定界符<br>\w匹配单词类字符，包括字母、数字以及符号 <code>_</code>，而\W则用来匹配除单词类字符以外的其他字符<br>在圆括号前面加上%，指 示Vim不要将括号内的内容赋给寄存器<br>元字符\zs标志着一个匹配的起始，而元字符\ze则用来界定匹配的结束，例如<br><code>/\v&quot;\zs[^&quot;]+\ze&quot;&lt;CR&gt;</code> 模式包含字符串，但只匹配引号内的文本  </p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="grep-vimgrep"><a href="#grep-vimgrep" class="headerlink" title=":grep :vimgrep"></a>:grep :vimgrep</h3><p><code>:grep</code> vim 调用外部 grep，会创建 quickfix 列表  </p>
+<p><code>:vim[grep][!] /&#123;pattern&#125;/[g][j] &#123;file&#125; ...</code></p>
+<h3 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h3><p>开启 ignorecase 后，自动补全也会忽略大小写<br><code>:set infercase</code> 仍会联想大小写，补全时不会替换已输入字符的大小写  </p>
+<p>触发Vim自动补全的方法</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>补全类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;C-n&gt;</code> 或 <code>&lt;C-p&gt;</code></td>
+<td>普通关键字</td>
+</tr>
+<tr>
+<td><code>&lt;C-x&gt;&lt;C-n&gt;</code></td>
+<td>当前缓冲区关键字</td>
+</tr>
+<tr>
+<td><code>&lt;C-x&gt;&lt;C-i&gt;</code></td>
+<td>包含文件关键字</td>
+</tr>
+<tr>
+<td><code>&lt;C-x&gt;&lt;C-]&gt;</code></td>
+<td>标签文件关键字</td>
+</tr>
+<tr>
+<td><code>&lt;C-x&gt;&lt;C-k&gt;</code></td>
+<td>字典查找</td>
+</tr>
+<tr>
+<td><code>&lt;C-x&gt;&lt;C-l&gt;</code></td>
+<td>整行补全</td>
+</tr>
+<tr>
+<td><code>&lt;C-x&gt;&lt;C-f&gt;</code></td>
+<td>文件名补全</td>
+</tr>
+<tr>
+<td><code>&lt;C-x&gt;&lt;C-o&gt;</code></td>
+<td>全能（Omni）补全</td>
+</tr>
+</tbody></table>
+<p>补全菜单交互命令</p>
+<table>
+<thead>
+<tr>
+<th>按键操作</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;C-n&gt;</code></td>
+<td>使用来自补全列表的下一个匹配项（next匹配项）</td>
+</tr>
+<tr>
+<td><code>&lt;C-p&gt;</code></td>
+<td>使用来自补全列表的上一个匹配项（previous匹配项）</td>
+</tr>
+<tr>
+<td><code>&lt;Down&gt;</code></td>
+<td>选择来自补全列表的下一个匹配项</td>
+</tr>
+<tr>
+<td><code>&lt;Up&gt;</code></td>
+<td>选择来自补全列表的上一个匹配项</td>
+</tr>
+<tr>
+<td><code>&lt;C-y&gt;</code></td>
+<td>确认使用当前选中的匹配项（yes）</td>
+</tr>
+<tr>
+<td><code>&lt;C-e&gt;</code></td>
+<td>还原最早输入的文本（从自动补全中exit）</td>
+</tr>
+<tr>
+<td><code>&lt;C-h&gt;</code>（与<code>&lt;BS&gt;</code>）</td>
+<td>从当前匹配项中删除一个字符</td>
+</tr>
+<tr>
+<td><code>&lt;C-l&gt;</code></td>
+<td>从当前匹配项中增加一个字符{char} 中止自动补全并插入字符{char}@</td>
+</tr>
+</tbody></table>
+<h3 id="拼写检查"><a href="#拼写检查" class="headerlink" title="拼写检查"></a>拼写检查</h3><p><code>:set spell</code> 开启拼写检查<br><code>set spelllang=en_us</code> 设置语言  </p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>]s</code></td>
+<td>跳到下一处拼写错误</td>
+</tr>
+<tr>
+<td><code>[s</code></td>
+<td>跳到上一处拼写错误</td>
+</tr>
+<tr>
+<td><code>z=</code></td>
+<td>为当前单词提供更正建议</td>
+</tr>
+<tr>
+<td><code>zg</code></td>
+<td>把当前单词添加到拼写文件中</td>
+</tr>
+<tr>
+<td><code>zw</code></td>
+<td>把当前单词从拼写文件中删除</td>
+</tr>
+<tr>
+<td><code>zug</code></td>
+<td>撤销针对当前单词的zg或zw命令</td>
+</tr>
+</tbody></table>
+<p><code>spellfile</code> 指定文件保存由zg 和zw 命令所添加、删除的单词</p>
+<p>插入模式下通过<code>&lt;C-x&gt;s</code> <code>&lt;C-x&gt;&lt;C-s&gt;</code>更正拼写错误，该命令会触发一个特殊的自动补全功能</p>
+<p>开启 expandtab <code>&lt;C-v&gt;&lt;Tab&gt;</code> 会插入制表符</p>
+<h3 id="自动命令"><a href="#自动命令" class="headerlink" title="自动命令"></a>自动命令</h3><p><code>autocmd &#123;event&#125; &#123;pattern&#125; &#123;cmd&#125;</code></p>
+<p>在 <code>cmd</code> 中，<code>&lt;afile&gt;</code> 代表当前文件名</p>
+<p>多个 <code>pattern</code> 以逗号分隔</p>
+<p><code>FileType</code> 事件用于匹配文件类型，<code>set filetype?</code> 查看文件类型</p>
+<p>销毁自动命令 <code>autocmd!</code></p>
+<p>自动命令组 <code>augroup</code></p>
+<h3 id="bash-绑定-vi-键位"><a href="#bash-绑定-vi-键位" class="headerlink" title="bash 绑定 vi 键位"></a>bash 绑定 vi 键位</h3><p><code>set -o emacs</code> <code>set -o vi</code> 分别设置交互式 bash 的键位为 emacs  和 vi 模式, 默认是 emacs 模式</p>
+<p>vi 模式下，默认是插入模式，按 ESC 回到一般模式</p>
+<h2 id="ctags"><a href="#ctags" class="headerlink" title="ctags"></a>ctags</h2><h3 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://ctags.sourceforge.net/">http://ctags.sourceforge.net/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/universal-ctags/ctags">https://github.com/universal-ctags/ctags</a></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install exuberant-ctags universal-ctags</span><br><span class="line">ctags files</span><br></pre></td></tr></table></figure>
+
+<h3 id="vim-跳转"><a href="#vim-跳转" class="headerlink" title="vim 跳转"></a>vim 跳转</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;C-]&gt;</code></td>
+<td>跳转到匹配当前光标所在关键字的第一处标签</td>
+</tr>
+<tr>
+<td><code>g&lt;C-]&gt;</code></td>
+<td>如果有多处标签可以匹配当前光标所在的关键字，提示用户指定一处进行跳转。如果只有一处匹配，则不会提示，直接进行跳转</td>
+</tr>
+<tr>
+<td><code>:tag &#123;keyword&#125;</code></td>
+<td>跳转到匹配{keyword}的第一处标签</td>
+</tr>
+<tr>
+<td><code>:tjump &#123;keyword&#125;</code></td>
+<td>提示用户从匹配{keyword}的多处标签中指定一处进行跳转。如果只有一处匹配，则不会提示，直接进行跳转</td>
+</tr>
+<tr>
+<td><code>:pop</code> 或 <code>&lt;C-t&gt;</code></td>
+<td>反向遍历标签历史</td>
+</tr>
+<tr>
+<td><code>:tag</code></td>
+<td>正向遍历标签历史</td>
+</tr>
+<tr>
+<td><code>:tnext</code></td>
+<td>跳转到下一处匹配的标签</td>
+</tr>
+<tr>
+<td><code>:tprev</code></td>
+<td>跳转到上一处匹配的标签</td>
+</tr>
+<tr>
+<td><code>:tfirst</code></td>
+<td>跳转到第一处匹配的标签</td>
+</tr>
+<tr>
+<td><code>:tlast</code></td>
+<td>跳转到最后一处匹配的标签</td>
+</tr>
+<tr>
+<td><code>:tselect</code></td>
+<td>提示用户从标签匹配列表中选择一项进行跳转</td>
+</tr>
+</tbody></table>
+<h3 id="启动vim时跳转"><a href="#启动vim时跳转" class="headerlink" title="启动vim时跳转"></a>启动vim时跳转</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim -t tag</span><br></pre></td></tr></table></figure>
+
+<p>需要有 <code>tags</code> 文件, 定位到标签函数(<code>C/C++</code>)的开始处</p>
+<h3 id="制作-stdc-tags"><a href="#制作-stdc-tags" class="headerlink" title="制作 stdc++ tags"></a>制作 stdc++ tags</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.vim/tags</span><br><span class="line">cd ~/.vim/tags/</span><br><span class="line">ctags -R --c++-kinds=+l+x+p --fields=+iaSl --extra=+q --language-force=c++ -f stdcpp.tags /usr/include/c++/10/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> <span class="keyword">tags</span>+=~/.<span class="keyword">vim</span>/<span class="keyword">tags</span>/stdcpp.<span class="keyword">tags</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h2><h3 id="保存会话"><a href="#保存会话" class="headerlink" title="保存会话"></a>保存会话</h3><p><code>:mksession!</code> 将当前会话写入 <code>Session.vim</code> 中</p>
+<h3 id="载入会话"><a href="#载入会话" class="headerlink" title="载入会话"></a>载入会话</h3><p>shell中使用 <code>vim -S &#123; file &#125;</code> 读入文件后执行 <code>file</code>, 如果不带 <code>file</code> 参数等价于 <code>vim -S Session.vim</code></p>
+<p>或 vim 中执行 <code>:source Session.vim</code></p>
+<p><code>:mksession</code> 与 <code>vim -S</code> 默认在当前目录保存和寻找文件，也可以指定文件名来保存和寻找，或是建立多个会话</p>
+<h3 id="持久化撤销"><a href="#持久化撤销" class="headerlink" title="持久化撤销"></a>持久化撤销</h3><p><code>set undofile</code> 开启持久化撤销</p>
+<p><code>set undodir=</code> 设置文件存储撤销历史</p>
+<h3 id="插件-obsession"><a href="#插件-obsession" class="headerlink" title="插件 obsession"></a>插件 obsession</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/tpope/vim-obsession.git ~/.vim/pack/bundle/start/obsession</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>:Obsession</code> 开启&#x2F;暂停自动保存会话</li>
+<li><code>:Obsession!</code> 删除<code>Session.vim</code> 并停止自动保存会话</li>
+</ul>
+<h2 id="窗口与标签页"><a href="#窗口与标签页" class="headerlink" title="窗口与标签页"></a>窗口与标签页</h2><h3 id="启动vim时分割"><a href="#启动vim时分割" class="headerlink" title="启动vim时分割"></a>启动vim时分割</h3><ul>
+<li><p><code>vim -o[N]</code></p>
+<p>  打开 <code>N</code> 个窗口，水平分割。如果没有给出 <code>N</code>，为每个文件参数打开一个窗口。<br>  如果没有足够的空间，只打开前面数项。如果给出的窗口数 超过参数的数目，后面的窗口会编辑空文件。</p>
+</li>
+<li><p><code>vim -O[N]</code></p>
+<p>  同 <code>-o</code>, 但垂直分割</p>
+</li>
+<li><p><code>vim -p[N]</code></p>
+<p>  同 <code>-o</code>, 标签页分割, 最大标签页数由 <code>tabpagemax</code> 决定</p>
+</li>
+</ul>
+<h3 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;C-w&gt;s</code></td>
+<td>水平切分窗口</td>
+</tr>
+<tr>
+<td><code>&lt;C-w&gt;v</code></td>
+<td>垂直切分窗口</td>
+</tr>
+<tr>
+<td><code>:edit</code></td>
+<td>把另外一个缓冲区载入活动窗口中</td>
+</tr>
+<tr>
+<td><code>:sp[lit] &#123;file&#125;</code></td>
+<td>水平切分当前窗口，并在新窗口中载入{file}</td>
+</tr>
+<tr>
+<td><code>:vsp[lit] &#123;file&#125;</code></td>
+<td>垂直切分当前窗口，并在新窗口中载入{file}</td>
+</tr>
+</tbody></table>
+<h4 id="窗口间切换"><a href="#窗口间切换" class="headerlink" title="窗口间切换"></a>窗口间切换</h4><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;C-w&gt;w</code></td>
+<td><code>&lt;C-w&gt;&lt;C-w&gt;</code> 在窗口间循环切换</td>
+</tr>
+<tr>
+<td><code>&lt;C-w&gt;h</code></td>
+<td>切换到左边的窗口</td>
+</tr>
+<tr>
+<td><code>&lt;C-w&gt;j</code></td>
+<td>切换到下边的窗口</td>
+</tr>
+<tr>
+<td><code>&lt;C-w&gt;k</code></td>
+<td>切换到上边的窗口</td>
+</tr>
+<tr>
+<td><code>&lt;C-w&gt;l</code></td>
+<td>切换到右边的窗口</td>
+</tr>
+<tr>
+<td><code>&lt;C-w&gt;r</code></td>
+<td>交换两个窗口</td>
+</tr>
+</tbody></table>
+<h4 id="关闭窗口"><a href="#关闭窗口" class="headerlink" title="关闭窗口"></a>关闭窗口</h4><table>
+<thead>
+<tr>
+<th>Ex 命令</th>
+<th>普通模式命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:clo[se]</td>
+<td><C-w>c</td>
+<td>关闭活动窗口</td>
+</tr>
+<tr>
+<td>:on[ly]</td>
+<td><C-w>o</td>
+<td>只保留活动窗口，关闭其他所有窗口</td>
+</tr>
+</tbody></table>
+<h4 id="改变窗口大小及重新排列窗口"><a href="#改变窗口大小及重新排列窗口" class="headerlink" title="改变窗口大小及重新排列窗口"></a>改变窗口大小及重新排列窗口</h4><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;C-w&gt;=</code></td>
+<td>使所有窗口等宽、等高</td>
+</tr>
+<tr>
+<td><code>&lt;C-w&gt;_</code></td>
+<td>最大化活动窗口的高度</td>
+</tr>
+<tr>
+<td>&#96;<C-w></td>
+<td>&#96;</td>
+</tr>
+<tr>
+<td><code>[N]&lt;C-w&gt;</code></td>
+<td>_  把活动窗口的高度设为[N]行</td>
+</tr>
+<tr>
+<td>&#96;[N]<C-w></td>
+<td>&#96;</td>
+</tr>
+<tr>
+<td><code>&lt;C-w&gt;+</code></td>
+<td>扩大窗口行数</td>
+</tr>
+<tr>
+<td><code>&lt;C-w&gt;-</code></td>
+<td>减少窗口行数</td>
+</tr>
+<tr>
+<td><code>&lt;C-w&gt;&gt;</code></td>
+<td>扩大窗口列数</td>
+</tr>
+<tr>
+<td><code>&lt;C-w&gt;&lt;</code></td>
+<td>减少窗口列数</td>
+</tr>
+</tbody></table>
+<h3 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a>标签页</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:tabedit &#123;file&#125;</code></td>
+<td>新标签页编辑文件</td>
+</tr>
+<tr>
+<td><code>:tabnew</code></td>
+<td>新标签页编辑新文件</td>
+</tr>
+<tr>
+<td><code>:tabs</code></td>
+<td>列出标签页</td>
+</tr>
+<tr>
+<td><code>:tabclose</code></td>
+<td>关闭当前标签页</td>
+</tr>
+<tr>
+<td><code>:tabonly</code></td>
+<td>仅保留当前标签页</td>
+</tr>
+<tr>
+<td><code>:tabn</code></td>
+<td><code>:tabnext</code> <code>gt</code> 移动到下一个标签页</td>
+</tr>
+<tr>
+<td><code>:tabp</code></td>
+<td><code>:tabprevious</code> <code>gT</code> 移动到上一个标签页</td>
+</tr>
+<tr>
+<td><code>:tabm :tabmove [N]</code></td>
+<td>把当前标签页移到第 N 个标签页之</td>
+</tr>
+</tbody></table>
+<h2 id="vimdiff"><a href="#vimdiff" class="headerlink" title="vimdiff"></a>vimdiff</h2><p><code>vimdiff file1 file2</code> 竖屏比较两个文件<br><code>vimdiff -o file1 file2</code> 横屏比较两个文件  </p>
+<p>vimdiff 同 <code>vim -d</code></p>
+<p>vim 编辑文件时 <code>:vertical diffsplit file2</code> 亦可比较</p>
+<p>两侧的屏幕滚动默认同步，<code>:set noscrollbind</code> 设置不同步</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>]c</code></td>
+<td>下一个差异点</td>
+</tr>
+<tr>
+<td><code>[c</code></td>
+<td>上一个差异点</td>
+</tr>
+<tr>
+<td><code>dp</code></td>
+<td>(diff put) 从当前复制到另一个</td>
+</tr>
+<tr>
+<td><code>do</code></td>
+<td>(diff obtain) 从另一个复制到当前</td>
+</tr>
+<tr>
+<td><code>:diffupdate</code></td>
+<td>刷新比较结果</td>
+</tr>
+<tr>
+<td><code>:set diffopt=context:6</code></td>
+<td>缺省的上下文行数</td>
+</tr>
+<tr>
+<td><code>zo</code></td>
+<td>打开折叠</td>
+</tr>
+<tr>
+<td><code>zc</code></td>
+<td>重新折</td>
+</tr>
+</tbody></table>
+<h2 id="vim-终端"><a href="#vim-终端" class="headerlink" title="vim 终端"></a>vim 终端</h2><p><code>:ter[minal]</code> 打开终端</p>
+<h2 id="quickfix"><a href="#quickfix" class="headerlink" title="quickfix"></a>quickfix</h2><p><code>:make</code> 在 vim 中编译<br><code>:make!</code> 出错后光标位置不变  </p>
+<p>Quickfix 命令列表</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:cnext</code></td>
+<td>跳转到下一项</td>
+</tr>
+<tr>
+<td><code>:cprev</code></td>
+<td>跳转到上一项</td>
+</tr>
+<tr>
+<td><code>:cfirst</code></td>
+<td>跳转到第一项</td>
+</tr>
+<tr>
+<td><code>:clast</code></td>
+<td>跳转到最后一项</td>
+</tr>
+<tr>
+<td><code>:cnfile</code></td>
+<td>跳转到下一个文件中的第一项</td>
+</tr>
+<tr>
+<td><code>:cpfile</code></td>
+<td>跳转到上一个文件中的最后一项</td>
+</tr>
+<tr>
+<td><code>:cc N</code></td>
+<td>跳转到第 N 项</td>
+</tr>
+<tr>
+<td><code>:copen</code></td>
+<td>打开quickfix窗口</td>
+</tr>
+<tr>
+<td><code>:cclose</code></td>
+<td>关闭quickfix窗口</td>
+</tr>
+</tbody></table>
+<h3 id="定制外部编译器"><a href="#定制外部编译器" class="headerlink" title="定制外部编译器"></a>定制外部编译器</h3><p><code>:set makeprg=</code> 可用 % # 扩展成当前文件名与轮换文件名</p>
+<p>例如，对于markdown 文件, 设置</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">setlocal</span> makeprg=pandoc\ -<span class="keyword">c</span>\ common.css\ -s\ %\ -<span class="keyword">o</span>\ ~/www/preview.html</span><br></pre></td></tr></table></figure>
+
+<p>即可通过 <code>:make</code> 生成预览文件</p>
+<h2 id="vim-script"><a href="#vim-script" class="headerlink" title="vim script"></a>vim script</h2><h3 id="hello-vim"><a href="#hello-vim" class="headerlink" title="hello.vim"></a><code>hello.vim</code></h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function!</span> <span class="title">SayHello</span><span class="params">()</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;hello, world&#x27;</span></span><br><span class="line"><span class="keyword">endfunction</span></span><br><span class="line"></span><br><span class="line">command! Hello <span class="keyword">call</span> SayHello()</span><br><span class="line"><span class="keyword">nnoremap</span> Q :Hello<span class="symbol">&lt;CR&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>vim 中，使用 <code>:source &#123;path&#125;</code> 加载vim script<br><code>Q</code> 和 <code>:Hello</code> 均会输出 “hello, world”</p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&quot; 单行注释</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>let 声明一个变量，变量存在三种作用域，全局、局部、脚本变量，可以指定前缀区别作用域</p>
+<table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>g:</code></td>
+<td>全局变量</td>
+</tr>
+<tr>
+<td><code>l:</code></td>
+<td>局部变量，只可在函数内部使用</td>
+</tr>
+<tr>
+<td><code>s:</code></td>
+<td>脚本变量，只可以在当前脚本函数内使用</td>
+</tr>
+<tr>
+<td><code>v:</code></td>
+<td>Vim 特殊变量</td>
+</tr>
+<tr>
+<td><code>b:</code></td>
+<td>作用域限定在某一个缓冲区内</td>
+</tr>
+<tr>
+<td><code>w:</code></td>
+<td>作用域限定在窗口内部</td>
+</tr>
+<tr>
+<td><code>t:</code></td>
+<td>作用域限定在标签内部</td>
+</tr>
+</tbody></table>
+<p>例如 <code>let g:str = &quot;hello&quot;</code> 定义一个全局的字符串变量</p>
+<p>不指定前缀则为默认的作用域，函数外部为全局的，函数内部为局部的</p>
+<h4 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>ID</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Number</td>
+<td>0</td>
+<td>整数</td>
+</tr>
+<tr>
+<td>String</td>
+<td>1</td>
+<td>字符串</td>
+</tr>
+<tr>
+<td>Funcref</td>
+<td>2</td>
+<td>函数指针</td>
+</tr>
+<tr>
+<td>List</td>
+<td>3</td>
+<td>列表</td>
+</tr>
+<tr>
+<td>Dictionary</td>
+<td>4</td>
+<td>字典</td>
+</tr>
+<tr>
+<td>Float</td>
+<td>5</td>
+<td>浮点数</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td>None</td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td>Job</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td>Channel</td>
+<td>9</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="Vim-自定义命令"><a href="#Vim-自定义命令" class="headerlink" title="Vim 自定义命令"></a>Vim 自定义命令</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">command! -nargs=* -<span class="built_in">complete</span>=custom,helloworld#complete HelloWorld <span class="keyword">call</span> helloworld#test()</span><br></pre></td></tr></table></figure>
+
+<p>紧接 command 命令其后的 ! 表示强制定义该命令，即使前面已经定义过了同样名称的命令，也将其覆盖掉</p>
+<p><code>-nargs=*</code> 表示，该命令可接受任意个数的参数， 包括 0 个。-nargs 的取值有以下几种情况</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-nargs=0</code></td>
+<td>不接受任何参数（默认）</td>
+</tr>
+<tr>
+<td><code>-nagrs=1</code></td>
+<td>只接受一个参数</td>
+</tr>
+<tr>
+<td><code>-nargs=*</code></td>
+<td>可接收任意个数参数</td>
+</tr>
+<tr>
+<td><code>-nargs=?</code></td>
+<td>可接受 1 个或者 0 个参数</td>
+</tr>
+<tr>
+<td><code>-nargs=+</code></td>
+<td>至少提供一个参数</td>
+</tr>
+</tbody></table>
+<p><code>-complete</code> 指定补全方式</p>
+<h2 id="插件-plugin-包-package"><a href="#插件-plugin-包-package" class="headerlink" title="插件(plugin), 包(package)"></a>插件(plugin), 包(package)</h2><h3 id="plugin"><a href="#plugin" class="headerlink" title="plugin"></a>plugin</h3><p>插件的目录结构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">demo-plugin/</span><br><span class="line">├── doc</span><br><span class="line">│   └── demo.txt</span><br><span class="line">└── plugin</span><br><span class="line">    └── demo.vim</span><br></pre></td></tr></table></figure>
+
+<p>安装插件</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> runtimepath+=$VIMCONFIG/arbitrary/demo-plugin</span><br></pre></td></tr></table></figure>
+
+<h3 id="package"><a href="#package" class="headerlink" title="package"></a>package</h3><p>包的目录通常为 <code>$VIMCONFIG/pack</code></p>
+<p>vim 启动时会遍历 <code>$VIMCONFIG/pack/*/start</code> 目录下的插件</p>
+<p>索引新安装插件的文档 <code>:helptags &#123;path&#125;</code> <code>:helptags ALL</code></p>
+<h3 id="在包里安装插件"><a href="#在包里安装插件" class="headerlink" title="在包里安装插件"></a>在包里安装插件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p $VIMCONFIG/pack/bundle/&#123;start,opt&#125;</span><br><span class="line">cd $VIMCONFIG/pack/bundle/start</span><br><span class="line">git clone &lt;git url&gt;</span><br><span class="line">vim -u NONE -c &quot;helptags $VIMCONFIG/pack/bundle/start/&lt;doc-path&gt;&quot; -c q</span><br></pre></td></tr></table></figure>
+
+<p><code>$VIMCONFIG/pack/bundle/opt</code> 目录为可选插件，通过 <code>:packadd &#123;name&#125;</code> 激活插件 <code>pack/*/opt/&#123;name&#125;</code></p>
+<h2 id="Vim-插件"><a href="#Vim-插件" class="headerlink" title="Vim 插件"></a>Vim 插件</h2><h3 id="vimcdoc"><a href="#vimcdoc" class="headerlink" title="vimcdoc"></a>vimcdoc</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/yianwillis/vimcdoc.git ~/.vim/pack/bundle/start/vimcdoc</span><br></pre></td></tr></table></figure>
+
+<h3 id="NERDTree"><a href="#NERDTree" class="headerlink" title="NERDTree"></a>NERDTree</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/bundle/start/nerdtree</span><br><span class="line">vim -u NONE -c &quot;helptags ~/.vim/pack/bundle/start/nerdtree/doc&quot; -c q</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:NERDTree</code></td>
+<td>打开文档树</td>
+</tr>
+<tr>
+<td><code>q</code></td>
+<td>退出文档树</td>
+</tr>
+<tr>
+<td><code>o</code></td>
+<td>在之前的窗口打开</td>
+</tr>
+<tr>
+<td><code>go</code></td>
+<td>预览, 打开但不跳转</td>
+</tr>
+<tr>
+<td><code>t</code></td>
+<td>新标签页打开</td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td>新标签页打开但不跳转</td>
+</tr>
+<tr>
+<td><code>i</code></td>
+<td>水平分割打开</td>
+</tr>
+<tr>
+<td><code>gi</code></td>
+<td>水平分割预览</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>垂直分割打开</td>
+</tr>
+<tr>
+<td><code>gs</code></td>
+<td>垂直分割预览</td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td>显示&#x2F;关闭 隐藏文件</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>刷新当前目录</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>把文档树根目录设为选择的目录</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>文档树根目录上移一级</td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td>同 <code>u</code> 但旧目录保持打开状态</td>
+</tr>
+<tr>
+<td><code>cd</code></td>
+<td>设置 CWD 为选中的目录</td>
+</tr>
+<tr>
+<td><code>CD</code></td>
+<td>设置文档树根目录为 CWD</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>help</td>
+</tr>
+</tbody></table>
+<h3 id="YouCompleteMe"><a href="#YouCompleteMe" class="headerlink" title="YouCompleteMe"></a>YouCompleteMe</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/ycm-core/YouCompleteMe.git ~/.vim/pack/bundle/start/YouCompleteMe</span><br><span class="line">cd ~/.vim/pack/bundle/start/YouCompleteMe</span><br><span class="line">git submodule update --init --recursive</span><br><span class="line">python3 install.py --clangd-completer # or --all</span><br></pre></td></tr></table></figure>
+
+<h3 id="fzf"><a href="#fzf" class="headerlink" title="fzf"></a>fzf</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install fzf</span><br><span class="line">git clone https://github.com/junegunn/fzf ~/.vim/pack/bundle/start/fzf</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:FZF</code></td>
+<td>打开模糊匹配器</td>
+</tr>
+<tr>
+<td><code>&lt;C-c&gt;</code></td>
+<td>关闭模糊匹配器</td>
+</tr>
+<tr>
+<td><code>&lt;C-j&gt;</code> <code>down</code></td>
+<td>选择匹配结果下一项</td>
+</tr>
+<tr>
+<td><code>&lt;C-k&gt;</code> <code>up</code></td>
+<td>选择匹配结果上一项</td>
+</tr>
+<tr>
+<td><code>&lt;CR&gt;</code></td>
+<td>打开当前项</td>
+</tr>
+<tr>
+<td><code>&lt;C-x&gt;</code></td>
+<td>水平分割打开文件</td>
+</tr>
+<tr>
+<td><code>&lt;C-v&gt;</code></td>
+<td>垂直分割打开文件</td>
+</tr>
+<tr>
+<td><code>&lt;C-t&gt;</code></td>
+<td>新标签页打开</td>
+</tr>
+</tbody></table>
+<h3 id="dispatch"><a href="#dispatch" class="headerlink" title="dispatch"></a>dispatch</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/tpope/vim-dispatch.git ~/.vim/pack/bundle/start/dispatch</span><br></pre></td></tr></table></figure>
+
+<p><code>:Make</code> 前台运行构建程序<br><code>:Make!</code> 后台运行构建程序<br><code>:Make</code> <code>:Make!</code> 都是异步执行<br><code>:Dispatch</code> 切换编译器  </p>
+<h3 id="commentary"><a href="#commentary" class="headerlink" title="commentary"></a>commentary</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/tpope/vim-commentary.git ~/.vim/pack/bundle/start/commentary</span><br></pre></td></tr></table></figure>
+
+<p><code>:[range]Commentary</code> 快速注释&#x2F;取消注释</p>
+<h3 id="base16-vim"><a href="#base16-vim" class="headerlink" title="base16-vim"></a>base16-vim</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.vim/colors</span><br><span class="line">git clone https://github.com/chriskempson/base16-vim.git</span><br><span class="line">cp base16-vim/colors/base16-*.vim ~/.vim/colors/</span><br></pre></td></tr></table></figure>
+
+<p><code>:colorscheme &#123;name&#125;</code>  选择配色</p>
+<h3 id="airline"><a href="#airline" class="headerlink" title="airline"></a>airline</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/vim-airline/vim-airline.git ~/.vim/pack/bundle/start/airline</span><br></pre></td></tr></table></figure>
+
+<h3 id="surround"><a href="#surround" class="headerlink" title="surround"></a>surround</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/tpope/vim-surround.git ~/.vim/pack/bundle/start/surround</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>把 <code>&quot;</code> 改为 <code>&#39;</code> 或 <code>&lt;p&gt;</code>: <code>cs&quot;&#39;</code> <code>cs&quot;&lt;p&gt;</code></li>
+<li>删除 <code>&quot;</code>: <code>ds&quot;</code></li>
+<li>添加 <code>&quot;</code>: <code>ysiw&quot;</code></li>
+<li>整行添加<code>&quot;</code>: <code>yss&quot;</code></li>
+</ul>
+<h3 id="fugitive"><a href="#fugitive" class="headerlink" title="fugitive"></a>fugitive</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/tpope/vim-fugitive.git ~/.vim/pack/bundle/start/fugitive</span><br></pre></td></tr></table></figure>
+
+<h3 id="ALE-Asynchronous-Lint-Engine"><a href="#ALE-Asynchronous-Lint-Engine" class="headerlink" title="ALE(Asynchronous Lint Engine)"></a>ALE(Asynchronous Lint Engine)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/dense-analysis/ale.git ~/.vim/pack/bundle/start/ale</span><br></pre></td></tr></table></figure>
+
+<h3 id="grepper"><a href="#grepper" class="headerlink" title="grepper"></a>grepper</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/mhinz/vim-grepper.git ~/.vim/pack/bundle/start/grepper</span><br></pre></td></tr></table></figure>
+
+<h3 id="vim-test"><a href="#vim-test" class="headerlink" title="vim-test"></a>vim-test</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/vim-test/vim-test.git ~/.vim/pack/bundle/start/vim-test</span><br></pre></td></tr></table></figure>
+
+<h3 id="goyo"><a href="#goyo" class="headerlink" title="goyo"></a>goyo</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/junegunn/goyo.vim.git ~/.vim/pack/bundle/start/goyo</span><br></pre></td></tr></table></figure>
+
+<p><code>:Goyo</code> <code>:Goyo!</code> 切换状态</p>
+<h3 id="vim-gutentags"><a href="#vim-gutentags" class="headerlink" title="vim-gutentags"></a>vim-gutentags</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/ludovicchabant/vim-gutentags.git ~/.vim/pack/bundle/start/vim-gutentags</span><br></pre></td></tr></table></figure>
+
+<h3 id="rainbow"><a href="#rainbow" class="headerlink" title="rainbow"></a>rainbow</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/luochen1990/rainbow.git ~/.vim/pack/bundle/start/rainbow</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">g:rainbow_active</span> = <span class="number">1</span>    <span class="comment">&quot; 默认开启</span></span><br><span class="line">:RainbowToggle      <span class="comment">&quot; 切换</span></span><br><span class="line">:RainbowToggleOn    <span class="comment">&quot; 开启</span></span><br><span class="line">:RainbowToggleOff   <span class="comment">&quot; 关闭</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="neovim"><a href="#neovim" class="headerlink" title="neovim"></a>neovim</h2><h3 id="安装与使用-1"><a href="#安装与使用-1" class="headerlink" title="安装与使用"></a>安装与使用</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install neovim</span><br><span class="line">nvim [options] [file ...]</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alias neovim=nvim</span><br><span class="line">export NVIMCONFIG=~/.config/nvim</span><br><span class="line">export NVIMDATA=~/.local/share/nvim</span><br></pre></td></tr></table></figure>
+
+<p>复用 vim 配置，<code>~/.config/nvim/init.vim</code></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> runtimepath^=~/.<span class="keyword">vim</span> runtimepath+=~/.<span class="keyword">vim</span>/after</span><br><span class="line"><span class="keyword">let</span> &amp;packpath = &amp;runtimepath</span><br><span class="line"><span class="keyword">source</span> ~/.<span class="keyword">vim</span>/vimrc</span><br></pre></td></tr></table></figure>
+
+<h3 id="neovim-provider"><a href="#neovim-provider" class="headerlink" title="neovim provider"></a>neovim provider</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install --user --upgrade neovim</span><br></pre></td></tr></table></figure>
+
+<p>neovim 中 <code>:py3 &#123;statement&#125;</code> 启用 python3</p>
+<h3 id="neovim-remote"><a href="#neovim-remote" class="headerlink" title="neovim-remote"></a>neovim-remote</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install --user --upgrade neovim-remote</span><br><span class="line">nvr --help</span><br></pre></td></tr></table></figure>
+
+<h3 id="neovim-终端模拟器"><a href="#neovim-终端模拟器" class="headerlink" title="neovim 终端模拟器"></a>neovim 终端模拟器</h3><p>打开终端缓冲区 <code>:terminal</code>，终端缓冲区输入 <code>i</code> 进入终端模式，再按下 <code>&lt;C-\&gt;&lt;C-n&gt;</code> 回到普通模式</p>
+<p>创建终端缓冲区执行命令 <code>:terminal &#123;cmd&#125;</code>，简写为 <code>:te &#123;cmd&#125;</code></p>
+<p>新窗口打开终端缓冲区 <code>:[v]split | terminal</code></p>
+<p>新标签页打开 <code>:tabedit | terminal</code></p>
+<p><code>jobsend()</code> 向终端缓冲区中正在运行的进程的标准输入写入</p>
+<p>在当前 neovim 实例中打开文件</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>nvr &lt;file&gt;</code></td>
+<td>在当前窗口打开</td>
+</tr>
+<tr>
+<td><code>nvr -l &lt;file&gt;</code></td>
+<td>在最后激活的窗口打开</td>
+</tr>
+<tr>
+<td><code>nvr -o &lt;file&gt; [&lt;file&gt;...]</code></td>
+<td>通过 <code>:split</code> 打开一个或多个文件</td>
+</tr>
+<tr>
+<td><code>nvr -O &lt;file&gt; [&lt;file&gt;...]</code></td>
+<td>通过 <code>:vsplit</code> 打开一个或多个文件</td>
+</tr>
+<tr>
+<td><code>nvr -p &lt;file&gt; [&lt;file&gt;...]</code></td>
+<td>通过 <code>:tabedit</code> 打开一个或多个文件</td>
+</tr>
+</tbody></table>
+<p>重命名终端缓冲区 <code>:file &#123;name&#125;</code></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><h4 id="网站"><a href="#网站" class="headerlink" title="网站"></a>网站</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.vim.org/">https://www.vim.org/</a></li>
+<li><a target="_blank" rel="noopener" href="https://yianwillis.github.io/vimcdoc/doc/help.html">https://yianwillis.github.io/vimcdoc/doc/help.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://neovim.io/">https://neovim.io/</a></li>
+</ul>
+<h4 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/25869486/">Vim实用技巧</a></li>
+<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/35005327/">精通 Vim</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/readme">关于</a></li>
+        
+          <li><a href="/resume">简历</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-number">1.</span> <span class="toc-text">vim 命令行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Normal-%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">Normal 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E4%B8%8E%E6%BB%9A%E5%B1%8F"><span class="toc-number">3.1.</span> <span class="toc-text">移动与滚屏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%96%87%E6%9C%AC"><span class="toc-number">3.2.</span> <span class="toc-text">插入文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">3.3.</span> <span class="toc-text">文本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.4.</span> <span class="toc-text">文本对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E5%88%86%E9%9A%94%E7%AC%A6"><span class="toc-number">3.4.1.</span> <span class="toc-text">操作分隔符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%96%87%E6%9C%AC%E5%9D%97"><span class="toc-number">3.4.2.</span> <span class="toc-text">操作文本块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%8F%AF%E8%A7%86"><span class="toc-number">3.5.</span> <span class="toc-text">文本可视</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D"><span class="toc-number">3.6.</span> <span class="toc-text">定位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%A9%E8%BF%9B"><span class="toc-number">3.7.</span> <span class="toc-text">缩进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-number">3.8.</span> <span class="toc-text">其他命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Visual-%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">Visual 模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ex-%E5%91%BD%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">Ex 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E5%8C%BA%E6%93%8D%E4%BD%9C"><span class="toc-number">5.1.</span> <span class="toc-text">缓冲区操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Insert-%E6%A8%A1%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">Insert 模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">7.</span> <span class="toc-text">寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2"><span class="toc-number">8.</span> <span class="toc-text">搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2"><span class="toc-number">9.</span> <span class="toc-text">替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#global-%E5%91%BD%E4%BB%A4"><span class="toc-number">10.</span> <span class="toc-text">global 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%B1%BB%E5%91%BD%E4%BB%A4"><span class="toc-number">11.</span> <span class="toc-text">设置类命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%AE%E5%8A%A9"><span class="toc-number">12.</span> <span class="toc-text">帮助</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">13.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%A8"><span class="toc-number">14.</span> <span class="toc-text">补全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="toc-number">15.</span> <span class="toc-text">自定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-root-%E7%94%A8%E6%88%B7%E6%96%87%E4%BB%B6"><span class="toc-number">16.</span> <span class="toc-text">修改 root 用户文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8F"><span class="toc-number">17.</span> <span class="toc-text">宏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F-1"><span class="toc-number">18.</span> <span class="toc-text">模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-number">19.</span> <span class="toc-text">工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-vimgrep"><span class="toc-number">19.1.</span> <span class="toc-text">:grep :vimgrep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="toc-number">19.2.</span> <span class="toc-text">自动补全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%BC%E5%86%99%E6%A3%80%E6%9F%A5"><span class="toc-number">19.3.</span> <span class="toc-text">拼写检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">19.4.</span> <span class="toc-text">自动命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bash-%E7%BB%91%E5%AE%9A-vi-%E9%94%AE%E4%BD%8D"><span class="toc-number">19.5.</span> <span class="toc-text">bash 绑定 vi 键位</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ctags"><span class="toc-number">20.</span> <span class="toc-text">ctags</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="toc-number">20.1.</span> <span class="toc-text">安装与使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-%E8%B7%B3%E8%BD%AC"><span class="toc-number">20.2.</span> <span class="toc-text">vim 跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8vim%E6%97%B6%E8%B7%B3%E8%BD%AC"><span class="toc-number">20.3.</span> <span class="toc-text">启动vim时跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C-stdc-tags"><span class="toc-number">20.4.</span> <span class="toc-text">制作 stdc++ tags</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D"><span class="toc-number">21.</span> <span class="toc-text">会话</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E4%BC%9A%E8%AF%9D"><span class="toc-number">21.1.</span> <span class="toc-text">保存会话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%BD%E5%85%A5%E4%BC%9A%E8%AF%9D"><span class="toc-number">21.2.</span> <span class="toc-text">载入会话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E6%92%A4%E9%94%80"><span class="toc-number">21.3.</span> <span class="toc-text">持久化撤销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6-obsession"><span class="toc-number">21.4.</span> <span class="toc-text">插件 obsession</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E4%B8%8E%E6%A0%87%E7%AD%BE%E9%A1%B5"><span class="toc-number">22.</span> <span class="toc-text">窗口与标签页</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8vim%E6%97%B6%E5%88%86%E5%89%B2"><span class="toc-number">22.1.</span> <span class="toc-text">启动vim时分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3"><span class="toc-number">22.2.</span> <span class="toc-text">窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E9%97%B4%E5%88%87%E6%8D%A2"><span class="toc-number">22.2.1.</span> <span class="toc-text">窗口间切换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3"><span class="toc-number">22.2.2.</span> <span class="toc-text">关闭窗口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B9%E5%8F%98%E7%AA%97%E5%8F%A3%E5%A4%A7%E5%B0%8F%E5%8F%8A%E9%87%8D%E6%96%B0%E6%8E%92%E5%88%97%E7%AA%97%E5%8F%A3"><span class="toc-number">22.2.3.</span> <span class="toc-text">改变窗口大小及重新排列窗口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E9%A1%B5"><span class="toc-number">22.3.</span> <span class="toc-text">标签页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vimdiff"><span class="toc-number">23.</span> <span class="toc-text">vimdiff</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-%E7%BB%88%E7%AB%AF"><span class="toc-number">24.</span> <span class="toc-text">vim 终端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#quickfix"><span class="toc-number">25.</span> <span class="toc-text">quickfix</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6%E5%A4%96%E9%83%A8%E7%BC%96%E8%AF%91%E5%99%A8"><span class="toc-number">25.1.</span> <span class="toc-text">定制外部编译器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-script"><span class="toc-number">26.</span> <span class="toc-text">vim script</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hello-vim"><span class="toc-number">26.1.</span> <span class="toc-text">hello.vim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">26.2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">26.3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">26.3.1.</span> <span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-number">26.3.2.</span> <span class="toc-text">变量类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vim-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-number">26.4.</span> <span class="toc-text">Vim 自定义命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6-plugin-%E5%8C%85-package"><span class="toc-number">27.</span> <span class="toc-text">插件(plugin), 包(package)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#plugin"><span class="toc-number">27.1.</span> <span class="toc-text">plugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#package"><span class="toc-number">27.2.</span> <span class="toc-text">package</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E5%8C%85%E9%87%8C%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="toc-number">27.3.</span> <span class="toc-text">在包里安装插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vim-%E6%8F%92%E4%BB%B6"><span class="toc-number">28.</span> <span class="toc-text">Vim 插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vimcdoc"><span class="toc-number">28.1.</span> <span class="toc-text">vimcdoc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NERDTree"><span class="toc-number">28.2.</span> <span class="toc-text">NERDTree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YouCompleteMe"><span class="toc-number">28.3.</span> <span class="toc-text">YouCompleteMe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fzf"><span class="toc-number">28.4.</span> <span class="toc-text">fzf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dispatch"><span class="toc-number">28.5.</span> <span class="toc-text">dispatch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#commentary"><span class="toc-number">28.6.</span> <span class="toc-text">commentary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#base16-vim"><span class="toc-number">28.7.</span> <span class="toc-text">base16-vim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#airline"><span class="toc-number">28.8.</span> <span class="toc-text">airline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#surround"><span class="toc-number">28.9.</span> <span class="toc-text">surround</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fugitive"><span class="toc-number">28.10.</span> <span class="toc-text">fugitive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ALE-Asynchronous-Lint-Engine"><span class="toc-number">28.11.</span> <span class="toc-text">ALE(Asynchronous Lint Engine)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grepper"><span class="toc-number">28.12.</span> <span class="toc-text">grepper</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-test"><span class="toc-number">28.13.</span> <span class="toc-text">vim-test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#goyo"><span class="toc-number">28.14.</span> <span class="toc-text">goyo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-gutentags"><span class="toc-number">28.15.</span> <span class="toc-text">vim-gutentags</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rainbow"><span class="toc-number">28.16.</span> <span class="toc-text">rainbow</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#neovim"><span class="toc-number">29.</span> <span class="toc-text">neovim</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8-1"><span class="toc-number">29.1.</span> <span class="toc-text">安装与使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-1"><span class="toc-number">29.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#neovim-provider"><span class="toc-number">29.3.</span> <span class="toc-text">neovim provider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#neovim-remote"><span class="toc-number">29.4.</span> <span class="toc-text">neovim-remote</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#neovim-%E7%BB%88%E7%AB%AF%E6%A8%A1%E6%8B%9F%E5%99%A8"><span class="toc-number">29.5.</span> <span class="toc-text">neovim 终端模拟器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">29.6.</span> <span class="toc-text">参考</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%AB%99"><span class="toc-number">29.6.1.</span> <span class="toc-text">网站</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B9%A6%E7%B1%8D"><span class="toc-number">29.6.2.</span> <span class="toc-text">书籍</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/codes/vim/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/codes/vim/&text=VIM - Vi IMproved"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/codes/vim/&title=VIM - Vi IMproved"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/codes/vim/&is_video=false&description=VIM - Vi IMproved"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=VIM - Vi IMproved&body=Check out this article: https://lipenghua.com/codes/vim/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/codes/vim/&title=VIM - Vi IMproved"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/codes/vim/&title=VIM - Vi IMproved"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/codes/vim/&title=VIM - Vi IMproved"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/codes/vim/&title=VIM - Vi IMproved"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/codes/vim/&name=VIM - Vi IMproved&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/codes/vim/&t=VIM - Vi IMproved"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023-2024
+    liph
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

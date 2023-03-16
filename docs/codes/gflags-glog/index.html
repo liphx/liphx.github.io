@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="gflags http:&#x2F;&#x2F;gflags.github.io&#x2F;gflags&#x2F; https:&#x2F;&#x2F;github.com&#x2F;gflags&#x2F;gflags.git  type bool -&gt; bool int32&#x2F;uint32&#x2F;int64&#x2F;uint64 -&gt; int*_t double -&gt; double string -&gt; std::string  de">
+<meta property="og:type" content="article">
+<meta property="og:title" content="using gflags and glog">
+<meta property="og:url" content="https://lipenghua.com/codes/gflags-glog/">
+<meta property="og:site_name" content="李鹏华的主页">
+<meta property="og:description" content="gflags http:&#x2F;&#x2F;gflags.github.io&#x2F;gflags&#x2F; https:&#x2F;&#x2F;github.com&#x2F;gflags&#x2F;gflags.git  type bool -&gt; bool int32&#x2F;uint32&#x2F;int64&#x2F;uint64 -&gt; int*_t double -&gt; double string -&gt; std::string  de">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-26T06:20:33.518Z">
+<meta property="article:author" content="liph">
+<meta property="article:tag" content="cplusplus">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>using gflags and glog</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/codes/endianness/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/codes/hexo/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/codes/gflags-glog/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/codes/gflags-glog/&text=using gflags and glog"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/codes/gflags-glog/&title=using gflags and glog"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/codes/gflags-glog/&is_video=false&description=using gflags and glog"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=using gflags and glog&body=Check out this article: https://lipenghua.com/codes/gflags-glog/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/codes/gflags-glog/&title=using gflags and glog"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/codes/gflags-glog/&title=using gflags and glog"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/codes/gflags-glog/&title=using gflags and glog"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/codes/gflags-glog/&title=using gflags and glog"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/codes/gflags-glog/&name=using gflags and glog&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/codes/gflags-glog/&t=using gflags and glog"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#gflags"><span class="toc-number">1.</span> <span class="toc-text">gflags</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#type"><span class="toc-number">1.1.</span> <span class="toc-text">type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#declare"><span class="toc-number">1.2.</span> <span class="toc-text">declare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#define"><span class="toc-number">1.3.</span> <span class="toc-text">define</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RegisterFlagValidator"><span class="toc-number">1.4.</span> <span class="toc-text">RegisterFlagValidator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ParseCommandLineFlags"><span class="toc-number">1.5.</span> <span class="toc-text">ParseCommandLineFlags</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#glog"><span class="toc-number">2.</span> <span class="toc-text">glog</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bazel-build"><span class="toc-number">2.1.</span> <span class="toc-text">bazel build</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#quick-start"><span class="toc-number">2.2.</span> <span class="toc-text">quick start</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flags"><span class="toc-number">2.3.</span> <span class="toc-text">flags</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        using gflags and glog
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">liph</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-08-10T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-08-11</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/cplusplus/" rel="tag">cplusplus</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="gflags"><a href="#gflags" class="headerlink" title="gflags"></a>gflags</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://gflags.github.io/gflags/">http://gflags.github.io/gflags/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/gflags/gflags.git">https://github.com/gflags/gflags.git</a></li>
+</ul>
+<h3 id="type"><a href="#type" class="headerlink" title="type"></a>type</h3><ul>
+<li>bool -&gt; bool</li>
+<li>int32&#x2F;uint32&#x2F;int64&#x2F;uint64 -&gt; <code>int*_t</code></li>
+<li>double -&gt; double</li>
+<li>string -&gt; std::string</li>
+</ul>
+<h3 id="declare"><a href="#declare" class="headerlink" title="declare"></a>declare</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;gflags/gflags_declare.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> GFLAGS_NAMESPACE google</span></span><br><span class="line"><span class="keyword">namespace</span> fLS &#123;</span><br><span class="line"><span class="keyword">typedef</span> std::string clstring;</span><br><span class="line">&#125;  <span class="comment">// namespace fLS</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DECLARE_VARIABLE(type, shorttype, name)                  \</span></span><br><span class="line"><span class="meta">    namespace fL##shorttype &#123;                                    \</span></span><br><span class="line"><span class="meta">        extern GFLAGS_DLL_DECLARE_FLAG type FLAGS_##name;        \</span></span><br><span class="line"><span class="meta">    &#125;                                                            \</span></span><br><span class="line"><span class="meta">    using fL##shorttype::FLAGS_##name</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DECLARE_bool(name)   DECLARE_VARIABLE(bool, B, name)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DECLARE_int32(name)  DECLARE_VARIABLE(::GFLAGS_NAMESPACE::int32, I, name)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DECLARE_uint32(name) DECLARE_VARIABLE(::GFLAGS_NAMESPACE::uint32, U, name)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DECLARE_int64(name)  DECLARE_VARIABLE(::GFLAGS_NAMESPACE::int64, I64, name)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DECLARE_uint64(name) DECLARE_VARIABLE(::GFLAGS_NAMESPACE::uint64, U64, name)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DECLARE_double(name) DECLARE_VARIABLE(double, D, name)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DECLARE_string(name)                                      \</span></span><br><span class="line"><span class="meta">    namespace fLS &#123;                                               \</span></span><br><span class="line"><span class="meta">    using ::fLS::clstring;                                        \</span></span><br><span class="line"><span class="meta">    extern GFLAGS_DLL_DECLARE_FLAG ::fLS::clstring&amp; FLAGS_##name; \</span></span><br><span class="line"><span class="meta">    &#125;                                                             \</span></span><br><span class="line"><span class="meta">    using fLS::FLAGS_##name</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="define"><a href="#define" class="headerlink" title="define"></a>define</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;gflags/gflags.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">GFLAGS_DLL_DECL</span> FlagRegisterer &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> FlagType&gt;</span><br><span class="line">    <span class="built_in">FlagRegisterer</span>(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *help, <span class="type">const</span> <span class="type">char</span> *filename, FlagType *current_storage,</span><br><span class="line">            FlagType *defvalue_storage) &#123;</span><br><span class="line">        FlagValue *<span class="type">const</span> current = <span class="keyword">new</span> <span class="built_in">FlagValue</span>(current_storage, <span class="literal">false</span>);</span><br><span class="line">        FlagValue *<span class="type">const</span> defvalue = <span class="keyword">new</span> <span class="built_in">FlagValue</span>(defvalue_storage, <span class="literal">false</span>);</span><br><span class="line">        <span class="built_in">RegisterCommandLineFlag</span>(name, help, filename, current, defvalue);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_VARIABLE(type, shorttype, name, value, help)                                  \</span></span><br><span class="line"><span class="meta">    namespace fL##shorttype &#123;                                                                \</span></span><br><span class="line"><span class="meta">        static const type FLAGS_nono##name = value;                                          \</span></span><br><span class="line"><span class="meta">        GFLAGS_DLL_DEFINE_FLAG type FLAGS_##name = FLAGS_nono##name;                         \</span></span><br><span class="line"><span class="meta">        type FLAGS_no##name = FLAGS_nono##name;                                              \</span></span><br><span class="line"><span class="meta">        static GFLAGS_NAMESPACE::FlagRegisterer o_##name(                                    \</span></span><br><span class="line"><span class="meta">                #name, MAYBE_STRIPPED_HELP(help), __FILE__, &amp;FLAGS_##name, &amp;FLAGS_no##name); \</span></span><br><span class="line"><span class="meta">    &#125;                                                                                        \</span></span><br><span class="line"><span class="meta">    using fL##shorttype::FLAGS_##name</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_bool(name, val, txt)                                                                         \</span></span><br><span class="line"><span class="meta">    namespace fLB &#123;                                                                                         \</span></span><br><span class="line"><span class="meta">    typedef ::fLB::CompileAssert                                                                            \</span></span><br><span class="line"><span class="meta">            FLAG_##name##_value_is_not_a_bool[(sizeof(::fLB::IsBoolFlag(val)) != sizeof(double)) ? 1 : -1]; \</span></span><br><span class="line"><span class="meta">    &#125;                                                                                                       \</span></span><br><span class="line"><span class="meta">    DEFINE_VARIABLE(bool, B, name, val, txt)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_int32(name, val, txt)  DEFINE_VARIABLE(GFLAGS_NAMESPACE::int32, I, name, val, txt)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_uint32(name, val, txt) DEFINE_VARIABLE(GFLAGS_NAMESPACE::uint32, U, name, val, txt)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_int64(name, val, txt)  DEFINE_VARIABLE(GFLAGS_NAMESPACE::int64, I64, name, val, txt)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_uint64(name, val, txt) DEFINE_VARIABLE(GFLAGS_NAMESPACE::uint64, U64, name, val, txt)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_double(name, val, txt) DEFINE_VARIABLE(double, D, name, val, txt)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFINE_string(name, val, txt)                                                                                  \</span></span><br><span class="line"><span class="meta">    namespace fLS &#123;                                                                                                    \</span></span><br><span class="line"><span class="meta">    using ::fLS::clstring;                                                                                             \</span></span><br><span class="line"><span class="meta">    using ::fLS::StringFlagDestructor;                                                                                 \</span></span><br><span class="line"><span class="meta">    static union &#123;                                                                                                     \</span></span><br><span class="line"><span class="meta">        void *align;                                                                                                   \</span></span><br><span class="line"><span class="meta">        char s[sizeof(clstring)];                                                                                      \</span></span><br><span class="line"><span class="meta">    &#125; s_##name[2];                                                                                                     \</span></span><br><span class="line"><span class="meta">    clstring *const FLAGS_no##name = ::fLS::dont_pass0toDEFINE_string(s_##name[0].s, val);                             \</span></span><br><span class="line"><span class="meta">    static GFLAGS_NAMESPACE::FlagRegisterer o_##name(                                                                  \</span></span><br><span class="line"><span class="meta">            #name, MAYBE_STRIPPED_HELP(txt), __FILE__, FLAGS_no##name, new (s_##name[1].s) clstring(*FLAGS_no##name)); \</span></span><br><span class="line"><span class="meta">    static StringFlagDestructor d_##name(s_##name[0].s, s_##name[1].s);                                                \</span></span><br><span class="line"><span class="meta">    extern GFLAGS_DLL_DEFINE_FLAG clstring&amp; FLAGS_##name;                                                              \</span></span><br><span class="line"><span class="meta">    using fLS::FLAGS_##name;                                                                                           \</span></span><br><span class="line"><span class="meta">    clstring&amp; FLAGS_##name = *FLAGS_no##name;                                                                          \</span></span><br><span class="line"><span class="meta">    &#125;                                                                                                                  \</span></span><br><span class="line"><span class="meta">    using fLS::FLAGS_##name</span></span><br></pre></td></tr></table></figure>
+
+<p>for example</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">DEFINE_int32</span>(number, <span class="number">0</span>, <span class="string">&quot;default is 0&quot;</span>);</span><br><span class="line"><span class="comment">/////</span></span><br><span class="line"><span class="built_in">DEFINE_VARIABLE</span>(GFLAGS_NAMESPACE::int32, I, number, <span class="number">0</span>, <span class="string">&quot;default is 0&quot;</span>);</span><br><span class="line"><span class="comment">/////</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> fLI &#123;</span><br><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="type">int32_t</span> FLAGS_nononumber = <span class="number">0</span>;</span><br><span class="line"><span class="type">int32_t</span> FLAGS_number = FLAGS_nononumber;</span><br><span class="line"><span class="type">static</span> <span class="type">int32_t</span> FLAGS_nonumber = FLAGS_nononumber;</span><br><span class="line"><span class="function"><span class="type">static</span> google::FlagRegisterer <span class="title">o_number</span><span class="params">(<span class="string">&quot;number&quot;</span>, <span class="string">&quot;default is 0&quot;</span>, __FILE__, &amp;FLAGS_number, &amp;FLAGS_nonumber)</span></span>;</span><br><span class="line">&#125;  <span class="comment">// namespace fLI</span></span><br><span class="line"><span class="keyword">using</span> fLI::FLAGS_number;</span><br></pre></td></tr></table></figure>
+
+<h3 id="RegisterFlagValidator"><a href="#RegisterFlagValidator" class="headerlink" title="RegisterFlagValidator"></a>RegisterFlagValidator</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;gflags/gflags.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">DEFINE_string</span>(<span class="keyword">module</span>, <span class="string">&quot;aa&quot;</span>, <span class="string">&quot;one of aa|ab|bc&quot;</span>);</span><br><span class="line"><span class="built_in">DEFINE_validator</span>(<span class="keyword">module</span>, [](<span class="type">const</span> <span class="type">char</span> *, <span class="type">const</span> std::string&amp; value) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value != <span class="string">&quot;aa&quot;</span> &amp;&amp; value != <span class="string">&quot;ab&quot;</span> &amp;&amp; value != <span class="string">&quot;bc&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span> </span>&#123;</span><br><span class="line">    google::<span class="built_in">ParseCommandLineFlags</span>(&amp;argc, &amp;argv, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./a.out --module=bb</span><br><span class="line">ERROR: failed validation of new value &#x27;bb&#x27; for flag &#x27;module&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ParseCommandLineFlags"><a href="#ParseCommandLineFlags" class="headerlink" title="ParseCommandLineFlags"></a>ParseCommandLineFlags</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">uint32_t</span> <span class="title">ParseCommandLineFlags</span><span class="params">(<span class="type">int</span>* argc, <span class="type">char</span>*** argv, <span class="type">bool</span> remove_flags)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">DEFINE_string</span>(<span class="keyword">module</span>, <span class="string">&quot;aa&quot;</span>, <span class="string">&quot;one of aa|ab|bc&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">print_args</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;argc: &quot;</span> &lt;&lt; argc &lt;&lt; <span class="string">&quot;, argv:&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; argc; i++) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; argv[i];</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">print_args</span>(argc, argv);</span><br><span class="line">    google::<span class="built_in">ParseCommandLineFlags</span>(&amp;argc, &amp;argv, <span class="literal">true</span>);</span><br><span class="line">    <span class="built_in">print_args</span>(argc, argv);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">remove_flags is <span class="literal">true</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./a.out 1 2 --module=ab 3 4</span></span><br><span class="line">argc: 6, argv: 1 2 --module=ab 3 4</span><br><span class="line">argc: 5, argv: 1 2 3 4</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">remove_flags is <span class="literal">false</span>, flags will be the beginning <span class="keyword">in</span> argv</span></span><br><span class="line">./a.out 1 2 --module=ab 3 4</span><br><span class="line">argc: 6, argv: 1 2 --module=ab 3 4</span><br><span class="line">argc: 6, argv: --module=ab 1 2 3 4</span><br></pre></td></tr></table></figure>
+
+<h2 id="glog"><a href="#glog" class="headerlink" title="glog"></a>glog</h2><p><a target="_blank" rel="noopener" href="https://github.com/google/glog">https://github.com/google/glog</a></p>
+<h3 id="bazel-build"><a href="#bazel-build" class="headerlink" title="bazel build"></a>bazel build</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">load(&quot;@bazel_tools//tools/build_defs/repo:http.bzl&quot;, &quot;http_archive&quot;)</span><br><span class="line"></span><br><span class="line">http_archive(</span><br><span class="line">    name = &quot;com_github_gflags_gflags&quot;,</span><br><span class="line">    sha256 = &quot;34af2f15cf7367513b352bdcd2493ab14ce43692d2dcd9dfc499492966c64dcf&quot;,</span><br><span class="line">    strip_prefix = &quot;gflags-2.2.2&quot;,</span><br><span class="line">    urls = [&quot;https://github.com/gflags/gflags/archive/v2.2.2.tar.gz&quot;],</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">http_archive(</span><br><span class="line">    name = &quot;com_github_google_glog&quot;,</span><br><span class="line">    sha256 = &quot;122fb6b712808ef43fbf80f75c52a21c9760683dae470154f02bddfc61135022&quot;,</span><br><span class="line">    strip_prefix = &quot;glog-0.6.0&quot;,</span><br><span class="line">    urls = [&quot;https://github.com/google/glog/archive/v0.6.0.zip&quot;],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cc_binary(</span><br><span class="line">    name = &quot;main&quot;,</span><br><span class="line">    srcs = [&quot;main.cpp&quot;],</span><br><span class="line">    deps = [&quot;@com_github_google_glog//:glog&quot;],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="quick-start"><a href="#quick-start" class="headerlink" title="quick start"></a>quick start</h3><p>Severity Levels: INFO, WARNING, ERROR, and FATAL</p>
+<p>Logging a FATAL message terminates the program (after the message is logged)</p>
+<p>Messages of a given severity are logged not only in the logfile for that severity, but also in all logfiles of lower severity.</p>
+<p>默认日志文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/tmp/\&lt;program name\&gt;.\&lt;hostname\&gt;.\&lt;user name\&gt;.log.\&lt;severity level\&gt;.\&lt;date\&gt;-\&lt;time\&gt;.\&lt;pid\&gt;</span><br></pre></td></tr></table></figure>
+
+<p>glog copies the log messages of severity level ERROR or FATAL to standard error (stderr) in addition to log files.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;glog/logging.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span>, <span class="type">char</span> **argv)</span> </span>&#123;</span><br><span class="line">    google::<span class="built_in">InitGoogleLogging</span>(argv[<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">LOG</span>(INFO) &lt;&lt; <span class="string">&quot;info log&quot;</span>;</span><br><span class="line">    <span class="built_in">LOG</span>(WARNING) &lt;&lt; <span class="string">&quot;warning log&quot;</span>;</span><br><span class="line">    <span class="built_in">LOG</span>(ERROR) &lt;&lt; <span class="string">&quot;error log&quot;</span>;</span><br><span class="line">    <span class="built_in">LOG</span>(FATAL) &lt;&lt; <span class="string">&quot;fatal log&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./a.out</span></span><br><span class="line">E20230131 16:13:24.209595 1260326 glog.cpp:7] error log</span><br><span class="line">F20230131 16:13:24.209903 1260326 glog.cpp:8] fatal log</span><br><span class="line">*** Check failure stack trace: ***</span><br><span class="line">    @        0x1035aee0d  google::LogMessage::Fail()</span><br><span class="line">    @        0x1035ad56f  google::LogMessage::SendToLog()</span><br><span class="line">    @        0x1035ae3da  google::LogMessage::Flush()</span><br><span class="line">    @        0x1035b3519  google::LogMessageFatal::~LogMessageFatal()</span><br><span class="line">    @        0x1035af475  google::LogMessageFatal::~LogMessageFatal()</span><br><span class="line">    @        0x1034d2255  main</span><br><span class="line">    @     0x7ff81683d310  start</span><br><span class="line">Abort trap: 6</span><br></pre></td></tr></table></figure>
+
+<h3 id="flags"><a href="#flags" class="headerlink" title="flags"></a>flags</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./a.out --log_dir=log    # if gflags is installed</span><br><span class="line">GLOG_log_dir=log ./a.out # else</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>log_dir</code> (string, default&#x3D;””)</li>
+<li><code>minloglevel</code> (int, default&#x3D;0, which is INFO)</li>
+<li><code>max_log_size</code> (uint32, 1800)</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/readme">关于</a></li>
+        
+          <li><a href="/resume">简历</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#gflags"><span class="toc-number">1.</span> <span class="toc-text">gflags</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#type"><span class="toc-number">1.1.</span> <span class="toc-text">type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#declare"><span class="toc-number">1.2.</span> <span class="toc-text">declare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#define"><span class="toc-number">1.3.</span> <span class="toc-text">define</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RegisterFlagValidator"><span class="toc-number">1.4.</span> <span class="toc-text">RegisterFlagValidator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ParseCommandLineFlags"><span class="toc-number">1.5.</span> <span class="toc-text">ParseCommandLineFlags</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#glog"><span class="toc-number">2.</span> <span class="toc-text">glog</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bazel-build"><span class="toc-number">2.1.</span> <span class="toc-text">bazel build</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#quick-start"><span class="toc-number">2.2.</span> <span class="toc-text">quick start</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flags"><span class="toc-number">2.3.</span> <span class="toc-text">flags</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/codes/gflags-glog/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/codes/gflags-glog/&text=using gflags and glog"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/codes/gflags-glog/&title=using gflags and glog"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/codes/gflags-glog/&is_video=false&description=using gflags and glog"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=using gflags and glog&body=Check out this article: https://lipenghua.com/codes/gflags-glog/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/codes/gflags-glog/&title=using gflags and glog"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/codes/gflags-glog/&title=using gflags and glog"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/codes/gflags-glog/&title=using gflags and glog"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/codes/gflags-glog/&title=using gflags and glog"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/codes/gflags-glog/&name=using gflags and glog&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/codes/gflags-glog/&t=using gflags and glog"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023-2024
+    liph
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

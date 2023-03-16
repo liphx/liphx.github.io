@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Alacritty是我目前使用的终端模拟器，以下几个特点我比较喜欢：  开源 跨平台(Linux&#x2F;Mac&#x2F;Windows) 文本配置(yaml)方便同步 vi模式的搜索 可配置选中即复制到粘贴板 可右键粘贴 自定义配色 搭配tmux使用多窗口&#x2F;多标签页  开源、跨平台、文本化配置是我选择终端模拟器的必要条件。 为了方便使用快捷键在标签页中切换，需要配置键位绑定。例如，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="终端模拟器：Alacritty">
+<meta property="og:url" content="https://lipenghua.com/tools/alacritty/">
+<meta property="og:site_name" content="李鹏华的主页">
+<meta property="og:description" content="Alacritty是我目前使用的终端模拟器，以下几个特点我比较喜欢：  开源 跨平台(Linux&#x2F;Mac&#x2F;Windows) 文本配置(yaml)方便同步 vi模式的搜索 可配置选中即复制到粘贴板 可右键粘贴 自定义配色 搭配tmux使用多窗口&#x2F;多标签页  开源、跨平台、文本化配置是我选择终端模拟器的必要条件。 为了方便使用快捷键在标签页中切换，需要配置键位绑定。例如，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-26T07:54:29.177Z">
+<meta property="article:author" content="liph">
+<meta property="article:tag" content="tools">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>终端模拟器：Alacritty</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/life/2023-summary/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/tools/alacritty/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/tools/alacritty/&text=终端模拟器：Alacritty"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/tools/alacritty/&title=终端模拟器：Alacritty"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/tools/alacritty/&is_video=false&description=终端模拟器：Alacritty"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=终端模拟器：Alacritty&body=Check out this article: https://lipenghua.com/tools/alacritty/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/tools/alacritty/&title=终端模拟器：Alacritty"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/tools/alacritty/&title=终端模拟器：Alacritty"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/tools/alacritty/&title=终端模拟器：Alacritty"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/tools/alacritty/&title=终端模拟器：Alacritty"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/tools/alacritty/&name=终端模拟器：Alacritty&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/tools/alacritty/&t=终端模拟器：Alacritty"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        终端模拟器：Alacritty
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">liph</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-02-25T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-02-26</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/tools/" rel="tag">tools</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p><a target="_blank" rel="noopener" href="https://alacritty.org/">Alacritty</a>是我目前使用的终端模拟器，以下几个特点我比较喜欢：</p>
+<ul>
+<li>开源</li>
+<li>跨平台(Linux&#x2F;Mac&#x2F;Windows)</li>
+<li>文本配置(yaml)方便同步</li>
+<li>vi模式的搜索</li>
+<li>可配置选中即复制到粘贴板</li>
+<li>可右键粘贴</li>
+<li>自定义配色</li>
+<li>搭配tmux使用多窗口&#x2F;多标签页</li>
+</ul>
+<p>开源、跨平台、文本化配置是我选择终端模拟器的必要条件。</p>
+<p>为了方便使用快捷键在标签页中切换，需要配置键位绑定。<br>例如，tmux中用<code>C-b c</code>创建<code>window</code>，为了模拟mac里<code>Command T</code>创建新标签页的行为，需要配置按下<code>Command T</code>时发送<code>\x02c</code>。</p>
+<p>其他键位配置如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">key_bindings:</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">T</span>,         <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x02c&quot;</span> &#125;     <span class="comment">#  tmux new window C-b c</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">Key0</span>,      <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x020&quot;</span> &#125;     <span class="comment">#  tmux select window 0</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">Key1</span>,      <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x021&quot;</span> &#125;     <span class="comment">#                 ... 1</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">Key2</span>,      <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x022&quot;</span> &#125;     <span class="comment">#                 ... 2</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">Key3</span>,      <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x023&quot;</span> &#125;     <span class="comment">#                 ... 3</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">Key4</span>,      <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x024&quot;</span> &#125;     <span class="comment">#                 ... 4</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">Key5</span>,      <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x025&quot;</span> &#125;     <span class="comment">#                 ... 5</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">Key6</span>,      <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x026&quot;</span> &#125;     <span class="comment">#                 ... 6</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">Key7</span>,      <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x027&quot;</span> &#125;     <span class="comment">#                 ... 7</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">Key8</span>,      <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x028&quot;</span> &#125;     <span class="comment">#                 ... 8</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">Key9</span>,      <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x029&quot;</span> &#125;     <span class="comment">#                 ... 9</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">L</span>,         <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x02l&quot;</span> &#125;     <span class="comment"># tmux switch between two latest windows</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">W</span>,         <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x02Q&quot;</span> &#125;     <span class="comment"># kill current window</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">H</span>,         <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x02\x1b&quot;</span> &#125;  <span class="comment"># C-b ESC</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">LBracket</span>,  <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x02(&quot;</span> &#125;     <span class="comment"># C-b (</span></span><br><span class="line">  <span class="bullet">-</span> &#123; <span class="attr">key:</span> <span class="string">RBracket</span>,  <span class="attr">mods:</span> <span class="string">Command</span>, <span class="attr">chars:</span> <span class="string">&quot;\x02)&quot;</span> &#125;     <span class="comment"># C-b )</span></span><br></pre></td></tr></table></figure>
+
+<p>可惜，Alacritty还不支持自动保存终端日志。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/readme">关于</a></li>
+        
+          <li><a href="/resume">简历</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/tools/alacritty/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/tools/alacritty/&text=终端模拟器：Alacritty"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/tools/alacritty/&title=终端模拟器：Alacritty"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/tools/alacritty/&is_video=false&description=终端模拟器：Alacritty"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=终端模拟器：Alacritty&body=Check out this article: https://lipenghua.com/tools/alacritty/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/tools/alacritty/&title=终端模拟器：Alacritty"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/tools/alacritty/&title=终端模拟器：Alacritty"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/tools/alacritty/&title=终端模拟器：Alacritty"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/tools/alacritty/&title=终端模拟器：Alacritty"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/tools/alacritty/&name=终端模拟器：Alacritty&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/tools/alacritty/&t=终端模拟器：Alacritty"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023-2024
+    liph
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

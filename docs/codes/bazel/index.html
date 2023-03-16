@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Bazel https:&#x2F;&#x2F;bazel.build https:&#x2F;&#x2F;github.com&#x2F;bazelbuild&#x2F;bazel https:&#x2F;&#x2F;github.com&#x2F;bazelbuild&#x2F;examples  Workspace, Repositories, Packages, Targets, Labels123456project&#x2F;|-- package1|   &#96;-- BUILD|-- packa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bazel">
+<meta property="og:url" content="https://lipenghua.com/codes/bazel/">
+<meta property="og:site_name" content="李鹏华的主页">
+<meta property="og:description" content="Bazel https:&#x2F;&#x2F;bazel.build https:&#x2F;&#x2F;github.com&#x2F;bazelbuild&#x2F;bazel https:&#x2F;&#x2F;github.com&#x2F;bazelbuild&#x2F;examples  Workspace, Repositories, Packages, Targets, Labels123456project&#x2F;|-- package1|   &#96;-- BUILD|-- packa">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-26T06:20:33.512Z">
+<meta property="article:author" content="liph">
+<meta property="article:tag" content="cplusplus">
+<meta property="article:tag" content="tools">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Bazel</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/codes/python2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/codes/logging/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/codes/bazel/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/codes/bazel/&text=Bazel"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/codes/bazel/&title=Bazel"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/codes/bazel/&is_video=false&description=Bazel"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bazel&body=Check out this article: https://lipenghua.com/codes/bazel/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/codes/bazel/&title=Bazel"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/codes/bazel/&title=Bazel"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/codes/bazel/&title=Bazel"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/codes/bazel/&title=Bazel"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/codes/bazel/&name=Bazel&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/codes/bazel/&t=Bazel"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bazel"><span class="toc-number">1.</span> <span class="toc-text">Bazel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Workspace-Repositories-Packages-Targets-Labels"><span class="toc-number">1.1.</span> <span class="toc-text">Workspace, Repositories, Packages, Targets, Labels</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Workspace-Rules"><span class="toc-number">1.2.</span> <span class="toc-text">Workspace Rules</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BUILD-Rules"><span class="toc-number">1.3.</span> <span class="toc-text">BUILD Rules</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#C-C-Rules"><span class="toc-number">1.3.1.</span> <span class="toc-text">C&#x2F;C++ Rules</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bazel-CLI"><span class="toc-number">1.4.</span> <span class="toc-text">Bazel CLI</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Bazel
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">liph</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-08-15T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-08-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/code/">code</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/cplusplus/" rel="tag">cplusplus</a>, <a class="p-category" href="/tags/tools/" rel="tag">tools</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="Bazel"><a href="#Bazel" class="headerlink" title="Bazel"></a>Bazel</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://bazel.build/">https://bazel.build</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/bazelbuild/bazel">https://github.com/bazelbuild/bazel</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/bazelbuild/examples">https://github.com/bazelbuild/examples</a></li>
+</ul>
+<h3 id="Workspace-Repositories-Packages-Targets-Labels"><a href="#Workspace-Repositories-Packages-Targets-Labels" class="headerlink" title="Workspace, Repositories, Packages, Targets, Labels"></a>Workspace, Repositories, Packages, Targets, Labels</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">project/</span><br><span class="line">|-- package1</span><br><span class="line">|   `-- BUILD</span><br><span class="line">|-- package2</span><br><span class="line">|   `-- BUILD</span><br><span class="line">`-- WORKSPACE</span><br></pre></td></tr></table></figure>
+
+<p><code>WORKSPACE</code> 文件标识了项目的根目录，这个目录下也会存放 bazel 的输出。<code>WORKSPACE</code> 可以为空，也可以包含对外部依赖的引用。代码以仓库（Repositories）的形式组织，包含 <code>WORKSPACE</code> 文件的目录称为主仓库（main repository, <code>@</code>）。</p>
+<p>含有<code>BUILD</code>或<code>BUILD.bazel</code>的目录是一个包。包包含该目录下的所有文件，包括子目录（含有<code>BUILD</code>文件的子目录除外，它是另一个包）。包中的元素称为目标（Targets），有以下几类目标。</p>
+<ul>
+<li>文件（File）<ul>
+<li>源文件（Source File）</li>
+<li>生成的文件（Generated File）</li>
+</ul>
+</li>
+<li>规则（Rule）</li>
+<li>包组（Package Groups）</li>
+</ul>
+<p>目标的名称称为标签（Label），例如 <code>@myrepo//my/app/main:app_binary</code>（<code>@myrepo</code> 内部可以简写为 <code>//my/app/main:app_binary</code>）</p>
+<p>标签由冒号分为两部分，包名（<code>my/app/main</code>）和 目标名（<code>app_binary</code>）, 当省略冒号时，目标名等同包名最后一段路径，例如<br><code>//my/app</code> 等价于 <code>//my/app:app</code>。引用当前包内目标时，包名也可以省略，因此以下四种写法等价。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># /文件 /my/app:BUILD 内</span><br><span class="line">//my/app:app</span><br><span class="line">//my/app</span><br><span class="line">:app</span><br><span class="line">app</span><br></pre></td></tr></table></figure>
+
+<p>BUILD 文件中可以定义规则，用以指定输入输出间的关系及构建输出的步骤。</p>
+<h3 id="Workspace-Rules"><a href="#Workspace-Rules" class="headerlink" title="Workspace Rules"></a>Workspace Rules</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">local_repository(name, path, repo_mapping)</span><br><span class="line">new_local_repository(name, build_file, build_file_content, path, repo_mapping, workspace_file, workspace_file_content)</span><br></pre></td></tr></table></figure>
+
+<p>例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 通过 @my-ssl 引用该仓库</span><br><span class="line">local_repository(</span><br><span class="line">    name = &quot;my-ssl&quot;,</span><br><span class="line">    path = &quot;/home/user/ssl&quot;,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">new_local_repository(</span><br><span class="line">    name = &quot;my-ssl&quot;,</span><br><span class="line">    path = &quot;/home/user/ssl&quot;,</span><br><span class="line">    build_file = &quot;BUILD.my-ssl&quot;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><code>BUILD.my-ssl</code> 如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java_library(</span><br><span class="line">    name = &quot;openssl&quot;,</span><br><span class="line">    srcs = glob([&#x27;*.java&#x27;])</span><br><span class="line">    visibility = [&quot;//visibility:public&quot;],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>可以不指定 <code>build_file</code> 而是指定 <code>build_file_content</code> （必须有其中一个），以包含文件中的内容（注意缩进要和BUILD文件一致）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># Loading an extension</span><br><span class="line">load(&quot;@bazel_tools//tools/build_defs/repo:git.bzl&quot;, &quot;git_repository&quot;)</span><br><span class="line">load(&quot;@bazel_tools//tools/build_defs/repo:http.bzl&quot;, &quot;http_archive&quot;)</span><br><span class="line"></span><br><span class="line">git_repository(name, branch, commit, init_submodules, patch_args, patch_cmds, patch_cmds_win,</span><br><span class="line">               patch_tool, patches, recursive_init_submodules, remote, shallow_since, strip_prefix,</span><br><span class="line">               tag, verbose)</span><br><span class="line"></span><br><span class="line">new_git_repository(name, branch, build_file, build_file_content, commit, init_submodules,</span><br><span class="line">                   patch_args, patch_cmds, patch_cmds_win, patch_tool, patches,</span><br><span class="line">                   recursive_init_submodules, remote, shallow_since, strip_prefix, tag, verbose,</span><br><span class="line">                   workspace_file, workspace_file_content)</span><br><span class="line"></span><br><span class="line">http_archive(name, auth_patterns, build_file, build_file_content, canonical_id, netrc, patch_args,</span><br><span class="line">             patch_cmds, patch_cmds_win, patch_tool, patches, sha256, strip_prefix, type, url, urls,</span><br><span class="line">             workspace_file, workspace_file_content)</span><br><span class="line"></span><br><span class="line">http_file(name, auth_patterns, canonical_id, downloaded_file_path, executable, netrc, sha256, urls)</span><br><span class="line"></span><br><span class="line">http_jar(name, auth_patterns, canonical_id, netrc, sha256, url, urls)</span><br></pre></td></tr></table></figure>
+
+<h3 id="BUILD-Rules"><a href="#BUILD-Rules" class="headerlink" title="BUILD Rules"></a>BUILD Rules</h3><h4 id="C-C-Rules"><a href="#C-C-Rules" class="headerlink" title="C&#x2F;C++ Rules"></a>C&#x2F;C++ Rules</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cc_binary</span><br><span class="line">cc_import</span><br><span class="line">cc_library</span><br><span class="line">cc_proto_library</span><br><span class="line">fdo_prefetch_hints</span><br><span class="line">fdo_profile</span><br><span class="line">propeller_optimize</span><br><span class="line">cc_test</span><br><span class="line">cc_toolchain</span><br><span class="line">cc_toolchain_suite</span><br></pre></td></tr></table></figure>
+
+<h3 id="Bazel-CLI"><a href="#Bazel-CLI" class="headerlink" title="Bazel CLI"></a>Bazel CLI</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bazel clean             # 删除输出文件</span><br><span class="line">bazel build &lt;target&gt;    # 构建目标</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/readme">关于</a></li>
+        
+          <li><a href="/resume">简历</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bazel"><span class="toc-number">1.</span> <span class="toc-text">Bazel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Workspace-Repositories-Packages-Targets-Labels"><span class="toc-number">1.1.</span> <span class="toc-text">Workspace, Repositories, Packages, Targets, Labels</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Workspace-Rules"><span class="toc-number">1.2.</span> <span class="toc-text">Workspace Rules</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BUILD-Rules"><span class="toc-number">1.3.</span> <span class="toc-text">BUILD Rules</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#C-C-Rules"><span class="toc-number">1.3.1.</span> <span class="toc-text">C&#x2F;C++ Rules</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bazel-CLI"><span class="toc-number">1.4.</span> <span class="toc-text">Bazel CLI</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/codes/bazel/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/codes/bazel/&text=Bazel"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/codes/bazel/&title=Bazel"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/codes/bazel/&is_video=false&description=Bazel"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bazel&body=Check out this article: https://lipenghua.com/codes/bazel/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/codes/bazel/&title=Bazel"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/codes/bazel/&title=Bazel"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/codes/bazel/&title=Bazel"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/codes/bazel/&title=Bazel"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/codes/bazel/&name=Bazel&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/codes/bazel/&t=Bazel"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023-2024
+    liph
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
