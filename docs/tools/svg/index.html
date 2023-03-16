@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="SVG（Scalable Vector Graphics）：可缩放矢量图形 SVG规范 https:&#x2F;&#x2F;www.w3.org&#x2F;Graphics&#x2F;SVG&#x2F; 基本形状线段1&lt;line x1&#x3D;&quot;75&quot; y1&#x3D;&quot;95&quot; x2&#x3D;&quot;135&quot; y2&#x3D;&quot;85&quot; style&#x3D;&quot;stroke: black;&quot;&#x2F;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="svg基础">
+<meta property="og:url" content="https://lipenghua.com/tools/svg/">
+<meta property="og:site_name" content="李鹏华的主页">
+<meta property="og:description" content="SVG（Scalable Vector Graphics）：可缩放矢量图形 SVG规范 https:&#x2F;&#x2F;www.w3.org&#x2F;Graphics&#x2F;SVG&#x2F; 基本形状线段1&lt;line x1&#x3D;&quot;75&quot; y1&#x3D;&quot;95&quot; x2&#x3D;&quot;135&quot; y2&#x3D;&quot;85&quot; style&#x3D;&quot;stroke: black;&quot;&#x2F;&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-19T03:23:58.319Z">
+<meta property="article:author" content="liph">
+<meta property="article:tag" content="tools">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>svg基础</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/codes/gethostbyname/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/book/steve-jobs/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/tools/svg/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/tools/svg/&text=svg基础"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/tools/svg/&title=svg基础"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/tools/svg/&is_video=false&description=svg基础"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=svg基础&body=Check out this article: https://lipenghua.com/tools/svg/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/tools/svg/&title=svg基础"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/tools/svg/&title=svg基础"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/tools/svg/&title=svg基础"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/tools/svg/&title=svg基础"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/tools/svg/&name=svg基础&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/tools/svg/&t=svg基础"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%BD%A2%E7%8A%B6"><span class="toc-number">1.</span> <span class="toc-text">基本形状</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5"><span class="toc-number">1.1.</span> <span class="toc-text">线段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E5%BD%A2"><span class="toc-number">1.2.</span> <span class="toc-text">矩形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%86"><span class="toc-number">1.3.</span> <span class="toc-text">圆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A4%AD%E5%9C%86"><span class="toc-number">1.4.</span> <span class="toc-text">椭圆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%BE%B9%E5%BD%A2"><span class="toc-number">1.5.</span> <span class="toc-text">多边形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%98%E7%BA%BF"><span class="toc-number">1.6.</span> <span class="toc-text">折线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E5%BE%84"><span class="toc-number">1.7.</span> <span class="toc-text">路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC"><span class="toc-number">1.8.</span> <span class="toc-text">文本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%92%8C%E5%BC%95%E7%94%A8%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.</span> <span class="toc-text">分组和引用对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.1.</span> <span class="toc-text">&lt;g&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-1"><span class="toc-number">2.2.</span> <span class="toc-text">&lt;use&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-2"><span class="toc-number">2.3.</span> <span class="toc-text">&lt;defs&gt;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2"><span class="toc-number">3.</span> <span class="toc-text">坐标变换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#translate"><span class="toc-number">3.1.</span> <span class="toc-text">translate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scale"><span class="toc-number">3.2.</span> <span class="toc-text">scale</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rotate"><span class="toc-number">3.3.</span> <span class="toc-text">rotate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88"><span class="toc-number">3.4.</span> <span class="toc-text">组合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%90%E5%8F%98"><span class="toc-number">4.</span> <span class="toc-text">渐变</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%B8%90%E5%8F%98"><span class="toc-number">4.1.</span> <span class="toc-text">线性渐变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%84%E5%90%91%E6%B8%90%E5%8F%98"><span class="toc-number">4.2.</span> <span class="toc-text">径向渐变</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        svg基础
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">liph</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-04-14T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-04-15</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/tools/" rel="tag">tools</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>SVG（Scalable Vector Graphics）：可缩放矢量图形</p>
+<p>SVG规范 <a target="_blank" rel="noopener" href="https://www.w3.org/Graphics/SVG/">https://www.w3.org/Graphics/SVG/</a></p>
+<h2 id="基本形状"><a href="#基本形状" class="headerlink" title="基本形状"></a>基本形状</h2><h3 id="线段"><a href="#线段" class="headerlink" title="线段"></a>线段</h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;75&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;95&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;135&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;85&quot;</span> <span class="attr">style</span>=<span class="string">&quot;stroke: black;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>x1, y1</code> 起点坐标</li>
+<li><code>x2, y2</code> 终点坐标</li>
+<li><code>style</code><ul>
+<li><code>stroke-width</code> 笔画宽度</li>
+<li><code>stroke</code> 笔画颜色</li>
+<li><code>stroke-opacity</code> 不透明度（0.0-1.0，0表示完全透明，1表示完全不透明）</li>
+<li><code>stroke-dasharray</code> 线的长度和空隙的长度，实现点线或虚线</li>
+</ul>
+</li>
+</ul>
+<h3 id="矩形"><a href="#矩形" class="headerlink" title="矩形"></a>矩形</h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;10&quot;</span> <span class="attr">y</span>=<span class="string">&quot;10&quot;</span> <span class="attr">width</span>=<span class="string">&quot;30&quot;</span> <span class="attr">height</span>=<span class="string">&quot;30&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;60&quot;</span> <span class="attr">y</span>=<span class="string">&quot;10&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;10&quot;</span> <span class="attr">ry</span>=<span class="string">&quot;10&quot;</span> <span class="attr">width</span>=<span class="string">&quot;30&quot;</span> <span class="attr">height</span>=<span class="string">&quot;30&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>x, y</code> 矩形左上角坐标</li>
+<li><code>width, height</code> 矩形宽和高</li>
+<li><code>rx, ry</code> x，y方向圆角半径，最大值为矩形宽度，高度的一半，如果只指定其中一个值，则认为他们相等</li>
+<li><code>rx, ry</code>不相等意味着什么：圆角是椭圆而不是圆的一部分</li>
+</ul>
+<h3 id="圆"><a href="#圆" class="headerlink" title="圆"></a>圆</h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;70&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;95&quot;</span> <span class="attr">r</span>=<span class="string">&quot;50&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>cx, cy</code> 圆心坐标</li>
+<li><code>r</code> 半径</li>
+</ul>
+<h3 id="椭圆"><a href="#椭圆" class="headerlink" title="椭圆"></a>椭圆</h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ellipse</span> <span class="attr">cx</span>=<span class="string">&quot;75&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;75&quot;</span> <span class="attr">rx</span>=<span class="string">&quot;20&quot;</span> <span class="attr">ry</span>=<span class="string">&quot;5&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>cx, cy</code> 中心坐标</li>
+<li><code>rx, ry</code> x，y方向半径</li>
+</ul>
+<h3 id="多边形"><a href="#多边形" class="headerlink" title="多边形"></a>多边形</h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">polygon</span> <span class="attr">points</span>=<span class="string">&quot;0,0 0,100 100,100 100,0&quot;</span> <span class="attr">style</span>=<span class="string">&quot;fill: none; stroke: black;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>points</code> 各点x，y坐标对，多边形为封闭图形，会自动回到起始坐标</p>
+<h3 id="折线"><a href="#折线" class="headerlink" title="折线"></a>折线</h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">polyline</span> <span class="attr">points</span>=<span class="string">&quot;0,0 0,100 100,100 100,0&quot;</span> <span class="attr">style</span>=<span class="string">&quot;fill: none; stroke: black;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>同多边形，图形不封闭</p>
+<h3 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;M10,20 L100,20 L100,50&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>d</code> data，描述路径的命令<ul>
+<li><code>Mx,y</code> moveto，每个路径都必须以 moveto 命令开始，设置当前位置</li>
+<li><code>Lx,y</code> lineto，绘制一条线</li>
+<li><code>lx,y</code> 等价于<code>Lcurrent_x+x,current_y+y</code></li>
+<li><code>Z</code> closepath，回到起点</li>
+<li><code>Hx</code> 水平线，等价于<code>Lx,current_y</code></li>
+<li><code>hx</code> 水平线，等价于<code>lx,0</code></li>
+<li><code>Vy</code> 垂直线，等价于<code>Lcurrent_x,y</code></li>
+<li><code>vy</code>垂直线，等价于<code>l0,y</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;20&quot;</span> <span class="attr">y</span>=<span class="string">&quot;30&quot;</span> <span class="attr">style</span>=<span class="string">&quot;font-family: monospace;</span></span></span><br><span class="line"><span class="string"><span class="tag">                           font-size: 20px;</span></span></span><br><span class="line"><span class="string"><span class="tag">                           font-style: italic;</span></span></span><br><span class="line"><span class="string"><span class="tag">                           text-decoration: underline;&quot;</span>&gt;</span></span><br><span class="line">    Hello World!<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="分组和引用对象"><a href="#分组和引用对象" class="headerlink" title="分组和引用对象"></a>分组和引用对象</h2><h3 id=""><a href="#" class="headerlink" title="&lt;g&gt;"></a><code>&lt;g&gt;</code></h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">g</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span> <span class="attr">style</span>=<span class="string">&quot;stroke: black; fill: none;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;10&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;10&quot;</span> <span class="attr">r</span>=<span class="string">&quot;10&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;30&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;20&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;30&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">g</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>用于组合元素</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title="&lt;use&gt;"></a><code>&lt;use&gt;</code></h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">use</span> <span class="attr">href</span>=<span class="string">&quot;#box&quot;</span> <span class="attr">x</span>=<span class="string">&quot;40&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>href</code> 引用元素</li>
+<li><code>x, y</code> 移动到的位置</li>
+</ul>
+<h3 id="-2"><a href="#-2" class="headerlink" title="&lt;defs&gt;"></a><code>&lt;defs&gt;</code></h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">g</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span> <span class="attr">style</span>=<span class="string">&quot;stroke: black; fill: none;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;10&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;10&quot;</span> <span class="attr">r</span>=<span class="string">&quot;10&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;30&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;20&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;30&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">g</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">use</span> <span class="attr">href</span>=<span class="string">&quot;#box&quot;</span> <span class="attr">x</span>=<span class="string">&quot;40&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>只定义，不显示</p>
+<h2 id="坐标变换"><a href="#坐标变换" class="headerlink" title="坐标变换"></a>坐标变换</h2><h3 id="translate"><a href="#translate" class="headerlink" title="translate"></a>translate</h3><p><code>translate(x, y)</code> 移动</p>
+<h3 id="scale"><a href="#scale" class="headerlink" title="scale"></a>scale</h3><p><code>scale(xFactor, yFactor)</code> 缩放</p>
+<p><code>scale(x)</code> 等价于 <code>scale(x, x)</code></p>
+<h3 id="rotate"><a href="#rotate" class="headerlink" title="rotate"></a>rotate</h3><p><code>rotate(angle)</code> 以原点<code>(0, 0)</code> 为中心旋转</p>
+<p><code>rotate(angle, x, y)</code> 以<code>(x, y)</code> 为中心旋转</p>
+<h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">defs</span>&gt;</span><span class="tag">&lt;<span class="name">text</span> <span class="attr">id</span>=<span class="string">&quot;hello&quot;</span> <span class="attr">style</span>=<span class="string">&quot;font-size: 12px;&quot;</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">text</span>&gt;</span><span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">use</span> <span class="attr">href</span>=<span class="string">&quot;#hello&quot;</span> <span class="attr">transform</span>=<span class="string">&quot;translate(100, 100) scale(3)&quot;</span> <span class="attr">style</span>=<span class="string">&quot;font-family: monospace;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>平移后缩放</p>
+<h2 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h2><h3 id="线性渐变"><a href="#线性渐变" class="headerlink" title="线性渐变"></a>线性渐变</h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">linearGradient</span> <span class="attr">id</span>=<span class="string">&quot;two&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;0%&quot;</span> <span class="attr">style</span>=<span class="string">&quot;stop-color: #ffcc00;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">style</span>=<span class="string">&quot;stop-color: #0099cc;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">linearGradient</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;20&quot;</span> <span class="attr">y</span>=<span class="string">&quot;20&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span> <span class="attr">style</span>=<span class="string">&quot;fill: url(#two);&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>linearGradient</code> 线性渐变</p>
+<p><code>stop</code> 渐变点</p>
+<h3 id="径向渐变"><a href="#径向渐变" class="headerlink" title="径向渐变"></a>径向渐变</h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">radialGradient</span> <span class="attr">id</span>=<span class="string">&quot;two&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;0%&quot;</span> <span class="attr">style</span>=<span class="string">&quot;stop-color: #ffcc00;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">style</span>=<span class="string">&quot;stop-color: #0099cc;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">radialGradient</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;20&quot;</span> <span class="attr">y</span>=<span class="string">&quot;20&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span> <span class="attr">style</span>=<span class="string">&quot;fill: url(#two);&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>radialGradient</code> 径向渐变</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/readme">关于</a></li>
+        
+          <li><a href="/resume">简历</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%BD%A2%E7%8A%B6"><span class="toc-number">1.</span> <span class="toc-text">基本形状</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5"><span class="toc-number">1.1.</span> <span class="toc-text">线段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E5%BD%A2"><span class="toc-number">1.2.</span> <span class="toc-text">矩形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%86"><span class="toc-number">1.3.</span> <span class="toc-text">圆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A4%AD%E5%9C%86"><span class="toc-number">1.4.</span> <span class="toc-text">椭圆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%BE%B9%E5%BD%A2"><span class="toc-number">1.5.</span> <span class="toc-text">多边形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%98%E7%BA%BF"><span class="toc-number">1.6.</span> <span class="toc-text">折线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E5%BE%84"><span class="toc-number">1.7.</span> <span class="toc-text">路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC"><span class="toc-number">1.8.</span> <span class="toc-text">文本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%92%8C%E5%BC%95%E7%94%A8%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.</span> <span class="toc-text">分组和引用对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.1.</span> <span class="toc-text">&lt;g&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-1"><span class="toc-number">2.2.</span> <span class="toc-text">&lt;use&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-2"><span class="toc-number">2.3.</span> <span class="toc-text">&lt;defs&gt;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2"><span class="toc-number">3.</span> <span class="toc-text">坐标变换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#translate"><span class="toc-number">3.1.</span> <span class="toc-text">translate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scale"><span class="toc-number">3.2.</span> <span class="toc-text">scale</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rotate"><span class="toc-number">3.3.</span> <span class="toc-text">rotate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88"><span class="toc-number">3.4.</span> <span class="toc-text">组合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%90%E5%8F%98"><span class="toc-number">4.</span> <span class="toc-text">渐变</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%B8%90%E5%8F%98"><span class="toc-number">4.1.</span> <span class="toc-text">线性渐变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%84%E5%90%91%E6%B8%90%E5%8F%98"><span class="toc-number">4.2.</span> <span class="toc-text">径向渐变</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/tools/svg/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/tools/svg/&text=svg基础"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/tools/svg/&title=svg基础"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/tools/svg/&is_video=false&description=svg基础"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=svg基础&body=Check out this article: https://lipenghua.com/tools/svg/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/tools/svg/&title=svg基础"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/tools/svg/&title=svg基础"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/tools/svg/&title=svg基础"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/tools/svg/&title=svg基础"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/tools/svg/&name=svg基础&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/tools/svg/&t=svg基础"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023-2024
+    liph
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
