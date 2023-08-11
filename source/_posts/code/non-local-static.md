@@ -1,7 +1,7 @@
 ---
 title: non-local static 对象初始化的顺序
 date: 2023-08-11
-tags: C++
+tags: cplusplus
 permalink: code/non-local-static/
 ---
 

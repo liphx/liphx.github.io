@@ -1,7 +1,7 @@
 ---
 title: C++11为什么弃用std::auto_ptr
 date: 2023-08-11
-tags: C++
+tags: cplusplus
 permalink: code/deprecated-auto-ptr/
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: tcmalloc coredump
 date: 2023-08-11
-tags: C++
+tags: cplusplus
 permalink: code/tcmalloc-coredump/
 ---
 

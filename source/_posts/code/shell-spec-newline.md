@@ -1,7 +1,7 @@
 ---
 title: spec 换行符问题
 date: 2023-08-11
-tags: Shell
+tags: shell
 permalink: code/shell-spec-newline/
 ---
 

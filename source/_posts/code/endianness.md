@@ -1,7 +1,7 @@
 ---
 title: 字节序
 date: 2023-08-11
-tags: C++
+tags: cplusplus
 permalink: code/endianness/
 ---
 

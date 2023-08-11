@@ -1,7 +1,7 @@
 ---
 title: C++中的随机数生成
 date: 2023-08-11
-tags: C++
+tags: cplusplus
 permalink: code/random-in-cplusplus/
 ---
 

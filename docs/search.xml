@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>the-legend-of-zelda-tears-of-the-kingdom</title>
+      <link href="/game/the-legend-of-zelda-tears-of-the-kingdom/"/>
+      <url>/game/the-legend-of-zelda-tears-of-the-kingdom/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> game </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++ ADL 与 boost::noncopyable</title>
       <link href="//code/adl-boost-noncopyable/"/>
       <url>//code/adl-boost-noncopyable/</url>
@@ -14,7 +33,7 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -33,7 +52,7 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -65,7 +84,7 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -84,7 +103,26 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在析构函数中抛出异常</title>
+      <link href="//code/cplusplus-destructor-throw/"/>
+      <url>//code/cplusplus-destructor-throw/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    ~<span class="built_in">A</span>() &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;~A()&quot;</span>);</span><br><span class="line">        <span class="keyword">throw</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="built_in">A</span>();</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;after ~A()&quot;</span>);</span><br><span class="line">    &#125; <span class="built_in">catch</span> (...) &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;catch&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>分别用C++98和11标准进行编译及运行</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">g++ examples/destructor-throw.cpp -std=c++98 &amp;&amp; ./a.out</span></span><br><span class="line">~A()</span><br><span class="line">catch</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">g++ examples/destructor-throw.cpp -std=c++11 &amp;&amp; ./a.out</span></span><br><span class="line">examples/destructor-throw.cpp:6:9: warning: &#x27;~A&#x27; has a non-throwing exception specification but can still throw [-Wexceptions]</span><br><span class="line">        throw 0;</span><br><span class="line">        ^</span><br><span class="line">examples/destructor-throw.cpp:4:5: note: destructor has a implicit non-throwing exception specification</span><br><span class="line">    ~A() &#123;</span><br><span class="line">    ^</span><br><span class="line">1 warning generated.</span><br><span class="line">~A()</span><br><span class="line">libc++abi: terminating with uncaught exception of type int</span><br><span class="line">Abort trap: 6</span><br></pre></td></tr></table></figure><p>开启C++11标准后，编译器已经给出了警告。实际上，C++11起，析构函数默认是noexcept的，抛出异常将会terminate。</p><p>做一点修改，再次编译</p><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> #include &lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line"> struct A &#123;</span><br><span class="line"><span class="deletion">-    ~A() &#123;</span></span><br><span class="line"><span class="addition">+    ~A() throw(int) &#123;</span></span><br><span class="line">         puts(&quot;~A()&quot;);</span><br><span class="line">         throw 0;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">g++ examples/destructor-throw.cpp -std=c++11 &amp;&amp; ./a.out</span></span><br><span class="line">~A()</span><br><span class="line">catch</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">g++ examples/destructor-throw.cpp -std=c++17 &amp;&amp; ./a.out</span></span><br><span class="line">examples/destructor-throw.cpp:4:10: fatal error: ISO C++17 does not allow dynamic exception specifications [-Wdynamic-exception-spec]</span><br><span class="line">    ~A() throw(int) &#123;</span><br><span class="line">         ^~~~~~~~~~</span><br><span class="line">examples/destructor-throw.cpp:4:10: note: use &#x27;noexcept(false)&#x27; instead</span><br><span class="line">    ~A() throw(int) &#123;</span><br><span class="line">         ^~~~~~~~~~</span><br><span class="line">         noexcept(false)</span><br><span class="line">1 error generated.</span><br></pre></td></tr></table></figure><p>给析构函数添加动态异常说明后，程序不会崩溃。要注意的是，动态异常说明在C++11中标记为弃用，C++17起已经移除了。</p><p>总结：不要把异常抛出析构函数。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -103,7 +141,26 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C++实现basename与dirname</title>
+      <link href="//code/cpp-basename-dirname/"/>
+      <url>//code/cpp-basename-dirname/</url>
+      
+        <content type="html"><![CDATA[<p>实现字符串函数，<code>basename, dirname</code>，基本功能与同名命令<code>man 1</code>相同</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> liph &#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> std::string <span class="title">basename</span><span class="params">(std::string_view path)</span> </span>&#123;</span><br><span class="line">    std::string ret;</span><br><span class="line">    <span class="type">bool</span> start = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> ch : path) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch != <span class="string">&#x27;/&#x27;</span> &amp;&amp; start) &#123;</span><br><span class="line">            ret += ch;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;/&#x27;</span>) &#123;</span><br><span class="line">            start = <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch != <span class="string">&#x27;/&#x27;</span> &amp;&amp; !start) &#123;</span><br><span class="line">            ret.<span class="built_in">clear</span>();</span><br><span class="line">            ret += ch;</span><br><span class="line">            start = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!path.<span class="built_in">empty</span>() &amp;&amp; path.<span class="built_in">back</span>() == <span class="string">&#x27;/&#x27;</span> &amp;&amp; ret.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="string">&quot;/&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> std::string <span class="title">dirname</span><span class="params">(std::string_view path)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> pos = path.<span class="built_in">find_last_not_of</span>(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (pos == std::string_view::npos) <span class="keyword">return</span> path.<span class="built_in">empty</span>() ? <span class="string">&quot;.&quot;</span> : <span class="string">&quot;/&quot;</span>;  <span class="comment">// empty or only contain &#x27;/&#x27;</span></span><br><span class="line">    path = path.<span class="built_in">substr</span>(<span class="number">0</span>, pos + <span class="number">1</span>);                                      <span class="comment">// remove the trailing &#x27;/&#x27;</span></span><br><span class="line">    pos = path.<span class="built_in">find_last_of</span>(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (pos == std::string_view::npos) <span class="keyword">return</span> <span class="string">&quot;.&quot;</span>;  <span class="comment">// not contain &#x27;/&#x27;</span></span><br><span class="line">    path = path.<span class="built_in">substr</span>(<span class="number">0</span>, pos);                     <span class="comment">// remove the trailing &quot;/xxxx&quot;</span></span><br><span class="line">    <span class="keyword">if</span> (path.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="string">&quot;/&quot;</span>;                   <span class="comment">// &#x27;/&#x27; or &quot;////&quot; before substr</span></span><br><span class="line">    pos = path.<span class="built_in">find_last_not_of</span>(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (pos != std::string_view::npos) path = path.<span class="built_in">substr</span>(<span class="number">0</span>, pos + <span class="number">1</span>);  <span class="comment">// remove trailing duplicate &#x27;/&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">string</span>(path);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;  <span class="comment">// namespace liph</span></span><br></pre></td></tr></table></figure><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">TEST</span>(string, basename) &#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;&quot;</span>), <span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;abc&quot;</span>), <span class="string">&quot;abc&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;/&quot;</span>), <span class="string">&quot;/&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;//////&quot;</span>), <span class="string">&quot;/&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;/usr/bin/ls&quot;</span>), <span class="string">&quot;ls&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;/usr/bin/&quot;</span>), <span class="string">&quot;bin&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;/usr/bin///&quot;</span>), <span class="string">&quot;bin&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;/usr/////bin/&quot;</span>), <span class="string">&quot;bin&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;/tmp/&quot;</span>), <span class="string">&quot;tmp&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;tmp/&quot;</span>), <span class="string">&quot;tmp&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;tmp/abc///&quot;</span>), <span class="string">&quot;abc&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;../..&quot;</span>), <span class="string">&quot;..&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST</span>(string, dirname) &#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;&quot;</span>), <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;abc&quot;</span>), <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/&quot;</span>), <span class="string">&quot;/&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;//////&quot;</span>), <span class="string">&quot;/&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/usr/bin/ls&quot;</span>), <span class="string">&quot;/usr/bin&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/usr/bin/&quot;</span>), <span class="string">&quot;/usr&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/usr/bin///&quot;</span>), <span class="string">&quot;/usr&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/usr/////bin/&quot;</span>), <span class="string">&quot;/usr&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/tmp/&quot;</span>), <span class="string">&quot;/&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;tmp/&quot;</span>), <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;tmp/abc///&quot;</span>), <span class="string">&quot;tmp&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/tmp////abc/a&quot;</span>), <span class="string">&quot;/tmp////abc&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;../..&quot;</span>), <span class="string">&quot;..&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -131,44 +188,6 @@
     
     
     <entry>
-      <title>C++实现basename与dirname</title>
-      <link href="//code/cpp-basename-dirname/"/>
-      <url>//code/cpp-basename-dirname/</url>
-      
-        <content type="html"><![CDATA[<p>实现字符串函数，<code>basename, dirname</code>，基本功能与同名命令<code>man 1</code>相同</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> liph &#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> std::string <span class="title">basename</span><span class="params">(std::string_view path)</span> </span>&#123;</span><br><span class="line">    std::string ret;</span><br><span class="line">    <span class="type">bool</span> start = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> ch : path) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch != <span class="string">&#x27;/&#x27;</span> &amp;&amp; start) &#123;</span><br><span class="line">            ret += ch;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;/&#x27;</span>) &#123;</span><br><span class="line">            start = <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch != <span class="string">&#x27;/&#x27;</span> &amp;&amp; !start) &#123;</span><br><span class="line">            ret.<span class="built_in">clear</span>();</span><br><span class="line">            ret += ch;</span><br><span class="line">            start = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!path.<span class="built_in">empty</span>() &amp;&amp; path.<span class="built_in">back</span>() == <span class="string">&#x27;/&#x27;</span> &amp;&amp; ret.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="string">&quot;/&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> std::string <span class="title">dirname</span><span class="params">(std::string_view path)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> pos = path.<span class="built_in">find_last_not_of</span>(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (pos == std::string_view::npos) <span class="keyword">return</span> path.<span class="built_in">empty</span>() ? <span class="string">&quot;.&quot;</span> : <span class="string">&quot;/&quot;</span>;  <span class="comment">// empty or only contain &#x27;/&#x27;</span></span><br><span class="line">    path = path.<span class="built_in">substr</span>(<span class="number">0</span>, pos + <span class="number">1</span>);                                      <span class="comment">// remove the trailing &#x27;/&#x27;</span></span><br><span class="line">    pos = path.<span class="built_in">find_last_of</span>(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (pos == std::string_view::npos) <span class="keyword">return</span> <span class="string">&quot;.&quot;</span>;  <span class="comment">// not contain &#x27;/&#x27;</span></span><br><span class="line">    path = path.<span class="built_in">substr</span>(<span class="number">0</span>, pos);                     <span class="comment">// remove the trailing &quot;/xxxx&quot;</span></span><br><span class="line">    <span class="keyword">if</span> (path.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="string">&quot;/&quot;</span>;                   <span class="comment">// &#x27;/&#x27; or &quot;////&quot; before substr</span></span><br><span class="line">    pos = path.<span class="built_in">find_last_not_of</span>(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (pos != std::string_view::npos) path = path.<span class="built_in">substr</span>(<span class="number">0</span>, pos + <span class="number">1</span>);  <span class="comment">// remove trailing duplicate &#x27;/&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">string</span>(path);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;  <span class="comment">// namespace liph</span></span><br></pre></td></tr></table></figure><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">TEST</span>(string, basename) &#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;&quot;</span>), <span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;abc&quot;</span>), <span class="string">&quot;abc&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;/&quot;</span>), <span class="string">&quot;/&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;//////&quot;</span>), <span class="string">&quot;/&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;/usr/bin/ls&quot;</span>), <span class="string">&quot;ls&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;/usr/bin/&quot;</span>), <span class="string">&quot;bin&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;/usr/bin///&quot;</span>), <span class="string">&quot;bin&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;/usr/////bin/&quot;</span>), <span class="string">&quot;bin&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;/tmp/&quot;</span>), <span class="string">&quot;tmp&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;tmp/&quot;</span>), <span class="string">&quot;tmp&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;tmp/abc///&quot;</span>), <span class="string">&quot;abc&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">basename</span>(<span class="string">&quot;../..&quot;</span>), <span class="string">&quot;..&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST</span>(string, dirname) &#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;&quot;</span>), <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;abc&quot;</span>), <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/&quot;</span>), <span class="string">&quot;/&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;//////&quot;</span>), <span class="string">&quot;/&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/usr/bin/ls&quot;</span>), <span class="string">&quot;/usr/bin&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/usr/bin/&quot;</span>), <span class="string">&quot;/usr&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/usr/bin///&quot;</span>), <span class="string">&quot;/usr&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/usr/////bin/&quot;</span>), <span class="string">&quot;/usr&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/tmp/&quot;</span>), <span class="string">&quot;/&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;tmp/&quot;</span>), <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;tmp/abc///&quot;</span>), <span class="string">&quot;tmp&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;/tmp////abc/a&quot;</span>), <span class="string">&quot;/tmp////abc&quot;</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(liph::<span class="built_in">dirname</span>(<span class="string">&quot;../..&quot;</span>), <span class="string">&quot;..&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> C++ </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>在析构函数中抛出异常</title>
-      <link href="//code/cplusplus-destructor-throw/"/>
-      <url>//code/cplusplus-destructor-throw/</url>
-      
-        <content type="html"><![CDATA[<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    ~<span class="built_in">A</span>() &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;~A()&quot;</span>);</span><br><span class="line">        <span class="keyword">throw</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="built_in">A</span>();</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;after ~A()&quot;</span>);</span><br><span class="line">    &#125; <span class="built_in">catch</span> (...) &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;catch&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>分别用C++98和11标准进行编译及运行</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">g++ examples/destructor-throw.cpp -std=c++98 &amp;&amp; ./a.out</span></span><br><span class="line">~A()</span><br><span class="line">catch</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">g++ examples/destructor-throw.cpp -std=c++11 &amp;&amp; ./a.out</span></span><br><span class="line">examples/destructor-throw.cpp:6:9: warning: &#x27;~A&#x27; has a non-throwing exception specification but can still throw [-Wexceptions]</span><br><span class="line">        throw 0;</span><br><span class="line">        ^</span><br><span class="line">examples/destructor-throw.cpp:4:5: note: destructor has a implicit non-throwing exception specification</span><br><span class="line">    ~A() &#123;</span><br><span class="line">    ^</span><br><span class="line">1 warning generated.</span><br><span class="line">~A()</span><br><span class="line">libc++abi: terminating with uncaught exception of type int</span><br><span class="line">Abort trap: 6</span><br></pre></td></tr></table></figure><p>开启C++11标准后，编译器已经给出了警告。实际上，C++11起，析构函数默认是noexcept的，抛出异常将会terminate。</p><p>做一点修改，再次编译</p><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> #include &lt;cstdio&gt;</span><br><span class="line"></span><br><span class="line"> struct A &#123;</span><br><span class="line"><span class="deletion">-    ~A() &#123;</span></span><br><span class="line"><span class="addition">+    ~A() throw(int) &#123;</span></span><br><span class="line">         puts(&quot;~A()&quot;);</span><br><span class="line">         throw 0;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">g++ examples/destructor-throw.cpp -std=c++11 &amp;&amp; ./a.out</span></span><br><span class="line">~A()</span><br><span class="line">catch</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">g++ examples/destructor-throw.cpp -std=c++17 &amp;&amp; ./a.out</span></span><br><span class="line">examples/destructor-throw.cpp:4:10: fatal error: ISO C++17 does not allow dynamic exception specifications [-Wdynamic-exception-spec]</span><br><span class="line">    ~A() throw(int) &#123;</span><br><span class="line">         ^~~~~~~~~~</span><br><span class="line">examples/destructor-throw.cpp:4:10: note: use &#x27;noexcept(false)&#x27; instead</span><br><span class="line">    ~A() throw(int) &#123;</span><br><span class="line">         ^~~~~~~~~~</span><br><span class="line">         noexcept(false)</span><br><span class="line">1 error generated.</span><br></pre></td></tr></table></figure><p>给析构函数添加动态异常说明后，程序不会崩溃。要注意的是，动态异常说明在C++11中标记为弃用，C++17起已经移除了。</p><p>总结：不要把异常抛出析构函数。</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> C++ </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>函数默认参数与继承</title>
       <link href="//code/defaut-args-and-inheritance/"/>
       <url>//code/defaut-args-and-inheritance/</url>
@@ -179,7 +198,26 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C++11为什么弃用std::auto_ptr</title>
+      <link href="//code/deprecated-auto-ptr/"/>
+      <url>//code/deprecated-auto-ptr/</url>
+      
+        <content type="html"><![CDATA[<p>先看一下<code>auto_ptr</code>的拷贝构造函数(C++11前还没有移动语义)</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">auto_ptr</span>(auto_ptr&amp;);</span><br><span class="line">auto_ptr&amp; <span class="keyword">operator</span>=(auto_ptr&amp;);</span><br></pre></td></tr></table></figure><p>与一般的拷贝构造函数不同的是，<code>std::auto_ptr</code>为了获取对象的所有权，会修改参数(release())</p><p>一个简单的问题如下</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::auto_ptr&lt;<span class="type">int</span>&gt; <span class="title">pa</span><span class="params">(<span class="keyword">new</span> <span class="type">int</span>(<span class="number">100</span>))</span></span>;</span><br><span class="line"><span class="function">std::auto_ptr&lt;<span class="type">int</span>&gt; <span class="title">pb</span><span class="params">(pa)</span></span>;</span><br><span class="line">std::cout &lt;&lt; *pa &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure><p>由于对象的所有权由<code>pb</code>所有，<code>pa.release</code>后，<code>*pa</code>实际上是对<code>nullptr</code>解引用，直接Segmentation fault了。</p><p>当然，尽管这是个低级错误，但是像下面的使用也会有同样的问题</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">(std::auto_ptr&lt;<span class="type">int</span>&gt; ptr)</span></span>;</span><br><span class="line">std::vector&lt;std::auto_ptr&lt;<span class="type">int</span>&gt; &gt; vc; <span class="comment">// C++03这里需要一个空格</span></span><br></pre></td></tr></table></figure><p>那么，为什么<code>std::auto_ptr</code>不仅仅弃用拷贝构造与赋值运算符呢？</p><p>首先，<code>boost::scoped_ptr</code>就是这么做的，<code>boost::scoped_ptr&lt;T&gt;</code> 基本上等价于<code>const std::auto_ptr&lt;T&gt;</code><br>（当然，<code>const std::auto_ptr&lt;T&gt;</code>不能执行<code>reset</code>），之所以叫<code>scoped_ptr</code>是因为这个类强调它的作用只是<strong>RAII</strong></p><p>其次，<code>auto_ptr</code>最初的目的是帮助程序员管理对象的所有权，它期望用户完全明白它的行为与内部实现（这也是C++被人诟病的地方）。</p><p>最后，C++11起，有了移动语义，有了<code>std::unique_ptr</code>，自然也就不需要<code>std::auto_ptr</code>了。<br><code>std::auto_ptr</code>在C++11中被标记为弃用，在C++17中已经正式移除了。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -207,25 +245,6 @@
     
     
     <entry>
-      <title>C++11为什么弃用std::auto_ptr</title>
-      <link href="//code/deprecated-auto-ptr/"/>
-      <url>//code/deprecated-auto-ptr/</url>
-      
-        <content type="html"><![CDATA[<p>先看一下<code>auto_ptr</code>的拷贝构造函数(C++11前还没有移动语义)</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">auto_ptr</span>(auto_ptr&amp;);</span><br><span class="line">auto_ptr&amp; <span class="keyword">operator</span>=(auto_ptr&amp;);</span><br></pre></td></tr></table></figure><p>与一般的拷贝构造函数不同的是，<code>std::auto_ptr</code>为了获取对象的所有权，会修改参数(release())</p><p>一个简单的问题如下</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::auto_ptr&lt;<span class="type">int</span>&gt; <span class="title">pa</span><span class="params">(<span class="keyword">new</span> <span class="type">int</span>(<span class="number">100</span>))</span></span>;</span><br><span class="line"><span class="function">std::auto_ptr&lt;<span class="type">int</span>&gt; <span class="title">pb</span><span class="params">(pa)</span></span>;</span><br><span class="line">std::cout &lt;&lt; *pa &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure><p>由于对象的所有权由<code>pb</code>所有，<code>pa.release</code>后，<code>*pa</code>实际上是对<code>nullptr</code>解引用，直接Segmentation fault了。</p><p>当然，尽管这是个低级错误，但是像下面的使用也会有同样的问题</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">(std::auto_ptr&lt;<span class="type">int</span>&gt; ptr)</span></span>;</span><br><span class="line">std::vector&lt;std::auto_ptr&lt;<span class="type">int</span>&gt; &gt; vc; <span class="comment">// C++03这里需要一个空格</span></span><br></pre></td></tr></table></figure><p>那么，为什么<code>std::auto_ptr</code>不仅仅弃用拷贝构造与赋值运算符呢？</p><p>首先，<code>boost::scoped_ptr</code>就是这么做的，<code>boost::scoped_ptr&lt;T&gt;</code> 基本上等价于<code>const std::auto_ptr&lt;T&gt;</code><br>（当然，<code>const std::auto_ptr&lt;T&gt;</code>不能执行<code>reset</code>），之所以叫<code>scoped_ptr</code>是因为这个类强调它的作用只是<strong>RAII</strong></p><p>其次，<code>auto_ptr</code>最初的目的是帮助程序员管理对象的所有权，它期望用户完全明白它的行为与内部实现（这也是C++被人诟病的地方）。</p><p>最后，C++11起，有了移动语义，有了<code>std::unique_ptr</code>，自然也就不需要<code>std::auto_ptr</code>了。<br><code>std::auto_ptr</code>在C++11中被标记为弃用，在C++17中已经正式移除了。</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> C++ </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>字节序</title>
       <link href="//code/endianness/"/>
       <url>//code/endianness/</url>
@@ -236,7 +255,7 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -255,7 +274,7 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -293,7 +312,7 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -331,7 +350,7 @@
       
         <tags>
             
-            <tag> Linux </tag>
+            <tag> linux </tag>
             
         </tags>
       
@@ -350,7 +369,7 @@
       
         <tags>
             
-            <tag> Linux </tag>
+            <tag> linux </tag>
             
         </tags>
       
@@ -369,7 +388,7 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -388,7 +407,7 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -407,7 +426,7 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -426,7 +445,7 @@
       
         <tags>
             
-            <tag> Shell </tag>
+            <tag> shell </tag>
             
         </tags>
       
@@ -445,7 +464,7 @@
       
         <tags>
             
-            <tag> Python </tag>
+            <tag> python </tag>
             
         </tags>
       
@@ -464,26 +483,7 @@
       
         <tags>
             
-            <tag> C++ </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>std::thread, std::async 中的异常</title>
-      <link href="//code/thread-async/"/>
-      <url>//code/thread-async/</url>
-      
-        <content type="html"><![CDATA[<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;future&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdexcept&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">fn</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">1</span>) <span class="keyword">throw</span> std::<span class="built_in">invalid_argument</span>(<span class="string">&quot;n &lt; 1&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">3</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">fn</span>(n - <span class="number">1</span>) + <span class="built_in">fn</span>(n - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">auto</span> fut = std::<span class="built_in">async</span>(fn, <span class="number">20</span>);</span><br><span class="line">        std::cout &lt;&lt; std::boolalpha;</span><br><span class="line">        <span class="type">int</span> res = fut.<span class="built_in">get</span>();</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;fn(20) = &quot;</span> &lt;&lt; res &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">auto</span> fut2 = std::<span class="built_in">async</span>(fn, <span class="number">-20</span>);</span><br><span class="line">        res = fut2.<span class="built_in">get</span>();</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;fn(-20) = &quot;</span> &lt;&lt; res &lt;&lt; std::endl;</span><br><span class="line">    &#125; <span class="built_in">catch</span> (<span class="type">const</span> std::invalid_argument&amp; e) &#123;</span><br><span class="line">        std::cerr &lt;&lt; e.<span class="built_in">what</span>() &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="function">std::thread <span class="title">t</span><span class="params">(fn, <span class="number">-20</span>)</span></span>;</span><br><span class="line">        t.<span class="built_in">join</span>();</span><br><span class="line">    &#125; <span class="built_in">catch</span> (<span class="type">const</span> std::invalid_argument&amp; e) &#123;  <span class="comment">// can not catch</span></span><br><span class="line">        std::cerr &lt;&lt; e.<span class="built_in">what</span>() &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>可以看到，不能捕获<code>std::thread</code>中抛出的异常。但<code>std::async</code>可以通过<code>std::promise/std::future</code>设置&#x2F;捕获异常。</p><p>另外，<code>std::async</code>未必真的异步，如有必要可以指定<code>std::launch::async</code></p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span>... Ts&gt;</span><br><span class="line"><span class="keyword">inline</span> std::future&lt;<span class="keyword">typename</span> std::result_of&lt;<span class="built_in">F</span>(Ts...)&gt;::type&gt; <span class="built_in">reallyAsync</span>(F&amp;&amp; f, Ts&amp;&amp;...params) &#123;</span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">async</span>(std::launch::async, std::forward&lt;F&gt;(f), std::forward&lt;Ts&gt;(params)...);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C++14</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span>... Ts&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">auto</span> <span class="title">reallyAsync</span><span class="params">(F&amp;&amp; f, Ts&amp;&amp;...params)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">async</span>(std::launch::async, std::forward&lt;F&gt;(f), std::forward&lt;Ts&gt;(params)...);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
             
         </tags>
       
@@ -502,7 +502,26 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> cplusplus </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>std::thread, std::async 中的异常</title>
+      <link href="//code/thread-async/"/>
+      <url>//code/thread-async/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;future&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdexcept&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">fn</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">1</span>) <span class="keyword">throw</span> std::<span class="built_in">invalid_argument</span>(<span class="string">&quot;n &lt; 1&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">3</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">fn</span>(n - <span class="number">1</span>) + <span class="built_in">fn</span>(n - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">auto</span> fut = std::<span class="built_in">async</span>(fn, <span class="number">20</span>);</span><br><span class="line">        std::cout &lt;&lt; std::boolalpha;</span><br><span class="line">        <span class="type">int</span> res = fut.<span class="built_in">get</span>();</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;fn(20) = &quot;</span> &lt;&lt; res &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">auto</span> fut2 = std::<span class="built_in">async</span>(fn, <span class="number">-20</span>);</span><br><span class="line">        res = fut2.<span class="built_in">get</span>();</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;fn(-20) = &quot;</span> &lt;&lt; res &lt;&lt; std::endl;</span><br><span class="line">    &#125; <span class="built_in">catch</span> (<span class="type">const</span> std::invalid_argument&amp; e) &#123;</span><br><span class="line">        std::cerr &lt;&lt; e.<span class="built_in">what</span>() &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="function">std::thread <span class="title">t</span><span class="params">(fn, <span class="number">-20</span>)</span></span>;</span><br><span class="line">        t.<span class="built_in">join</span>();</span><br><span class="line">    &#125; <span class="built_in">catch</span> (<span class="type">const</span> std::invalid_argument&amp; e) &#123;  <span class="comment">// can not catch</span></span><br><span class="line">        std::cerr &lt;&lt; e.<span class="built_in">what</span>() &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>可以看到，不能捕获<code>std::thread</code>中抛出的异常。但<code>std::async</code>可以通过<code>std::promise/std::future</code>设置&#x2F;捕获异常。</p><p>另外，<code>std::async</code>未必真的异步，如有必要可以指定<code>std::launch::async</code></p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span>... Ts&gt;</span><br><span class="line"><span class="keyword">inline</span> std::future&lt;<span class="keyword">typename</span> std::result_of&lt;<span class="built_in">F</span>(Ts...)&gt;::type&gt; <span class="built_in">reallyAsync</span>(F&amp;&amp; f, Ts&amp;&amp;...params) &#123;</span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">async</span>(std::launch::async, std::forward&lt;F&gt;(f), std::forward&lt;Ts&gt;(params)...);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C++14</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span>... Ts&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">auto</span> <span class="title">reallyAsync</span><span class="params">(F&amp;&amp; f, Ts&amp;&amp;...params)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">async</span>(std::launch::async, std::forward&lt;F&gt;(f), std::forward&lt;Ts&gt;(params)...);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> cplusplus </tag>
             
         </tags>
       

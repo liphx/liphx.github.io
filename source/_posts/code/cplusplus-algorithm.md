@@ -1,7 +1,7 @@
 ---
 title: C++ 算法库
 date: 2023-08-11
-tags: C++
+tags: cplusplus
 permalink: code/cplusplus-algorithm/
 ---
 

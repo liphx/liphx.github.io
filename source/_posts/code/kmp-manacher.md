@@ -1,7 +1,7 @@
 ---
 title: 字符串算法：kmp与manacher
 date: 2023-08-11
-tags: C++
+tags: cplusplus
 permalink: code/kmp-manacher/
 ---
 

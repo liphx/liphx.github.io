@@ -1,7 +1,7 @@
 ---
 title: 现代C++优化：构造函数参数按值传递
 date: 2023-08-11
-tags: C++
+tags: cplusplus
 permalink: code/modernize-pass-by-value/
 ---
 

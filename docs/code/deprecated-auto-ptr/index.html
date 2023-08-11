@@ -14,9 +14,9 @@
 <meta property="og:description" content="先看一下auto_ptr的拷贝构造函数(C++11前还没有移动语义) 12auto_ptr(auto_ptr&amp;);auto_ptr&amp; operator&#x3D;(auto_ptr&amp;);  与一般的拷贝构造函数不同的是，std::auto_ptr为了获取对象的所有权，会修改参数(release()) 一个简单的问题如下 123std::auto_ptr&lt;int&gt; pa(n">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-08-11T05:12:03.998Z">
+<meta property="article:modified_time" content="2023-08-11T06:54:21.095Z">
 <meta property="article:author" content="liph">
-<meta property="article:tag" content="C++">
+<meta property="article:tag" content="cplusplus">
 <meta name="twitter:card" content="summary">
     
     
@@ -86,10 +86,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="上一篇" href="/code/docker/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/code/defaut-args-and-inheritance/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="下一篇" href="/code/endianness/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/code/docker/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -151,7 +151,7 @@
       
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/C/" rel="tag">C++</a>
+        <a class="p-category" href="/tags/cplusplus/" rel="tag">cplusplus</a>
     </div>
 
 

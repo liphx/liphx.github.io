@@ -1,7 +1,7 @@
 ---
 title: Python3
 date: 2023-08-11
-tags: Python
+tags: python
 permalink: code/python3/
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: C++实现basename与dirname
 date: 2023-08-11
-tags: C++
+tags: cplusplus
 permalink: code/cpp-basename-dirname/
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Linux /proc 虚拟文件系统
 date: 2023-08-11
-tags: Linux
+tags: linux
 permalink: code/linux-proc-filesystem/
 ---
 

@@ -4,7 +4,7 @@
 
 # Site
 title: 李鹏华的主页
-subtitle: '往者不可谏，来者犹可追'
+subtitle: ''
 description: ''
 keywords:
 author: liph
@@ -14,7 +14,7 @@ timezone: ''
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://liph.ink
-permalink: :year/:month/:day/:title/
+permalink: :title/
 permalink_defaults:
 pretty_urls:
   trailing_index: false # Set to false to remove trailing 'index.html' from permalinks

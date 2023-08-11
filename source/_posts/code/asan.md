@@ -1,7 +1,7 @@
 ---
 title: C/C++ AddressSanitizer Examples
 date: 2023-08-11
-tags: C++
+tags: cplusplus
 permalink: code/asan/
 ---
 
