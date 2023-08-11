@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>shell-spec-newline</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="/css/common.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="spec-换行符问题">spec 换行符问题</h1>
+<p>最近把Windows上的文件上传到Linux上执行时报错</p>
+<p><code>$'\r': command not found</code></p>
+<p>于是果断加了个
+<code>find . -name '*.sh' -exec dos2unix {} \;</code></p>
+<p>但是问题并没有解决，报错的地方似乎不在我的shell脚本里，而且这条语句是个空行，没法直接搜到出错的地方</p>
+<p>后来发现我的spec文件里 <code>%prep</code>
+部分是空的（语句被注释了），出于强迫症心理，我把
+<code>%prep</code>移除了，然后发现除了<code>$'\r': command not found</code>的报错，还有这样一条</p>
+<p><code>mkdir ********\r</code></p>
+<p>看来问题出在spec文件，<code>dos2unix xxx.spec</code>，问题解决</p>
+<p>总结，下次执行脚本遇到<code>\r</code>
+问题，除了shell文件，还要注意下<code>spec</code>
+文件。当然，生产环境是Linux就没这么多屁事了…</p>
+</body>
+</html>

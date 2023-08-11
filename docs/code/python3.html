@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>python3</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/css/common.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="python3">Python3</h1>
+<h2 id="包管理程序-pip">包管理程序 pip</h2>
+<h3 id="使用-pip-安装-python-模块">使用 pip 安装 Python 模块</h3>
+<pre class="shell"><code>python3 -m pip install SomePackage
+# or
+pip3 install SomePackage
+
+pip3 install SomePackage==1.0.1         # 指定版本号
+pip3 install &#39;SomePackage&gt;=1.0.1&#39;       # 指定最低版本号
+
+pip3 install --upgrade SomePackage      # 更新
+
+pip3 uninstall [-y] SomePackage         # 卸载
+
+pip3 install pip --upgrade              # 更新 pip</code></pre>
+<p>pip 其它选项</p>
+<table>
+<thead>
+<tr class="header">
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--trusted-host &lt;host&gt;</code></td>
+<td>信任的主机名</td>
+</tr>
+<tr class="even">
+<td><code>--retries &lt;N&gt;</code></td>
+<td>重试次数</td>
+</tr>
+<tr class="odd">
+<td><code>--timeout &lt;sec&gt;</code></td>
+<td>设置超时时间</td>
+</tr>
+<tr class="even">
+<td><code>--proxy &lt;proxy&gt;</code></td>
+<td>指定代理</td>
+</tr>
+<tr class="odd">
+<td><code>--no-cache-dir</code></td>
+<td>禁用缓存</td>
+</tr>
+</tbody>
+</table>
+<p><code>pip install</code> 其它选项</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-i,--index-url &lt;url&gt;</code></td>
+<td>指定 url, 默认为 <a href="https://pypi.python.org/simple/"
+class="uri">https://pypi.python.org/simple/</a></td>
+</tr>
+<tr class="even">
+<td><code>--no-deps</code></td>
+<td>不安装依赖</td>
+</tr>
+<tr class="odd">
+<td><code>-t,--target &lt;dir&gt;</code></td>
+<td>安装至 dir</td>
+</tr>
+<tr class="even">
+<td><code>-d,--download &lt;dir&gt;</code></td>
+<td>仅下载至 dir，不安装</td>
+</tr>
+<tr class="odd">
+<td><code>-r,--requirement &lt;file&gt;</code></td>
+<td>安装在 file 中列出需要安装的包，file 包含由 <code>pip install</code>
+参数排成列表的文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pip-配置文件">pip 配置文件</h3>
+<p><code>unix</code>: <code>$HOME/.pip/pip.conf</code></p>
+<p><code>win</code>: <code>%HOME%\pip\pip.ini</code></p>
+<pre class="pip"><code>[global]
+timeout = 120
+index-url = http://pypi.liph.ink/simple
+trusted-host = liph.ink
+
+[install]
+find-links =
+    http://mirror1.example.com
+    http://mirror2.example.com</code></pre>
+<h3 id="pip-自动补全">pip 自动补全</h3>
+<pre class="shll"><code>pip3 completion --bash &gt;&gt; ~/.profile</code></pre>
+<h2 id="安装使用-python">安装使用 Python</h2>
+<h3 id="linux下从源代码构建">Linux下从源代码构建</h3>
+<ol type="1">
+<li>下载最新Python 源代码 <a
+href="https://www.python.org/downloads/source/"
+class="uri">https://www.python.org/downloads/source/</a></li>
+<li>构建</li>
+</ol>
+<pre class="shell"><code>./configure
+make
+sudo make install</code></pre>
+<p><code>make install</code> 会覆盖系统中已安装的Python 版本</p>
+<p>查看configure 配置 <code>./configure --help</code></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>configure 选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>–prefix=PREFIX</td>
+<td>指定PREFIX 安装架构无关的文件，默认为 <code>/usr/local</code></td>
+</tr>
+<tr class="even">
+<td>–exec-prefix=EPREFIX</td>
+<td>指定PREFIX 安装依赖架构的文件</td>
+</tr>
+</tbody>
+</table>
+<p>文件安装路径</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>文件/目录</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>exec_prefix/bin/python3</code></td>
+<td>解释器的推荐位置</td>
+</tr>
+<tr class="even">
+<td><code>prefix/lib/pythonversion</code>,
+<code>exec_prefix/lib/pythonversion</code></td>
+<td>包含标准模块的目录的推荐位置</td>
+</tr>
+<tr class="odd">
+<td><code>prefix/include/pythonversion</code>,
+<code>exec_prefix/include/pythonversion</code></td>
+<td>包含开发Python扩展和嵌入解释器所需的include文件的目录的推荐位置</td>
+</tr>
+</tbody>
+</table>
+<p>查看 Python3 版本号 <code>python3 --version</code></p>
+<h2 id="python-解释器">Python 解释器</h2>
+<p>终端执行 <code>python3</code> 进入交互式 Python, 键入 Ctrl-D
+退出交互式（windows 下是Ctrl-Z）, 或者输入 <code>sys.exit()</code>
+退出（需要先 <code>import sys</code>）</p>
+<p>python3 提供和bash 类似的 <code>-c</code> 选项以执行一条语句
+<code>python3 -c command [arg] ...</code></p>
+<p><code>python3 file</code> 用以解释执行 Python 源文件, Linux
+下Python默认的字符编码是 UTF-8, 可以在源文件第一行指定编码</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span></code></pre></div>
+<p>如果第一行以 <code>shebang</code> 开头，则在第二行指定编码</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span></code></pre></div>
+<h2 id="作用域和名称空间">作用域和名称空间</h2>
+<h3 id="global-nonlocal">global, nonlocal</h3>
+<pre><code>global_stmt ::=  &quot;global&quot; identifier (&quot;,&quot; identifier)*
+nonlocal_stmt ::=  &quot;nonlocal&quot; identifier (&quot;,&quot; identifier)*</code></pre>
+<h4 id="global">global</h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> <span class="st">&#39;global var&#39;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func1():</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    var <span class="op">=</span> <span class="st">&#39;func1 var&#39;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func2():</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> var</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    var <span class="op">=</span> <span class="st">&#39;func2 var&#39;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var) <span class="co"># global var</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>func1()</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var) <span class="co"># global var</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>func2()</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var) <span class="co"># func2 var</span></span></code></pre></div>
+<p>global 语句是作用于整个当前代码块的声明，用于给全局变量赋值</p>
+<p>在 global 语句中列出的名称不得在同一代码块内该 global
+语句之前的位置中使用；例如下面的代码语法是错误的</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> a</span></code></pre></div>
+<h4 id="nonlocal">nonlocal</h4>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func1():</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    var <span class="op">=</span> <span class="st">&#39;func1 var&#39;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> func2():</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        var <span class="op">=</span> <span class="st">&#39;func2 var&#39;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var) <span class="co"># func1 var</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    func2()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var) <span class="co"># func1 var</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>func1()</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func3():</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    var <span class="op">=</span> <span class="st">&#39;func3 var&#39;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> func4():</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">nonlocal</span> var</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        var <span class="op">=</span> <span class="st">&#39;func4 var&#39;</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var) <span class="co"># func3 var</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    func4()</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var) <span class="co"># func4 var</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>func3()</span></code></pre></div>
+<p>nonlocal
+语句会使得所列出的名称指向之前在最近的包含作用域中绑定的除全局变量以外的变量</p>
+<p>与 global 语句中列出的名称不同，nonlocal
+语句中列出的名称必须指向之前存在于包含作用域之中的绑定（在这个应当用来创建新绑定的作用域不能被无歧义地确定）</p>
+<p>nonlocal 语句中列出的名称不得与之前存在于局部作用域中的绑定相冲突</p>
+<p>以下代码的语法是错误的</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> <span class="st">&#39;global var&#39;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func():</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">nonlocal</span> var</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    var <span class="op">=</span> <span class="st">&#39;func var&#39;</span></span></code></pre></div>
+<h2 id="模块和包">模块和包</h2>
+<h3 id="模块">模块</h3>
+<p>Python 模块即一个 Python 源文件(<code>.py</code>)</p>
+<p>全局变量 <code>__name__</code> 定义了模块名，以
+<code>python3 xxx.py &lt;arguments&gt;</code>
+运行模块时，<code>__name__</code> 赋值为
+<code>"__main__"</code>，因此可以添加如下代码让该模块仅当脚本运行时才执行这些语句</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    do some things</span></code></pre></div>
+<h3 id="import">import</h3>
+<pre><code>import_stmt     ::=  &quot;import&quot; module [&quot;as&quot; identifier] (&quot;,&quot; module [&quot;as&quot; identifier])*
+                     | &quot;from&quot; relative_module &quot;import&quot; identifier [&quot;as&quot; identifier]
+                     (&quot;,&quot; identifier [&quot;as&quot; identifier])*
+                     | &quot;from&quot; relative_module &quot;import&quot; &quot;(&quot; identifier [&quot;as&quot; identifier]
+                     (&quot;,&quot; identifier [&quot;as&quot; identifier])* [&quot;,&quot;] &quot;)&quot;
+                     | &quot;from&quot; module &quot;import&quot; &quot;*&quot;
+module          ::=  (identifier &quot;.&quot;)* identifier
+relative_module ::=  &quot;.&quot;* module | &quot;.&quot;+</code></pre>
+<p>import, import-from 语句用来导入其它模块，import
+模块时会执行模块中的语句，导入模块中的符号</p>
+<p>import 语句</p>
+<ol type="1">
+<li>查找一个模块，如果有必要还会加载并初始化模块</li>
+<li>在局部命名空间中为 import
+语句发生位置所处的作用域定义一个或多个名称</li>
+</ol>
+<p>import-from 语句</p>
+<ol type="1">
+<li>查找 from 子句中指定的模块，如有必要还会加载并初始化模块</li>
+<li>对于 import 子句中指定的每个标识符</li>
+<li>检查被导入模块是否有该名称的属性</li>
+<li>如果没有，尝试导入具有该名称的子模块，然后再次检查被导入模块是否有该属性</li>
+<li>如果未找到该属性，则引发 <code>ImportError</code></li>
+<li>否则的话，将对该值的引用存入局部命名空间，如果有 as
+子句则使用其指定的名称，否则使用该属性的名称</li>
+</ol>
+<p>假如文件 <code>moudle.py</code> 定义了函数
+<code>func</code>，那么，可以在其它文件中 <code>import moudle</code>
+后，通过 <code>moudle.func()</code> 调用该模块中的函数，模块名后使用 as
+时，直接把 as 后的名称与导入模块绑定</p>
+<p><code>from moudle import *</code> 可以导入模块内定义的所有名称</p>
+<h3 id="模块的搜索路径">模块的搜索路径</h3>
+<p>搜索模块 <code>spam</code> 的顺序</p>
+<ol type="1">
+<li>查找名为 <code>spam</code> 的内置模块</li>
+<li>从 <code>sys.path</code> 中查找文件 <code>spam.py</code></li>
+</ol>
+<p><code>sys.path</code> 初始时包含</p>
+<ul>
+<li>输入脚本的目录（或未指定文件时的当前目录）</li>
+<li><code>PYTHONPATH</code> （目录列表，与 shell 变量 PATH
+的语法一样）</li>
+<li>默认安装目录</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> sys</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> sys.path</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>[<span class="st">&#39;&#39;</span>, <span class="st">&#39;/usr/local/lib/python39.zip&#39;</span>, <span class="st">&#39;/usr/local/lib/python3.9&#39;</span>, <span class="st">&#39;/usr/local/lib/python3.9/lib-dynload&#39;</span>, <span class="st">&#39;/home/liph/.local/lib/python3.9/site-packages&#39;</span>, <span class="st">&#39;/usr/local/lib/python3.9/site-packages&#39;</span>]</span></code></pre></div>
+<h3 id="包">包</h3>
+<p>包是一种组织模块的结构，可以用来构造Python 的名称空间</p>
+<p>一个包含Python 模块的目录要称为包，需要在目录下编写一个
+<code>__init__.py</code>
+的文件，最简单的情况下，该文件为空；也可以执行包的初始化代码，或设置
+<code>__all__</code> 变量</p>
+<p>对于 <code>from package import item</code></p>
+<p>item
+可以是包的子模块（或子包），也可以是包中定义的函数、类或变量等其他名称。import
+语句首先测试包中是否定义了 item；如果未在包中定义，则假定 item
+是模块，并尝试加载。如果找不到 item，则触发 ImportError 异常</p>
+<p>对于 <code>from package import *</code></p>
+<ul>
+<li>如果包的 <code>__init__.py</code> 代码定义了列表
+<code>__all__</code>，就导入列表中的模块</li>
+<li>如果没有定义 <code>__all__</code>
+<ul>
+<li>不会把包中所有子模块都导入到当前命名空间</li>
+<li>只确保导入包 package（可能还会运行 <code>__init__.py</code>
+中的初始化代码）</li>
+<li>然后，再导入包中定义的名称。这些名称包括 <code>__init__.py</code>
+中定义的任何名称（以及显式加载的子模块），还包括之前 import
+语句显式加载的包里的子模块</li>
+</ul></li>
+</ul>
+<p>在包中引入其它模块或子包中的模块，可用相对形式导入（基于当前模块名）</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> . <span class="im">import</span> echo</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .. <span class="im">import</span> formats</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ..filters <span class="im">import</span> equalizer</span></code></pre></div>
+<p>由于，主模块名是 <code>"__main__"</code> ，因此，Python
+应用程序的主模块必须始终使用绝对导入</p>
+<h2 id="函数">函数</h2>
+<h3 id="定义函数">定义函数</h3>
+<pre><code>funcdef                   ::=  [decorators] &quot;def&quot; funcname &quot;(&quot; [parameter_list] &quot;)&quot;
+                               [&quot;-&gt;&quot; expression] &quot;:&quot; suite
+decorators                ::=  decorator+
+decorator                 ::=  &quot;@&quot; assignment_expression NEWLINE
+dotted_name               ::=  identifier (&quot;.&quot; identifier)*
+parameter_list            ::=  defparameter (&quot;,&quot; defparameter)* &quot;,&quot; &quot;/&quot; [&quot;,&quot; [parameter_list_no_posonly]]
+                                 | parameter_list_no_posonly
+parameter_list_no_posonly ::=  defparameter (&quot;,&quot; defparameter)* [&quot;,&quot; [parameter_list_starargs]]
+                               | parameter_list_starargs
+parameter_list_starargs   ::=  &quot;*&quot; [parameter] (&quot;,&quot; defparameter)* [&quot;,&quot; [&quot;**&quot; parameter [&quot;,&quot;]]]
+                               | &quot;**&quot; parameter [&quot;,&quot;]
+parameter                 ::=  identifier [&quot;:&quot; expression]
+defparameter              ::=  parameter [&quot;=&quot; expression]
+funcname                  ::=  identifier</code></pre>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fib(n):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Print a Fibonacci series up to n.&quot;&quot;&quot;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    a, b <span class="op">=</span> <span class="dv">0</span>, <span class="dv">1</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> a <span class="op">&lt;</span> n:</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(a, end<span class="op">=</span><span class="st">&#39; &#39;</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        a, b <span class="op">=</span> b, a<span class="op">+</span>b</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>fib(<span class="dv">2000</span>)</span></code></pre></div>
+<ul>
+<li>函数定义使用 <code>def</code>，后跟函数名和参数列表</li>
+<li>函数内的第一条语句是字符串时，称为文档字符串（docstring）</li>
+<li>没有 <code>return</code> 或 <code>return</code> 不带表达式的函数返回
+<code>None</code></li>
+</ul>
+<h3 id="默认参数">默认参数</h3>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func(a, b <span class="op">=</span> <span class="dv">0</span>):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(a <span class="op">&gt;</span> b)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>func(<span class="dv">1</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>func(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div>
+<p>调用时需给出必选参数，可选参数按顺序给定</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(arg<span class="op">=</span>i):</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(arg)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>f() <span class="co">#=&gt; 5</span></span></code></pre></div>
+<p>默认值在定义作用域里的函数定义中求值</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(a, L<span class="op">=</span>[]):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    L.append(a)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> L</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f(<span class="dv">1</span>)) <span class="co"># [1]</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f(<span class="dv">2</span>)) <span class="co"># [1, 2]</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f(<span class="dv">3</span>)) <span class="co"># [1, 2, 3]</span></span></code></pre></div>
+<p>默认值只计算一次。默认值为列表、字典或类实例等可变对象时，会产生与该规则不同的结果</p>
+<p>不想在后续调用之间共享默认值时，应以如下方式编写函数</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(a, L<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> L <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        L <span class="op">=</span> []</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    L.append(a)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> L</span></code></pre></div>
+<h3 id="关键字参数">关键字参数</h3>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func(a, b <span class="op">=</span> <span class="dv">1</span>, c <span class="op">=</span> <span class="dv">2</span>):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(a, b, c)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>func(<span class="dv">0</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>func(<span class="dv">0</span>, c <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>func(a <span class="op">=</span> <span class="dv">2</span>, c <span class="op">=</span> <span class="dv">1</span>)</span></code></pre></div>
+<ul>
+<li>调用函数时可用 <code>kwarg=value</code> 形式的关键字参数</li>
+<li>函数调用时，关键字参数必须跟在位置参数后面</li>
+<li>关键字参数的顺序并不重要。这也包括必选参数</li>
+<li>不能对同一个参数多次赋值</li>
+<li>所有传递的关键字参数都必须匹配一个函数接受的参数</li>
+</ul>
+<p>最后一个形参为 <code>**name</code>
+形式时，接受一个字典，<code>**name</code> 形参可以与 <code>*name</code>
+形参（下一小节介绍）组合使用（<code>*name</code> 必须在
+<code>**name</code> 前面） <code>*name</code>
+形参接收一个元组，该元组包含形参列表之外的位置参数</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func(a, <span class="op">*</span>b, <span class="op">**</span>c):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(a)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> b:</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(i)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> c:</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(k, c[k])</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>func(<span class="va">True</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, i <span class="op">=</span> <span class="st">&quot;hello&quot;</span>, j <span class="op">=</span> <span class="st">&quot;world&quot;</span>)</span></code></pre></div>
+<h3 id="lambda">lambda</h3>
+<pre><code>lambda_expr        ::=  &quot;lambda&quot; [parameter_list] &quot;:&quot; expression
+lambda_expr_nocond ::=  &quot;lambda&quot; [parameter_list] &quot;:&quot; expression_nocond</code></pre>
+<p>lambda 创建匿名函数 如 <code>(lambda x: x ** 2)(5)</code>
+创建一个匿名函数并调用</p>
+<p><code>lambda parameters: expression</code> 类似于如下方式定义函数</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="op">&lt;</span><span class="kw">lambda</span><span class="op">&gt;</span>(parameters):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>     <span class="cf">return</span> expression</span></code></pre></div>
+<h2 id="数据类型">数据类型</h2>
+<h3 id="内置类型">内置类型</h3>
+<ul>
+<li><code>None</code></li>
+<li><code>numbers.Number</code>
+<ul>
+<li><code>numbers.Integral</code>
+<ul>
+<li><code>int</code></li>
+<li><code>bool</code></li>
+</ul></li>
+<li><code>numbers.Real</code>(<code>float</code>)</li>
+<li><code>numbers.Complex</code>(<code>complex</code>)</li>
+</ul></li>
+<li>序列
+<ul>
+<li>不可变序列
+<ul>
+<li>字符串(<code>str</code>)</li>
+<li>元组(<code>tuple</code>)</li>
+<li>字节串(<code>bytes</code>)</li>
+<li>范围(<code>range</code>)</li>
+</ul></li>
+<li>可变序列
+<ul>
+<li>列表(<code>list</code>)</li>
+<li>字节数组(<code>bytearray</code>)</li>
+</ul></li>
+</ul></li>
+<li>集合
+<ul>
+<li>集合(<code>set</code>)</li>
+<li>冻结集合(<code>frozenset</code>)</li>
+</ul></li>
+<li>映射
+<ul>
+<li>字典(<code>dict</code>)</li>
+</ul></li>
+</ul>
+<h3 id="数字类型">数字类型</h3>
+<h4 id="int">int</h4>
+<p>整数类型，拥有无限精度</p>
+<p>构造函数 <code>int()</code> 用以构造 int 类型数字</p>
+<p>int 类型的按位运算</p>
+<table>
+<thead>
+<tr class="header">
+<th>运算</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>x | y</code></td>
+<td>按位或</td>
+</tr>
+<tr class="even">
+<td><code>x ^ y</code></td>
+<td>按位异或</td>
+</tr>
+<tr class="odd">
+<td><code>x &amp; y</code></td>
+<td>按位与</td>
+</tr>
+<tr class="even">
+<td><code>x &lt;&lt; n</code></td>
+<td>左移 (n &gt;= 0)</td>
+</tr>
+<tr class="odd">
+<td><code>x &gt;&gt; n</code></td>
+<td>右移 (n &gt;= 0)</td>
+</tr>
+<tr class="even">
+<td><code>~x</code></td>
+<td>按位取反</td>
+</tr>
+</tbody>
+</table>
+<p>int 类型的方法，字面量调用如 <code>1.bit_length()</code>
+是错误的语法，可改成 <code>(1).bit_length()</code></p>
+<h4 id="bool-类型">bool 类型</h4>
+<p>bool 类型是两个常量对象之一: <code>True</code>,
+<code>False</code>，可用内置函数 <code>bool()</code> 将任意值转为 bool
+类型</p>
+<h4 id="float-类型">float 类型</h4>
+<p>一般使用C 语言的 <code>double</code> 来实现，浮点数构造函数
+<code>float()</code></p>
+<h4 id="complex-类型">complex 类型</h4>
+<p>复数包含实部和虚部，分别以一个浮点数表示。 要从一个复数 z
+中提取这两个部分，可使用 <code>z.real</code> 和 <code>z.imag</code></p>
+<p>复数构造函数 <code>complex()</code></p>
+<h3 id="数字类型的运算">数字类型的运算</h3>
+<table>
+<thead>
+<tr class="header">
+<th>运算</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>x + y</code></td>
+<td>和</td>
+</tr>
+<tr class="even">
+<td><code>x - y</code></td>
+<td>差</td>
+</tr>
+<tr class="odd">
+<td><code>x * y</code></td>
+<td>乘积</td>
+</tr>
+<tr class="even">
+<td><code>x / y</code></td>
+<td>商</td>
+</tr>
+<tr class="odd">
+<td><code>x // y</code></td>
+<td>整除</td>
+</tr>
+<tr class="even">
+<td><code>x % y</code></td>
+<td>模</td>
+</tr>
+<tr class="odd">
+<td><code>-x</code></td>
+<td>取反</td>
+</tr>
+<tr class="even">
+<td><code>+x</code></td>
+<td>x 不变</td>
+</tr>
+<tr class="odd">
+<td><code>abs(x)</code></td>
+<td>绝对值</td>
+</tr>
+<tr class="even">
+<td><code>int(x)</code></td>
+<td>转为整数</td>
+</tr>
+<tr class="odd">
+<td><code>float(x)</code></td>
+<td>转为浮点数</td>
+</tr>
+<tr class="even">
+<td><code>pow(x, y)</code></td>
+<td>x 的 y 次幂</td>
+</tr>
+<tr class="odd">
+<td><code>x ** y</code></td>
+<td>x 的 y 次幂</td>
+</tr>
+<tr class="even">
+<td><code>divmod(x, y)</code></td>
+<td><code>(x // y, x % y)</code></td>
+</tr>
+<tr class="odd">
+<td><code>complex(re, im)</code></td>
+<td>带有实部re, 虚部im(默认0) 的复数</td>
+</tr>
+<tr class="even">
+<td><code>c.conjugate()</code></td>
+<td>复数c 的共轭</td>
+</tr>
+</tbody>
+</table>
+<h3 id="序列类型">序列类型</h3>
+<p>通用序列（可变与不可变序列）操作</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>运算</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>x in s</code></td>
+<td>如果 s 中的某项等于 x 则结果为 True，否则为 False</td>
+</tr>
+<tr class="even">
+<td><code>x not in s</code></td>
+<td>如果 s 中的某项等于 x 则结果为 False，否则为 True</td>
+</tr>
+<tr class="odd">
+<td><code>s + t</code></td>
+<td>s 与 t 相拼接</td>
+</tr>
+<tr class="even">
+<td><code>s * n</code> 或 <code>n * s</code></td>
+<td>相当于 s 与自身进行 n 次拼接</td>
+</tr>
+<tr class="odd">
+<td><code>s[i]</code></td>
+<td>第 i 项（从0起）</td>
+</tr>
+<tr class="even">
+<td><code>s[i:j]</code></td>
+<td>s 从 i 到 j 的切片</td>
+</tr>
+<tr class="odd">
+<td><code>s[i:j:k]</code></td>
+<td>s 从 i 到 j 步长为 k 的切片</td>
+</tr>
+<tr class="even">
+<td><code>len(s)</code></td>
+<td>s 的长度</td>
+</tr>
+<tr class="odd">
+<td><code>min(s)</code></td>
+<td>s 的最小项</td>
+</tr>
+<tr class="even">
+<td><code>max(s)</code></td>
+<td>s 的最大项</td>
+</tr>
+<tr class="odd">
+<td><code>s.index(x[, i[, j]])</code></td>
+<td>x 在 s 中首次出现项的索引号（索引号在 i 或其后且在 j 之前）</td>
+</tr>
+<tr class="even">
+<td><code>s.count(x)</code></td>
+<td>x 在 s 中出现的总次数</td>
+</tr>
+</tbody>
+</table>
+<p>相同类型的序列支持比较操作</p>
+<p>不可变序列类型普遍实现而可变序列类型未实现的唯一操作就是对
+<code>hash()</code> 内置函数的支持</p>
+<p>可变序列操作</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>运算</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>s[i] = x</code></td>
+<td>将 s 的第 i 项替换为 x</td>
+</tr>
+<tr class="even">
+<td><code>s[i:j] = t</code></td>
+<td>将 s 从 i 到 j 的切片替换为可迭代对象 t 的内容</td>
+</tr>
+<tr class="odd">
+<td><code>del s[i:j]</code></td>
+<td>等同于 <code>s[i:j] = []</code></td>
+</tr>
+<tr class="even">
+<td><code>s[i:j:k] = t</code></td>
+<td>将 <code>s[i:j:k]</code> 的元素替换为 t 的元素</td>
+</tr>
+<tr class="odd">
+<td><code>del s[i:j:k]</code></td>
+<td>从列表中移除 <code>s[i:j:k]</code> 的元素</td>
+</tr>
+<tr class="even">
+<td><code>s.append(x)</code></td>
+<td>将 x 添加到序列的末尾 (等同于
+<code>s[len(s):len(s)] = [x]</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>s.clear()</code></td>
+<td>从 s 中移除所有项 (等同于 <code>del s[:]</code>)</td>
+</tr>
+<tr class="even">
+<td><code>s.copy()</code></td>
+<td>创建 s 的浅拷贝 (等同于 <code>s[:]</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>s.extend(t)</code> 或 <code>s += t</code></td>
+<td>用 t 的内容扩展 s (基本上等同于
+<code>s[len(s):len(s)] = t</code>)</td>
+</tr>
+<tr class="even">
+<td><code>s *= n</code></td>
+<td>使用 s 的内容重复 n 次来对其进行更新</td>
+</tr>
+<tr class="odd">
+<td><code>s.insert(i, x)</code></td>
+<td>在由 i 给出的索引位置将 x 插入 s (等同于
+<code>s[i:i] = [x]</code>)</td>
+</tr>
+<tr class="even">
+<td><code>s.pop([i])</code></td>
+<td>提取在 i 位置上的项，并将其从 s 中移除，可选参数 i 默认为
+-1，移除并返回最后一项</td>
+</tr>
+<tr class="odd">
+<td><code>s.remove(x)</code></td>
+<td>删除 s 中第一个 s[i] 等于 x 的项目</td>
+</tr>
+<tr class="even">
+<td><code>s.reverse()</code></td>
+<td>就地将列表中的元素逆序</td>
+</tr>
+</tbody>
+</table>
+<h3 id="字符串">字符串</h3>
+<p>Python 中的字符串是 str 类型，是由 Unicode 码位构成的不可变序列</p>
+<p>字符串字面量的三种写法</p>
+<ul>
+<li>单引号: <code>'允许包含有 "双" 引号'</code></li>
+<li>双引号: <code>"允许包含有 '单' 引号"</code></li>
+<li>三重引号: <code>'''三重单引号''', """三重双引号"""</code></li>
+</ul>
+<p>使用三重引号的字符串可以跨越多行 ——
+其中所有的空白字符都将包含在该字符串字面值中，由空格分隔的字符串字面量会转换成单个字符串</p>
+<p>字符串构造函数 <code>str()</code></p>
+<p>对于字符串 s, s[i] 将产生长度为1 的字符串（Python
+中没有字符类型），<code>s[i] == s[i:i+1]</code></p>
+<p>格式化字符串</p>
+<ul>
+<li>格式字符串字面值(<code>f-string</code>): 以<code>f/F</code>
+为前缀，<code>{}</code> 为标记</li>
+<li>printf 风格格式化字符串 <code>format % values</code></li>
+<li><code>str.format()</code></li>
+</ul>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>nums <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>hello <span class="op">=</span> <span class="st">&quot;world&quot;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;nums = </span><span class="sc">{</span>nums<span class="sc">}</span><span class="ss">, hello </span><span class="sc">{</span>hello<span class="sc">}</span><span class="ss">&#39;</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;nums = </span><span class="sc">%d</span><span class="st">, hello </span><span class="sc">%s</span><span class="st">&#39;</span> <span class="op">%</span> (nums, hello))</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;nums = </span><span class="sc">{}</span><span class="st">, hello </span><span class="sc">{}</span><span class="st">&#39;</span>.<span class="bu">format</span>(nums, hello))</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># nums = 100, hello world</span></span></code></pre></div>
+<h3 id="元组">元组</h3>
+<p>元组是不可变序列，通常用于储存异构数据的多项集，也被用于需要同构数据的不可变序列的情况</p>
+<p>构建元组的方式</p>
+<ul>
+<li>使用一对圆括号来表示空元组: <code>()</code></li>
+<li>使用一个后缀的逗号来表示单元组: <code>a,</code> 或
+<code>(a,)</code></li>
+<li>使用以逗号分隔的多个项: <code>a, b, c</code> 或
+<code>(a, b, c)</code></li>
+<li>使用内置的 <code>tuple()</code>: <code>tuple()</code> 或
+<code>tuple(iterable)</code></li>
+</ul>
+<p>决定生成元组的其实是逗号而不是圆括号，圆括号只是可选的，生成空元组或需要避免语法歧义的情况除外</p>
+<h4 id="元祖拆包可迭代元素拆包">元祖拆包(可迭代元素拆包)</h4>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>point <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> point</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>y, x <span class="op">=</span> x, y</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;%d, %d&quot;</span> <span class="op">%</span> point</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="dv">20</span>, <span class="dv">8</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="bu">divmod</span>(<span class="op">*</span>t)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>_, filename <span class="op">=</span> os.path.split(<span class="st">&#39;~/.ssh/id_rsa.pub&#39;</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>a, b, <span class="op">*</span>rest <span class="op">=</span> <span class="bu">range</span>(<span class="dv">5</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>a, <span class="op">*</span>body, c, d <span class="op">=</span> <span class="bu">range</span>(<span class="dv">5</span>)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>head, b, c, d <span class="op">=</span> <span class="bu">range</span>(<span class="dv">5</span>)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>a, (b, c) <span class="op">=</span> (<span class="dv">1</span>, (<span class="dv">2</span>, <span class="dv">3</span>))</span></code></pre></div>
+<h3 id="字节串">字节串</h3>
+<p>bytes 对象是由单个字节构成的不可变序列</p>
+<p>bytes 字面量（类似str 字面量，有一个前缀b）</p>
+<ul>
+<li>单引号: <code>b'同样允许嵌入 "双" 引号'</code></li>
+<li>双引号: <code>b"同样允许嵌入 '单' 引号"</code></li>
+<li>三重引号: <code>b'''三重单引号''', b"""三重双引号"""</code></li>
+</ul>
+<p>str, bytes 字面量通过前缀 r 禁用转义序列</p>
+<p>bytes 构造函数 <code>bytes()</code></p>
+<h3 id="范围">范围</h3>
+<p><code>range</code> 类型表示不可变的数字序列，通常用于在 for
+循环中循环指定的次数</p>
+<p>构造函数</p>
+<ul>
+<li><code>range(stop)</code></li>
+<li><code>range(start, stop[, step])</code></li>
+</ul>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">30</span>, <span class="dv">5</span>))</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>]</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>]</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">0</span>, <span class="op">-</span><span class="dv">10</span>, <span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">3</span>, <span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">5</span>, <span class="op">-</span><span class="dv">6</span>, <span class="op">-</span><span class="dv">7</span>, <span class="op">-</span><span class="dv">8</span>, <span class="op">-</span><span class="dv">9</span>]</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">0</span>))</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>[]</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>[]</span></code></pre></div>
+<h3 id="列表">列表</h3>
+<p>列表是可变序列，通常用于存放同类项目的集合</p>
+<p>构造列表的方式</p>
+<ul>
+<li>使用一对方括号来表示空列表: <code>[]</code></li>
+<li>使用方括号，其中的项以逗号分隔: <code>[a]</code>,
+<code>[a, b, c]</code></li>
+<li>使用列表推导式: <code>[x for x in iterable]</code></li>
+<li>使用类型的构造器: <code>list()</code> 或
+<code>list(iterable)</code></li>
+</ul>
+<h4 id="列表推导式">列表推导式</h4>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>symbols <span class="op">=</span> <span class="st">&#39;$¢£¥€¤&#39;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>beyond_ascii <span class="op">=</span> [<span class="bu">ord</span>(s) <span class="cf">for</span> s <span class="kw">in</span> symbols <span class="cf">if</span> <span class="bu">ord</span>(s) <span class="op">&gt;</span> <span class="dv">127</span>]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>beyond_ascii2 <span class="op">=</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> c: c <span class="op">&gt;</span> <span class="dv">127</span>, <span class="bu">map</span>(<span class="bu">ord</span>, symbols)))</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [162, 163, 165, 8364, 164]</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">&#39;black&#39;</span>, <span class="st">&#39;white&#39;</span>]</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>sizes <span class="op">=</span> [<span class="st">&#39;S&#39;</span>, <span class="st">&#39;M&#39;</span>, <span class="st">&#39;L&#39;</span>]</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>tshirts <span class="op">=</span> [(color, size) <span class="cf">for</span> color <span class="kw">in</span> colors <span class="cf">for</span> size <span class="kw">in</span> sizes]</span></code></pre></div>
+<h4 id="生成器表达式">生成器表达式</h4>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>symbols <span class="op">=</span> <span class="st">&#39;$¢£¥€¤&#39;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">tuple</span>(<span class="bu">ord</span>(symbol) <span class="cf">for</span> symbol <span class="kw">in</span> symbols)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> array</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>array.array(<span class="st">&#39;I&#39;</span>, (<span class="bu">ord</span>(symbol) <span class="cf">for</span> symbol <span class="kw">in</span> symbols))</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">&#39;black&#39;</span>, <span class="st">&#39;white&#39;</span>]</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>sizes <span class="op">=</span> [<span class="st">&#39;S&#39;</span>, <span class="st">&#39;M&#39;</span>, <span class="st">&#39;L&#39;</span>]</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tshirt <span class="kw">in</span> (<span class="st">&#39;</span><span class="sc">%s</span><span class="st"> </span><span class="sc">%s</span><span class="st">&#39;</span> <span class="op">%</span> (c, s) <span class="cf">for</span> c <span class="kw">in</span> colors <span class="cf">for</span> s <span class="kw">in</span> sizes):</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(tshirt)</span></code></pre></div>
+<ul>
+<li>如果生成器表达式是一个函数调用过程中的唯一参数，那么不需要额外再用括号把它围起来</li>
+<li>生成器表达式会在每次for循环运行时才生成一个组合</li>
+</ul>
+<h3 id="字节数组">字节数组</h3>
+<p><code>bytearray</code> 对象是 <code>bytes</code> 对象的可变对应物</p>
+<p><code>bytearray</code> 总是通过调用构造器来创建
+<code>bytearray()</code></p>
+<h3 id="集合">集合</h3>
+<p>集合是由具有唯一性的 <code>hashable</code> 对象所组成的无序多项集</p>
+<p><code>set</code> 类型是可变的，其内容可以使用 <code>add()</code> 和
+<code>remove()</code>
+这样的方法来改变。由于是可变类型，它没有哈希值，且不能被用作字典的键或其他集合的元素</p>
+<p><code>frozenset</code> 类型是不可变并且为
+<code>hashable</code>，其内容在被创建后不能再改变；因此它可以被用作字典的键或其他集合的元素</p>
+<p>构造函数分别为 <code>set()</code> <code>frozenset()</code></p>
+<p>非空的 set (不是 frozenset)
+还可以通过将以逗号分隔的元素列表包含于花括号之内来创建，例如:
+<code>{'jack', 'sjoerd'}</code></p>
+<h3 id="字典">字典</h3>
+<p>映射对象会将 <code>hashable</code> 值映射到任意对象，Python 提供
+<code>dict</code> 映射类型，<code>dict</code> 属于可变对象</p>
+<p>创建字典</p>
+<ul>
+<li>字面量: 包含与 <code>{}</code> 内的 <code>key:value</code> 列表，如
+<code>{'jack': 4098, 'sjoerd': 4127}</code></li>
+<li>字典推导式: <code>{}</code>,
+<code>{x: x ** 2 for x in range(10)}</code></li>
+<li>构造函数 <code>dict</code>: <code>dict()</code>,
+<code>dict([('foo', 100), ('bar', 200)])</code>,
+<code>dict(foo=100, bar=200)</code></li>
+</ul>
+<p>字典的操作</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>list(d)</code></td>
+<td>返回字典 d 中使用的所有键的列表</td>
+</tr>
+<tr class="even">
+<td><code>len(d)</code></td>
+<td>返回字典 d 中的项数</td>
+</tr>
+<tr class="odd">
+<td><code>d[key]</code></td>
+<td>返回 d 中以 key 为键的项。 如果映射中不存在 key 则会引发
+<code>KeyError</code></td>
+</tr>
+<tr class="even">
+<td><code>d[key]=value</code></td>
+<td>将 d[key] 设为 value</td>
+</tr>
+<tr class="odd">
+<td><code>del d[key]</code></td>
+<td>将 d[key] 从 d 中移除。 如果映射中不存在 key 则会引发
+<code>KeyError</code></td>
+</tr>
+<tr class="even">
+<td><code>key in d</code></td>
+<td>如果 d 中存在键 key 则返回 True，否则返回 False</td>
+</tr>
+<tr class="odd">
+<td><code>key not in d</code></td>
+<td>等价于 <code>not key in d</code></td>
+</tr>
+<tr class="even">
+<td><code>iter(d)</code></td>
+<td>返回以字典的键为元素的迭代器。 这是 iter(d.keys()) 的快捷方式</td>
+</tr>
+<tr class="odd">
+<td><code>clear()</code></td>
+<td>移除字典中的所有元素</td>
+</tr>
+<tr class="even">
+<td><code>copy()</code></td>
+<td>返回原字典的浅拷贝</td>
+</tr>
+<tr class="odd">
+<td><code>fromkeys(iterable[, value])</code></td>
+<td>使用来自 iterable 的键创建一个新字典，并将键值设为 value</td>
+</tr>
+<tr class="even">
+<td><code>get(key[, default])</code></td>
+<td>如果 key 存在于字典中则返回 key 的值，否则返回 default。 如果
+default 未给出则默认为 <code>None</code>，因而此方法绝不会引发
+<code>KeyError</code></td>
+</tr>
+<tr class="odd">
+<td><code>items()</code></td>
+<td>返回由字典项(key-value)组成的一个新视图</td>
+</tr>
+<tr class="even">
+<td><code>keys()</code></td>
+<td>返回由字典键(key)组成的一个新视图</td>
+</tr>
+<tr class="odd">
+<td><code>values()</code></td>
+<td>返回由字典值组成的一个新视图</td>
+</tr>
+<tr class="even">
+<td><code>pop(key[, default])</code></td>
+<td>如果 key 存在于字典中则将其移除并返回其值，否则返回 default。 如果
+default 未给出且 key 不存在于字典中，则会引发 KeyError</td>
+</tr>
+<tr class="odd">
+<td><code>popitem()</code></td>
+<td>从字典中移除并返回一个 (键, 值) 对。 键值对会按 LIFO
+的顺序被返回</td>
+</tr>
+<tr class="even">
+<td><code>reversed(d)</code></td>
+<td>返回一个逆序获取字典键的迭代器。 这是 reversed(d.keys())
+的快捷方式</td>
+</tr>
+<tr class="odd">
+<td><code>setdefault(key[, default])</code></td>
+<td>如果字典存在键 key ，返回它的值。如果不存在，插入值为 default 的键
+key ，并返回 default 。 default 默认为 None</td>
+</tr>
+<tr class="even">
+<td><code>update([other])</code></td>
+<td>使用来自 other 的键/值对更新字典，覆盖原有的键</td>
+</tr>
+<tr class="odd">
+<td><code>d | other</code></td>
+<td>合并 d 和 other 中的键和值来创建一个新的字典，两者必须都是字典。当 d
+和 other 有相同键时， other 的值优先</td>
+</tr>
+<tr class="even">
+<td><code>d |= other</code></td>
+<td>用 other 的键和值更新字典 d ，other 可以是 <code>mapping</code> 或
+<code>iterable</code> 的键值对。当 d 和 other 有相同键时， other
+的值优先</td>
+</tr>
+</tbody>
+</table>
+<h3 id="其它内置函数">其它内置函数</h3>
+<p><code>enumerate(iterable, start=0)</code> 返回一个枚举对象</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>lists <span class="op">=</span> [<span class="st">&quot;hello&quot;</span>, <span class="st">&quot;world&quot;</span>]</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(lists):</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;lists[</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">] = </span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<p><code>zip(*iterables)</code>
+创建一个聚合了来自每个可迭代对象中的元素的迭代器，返回一个元组的迭代器</p>
+<ul>
+<li>其中的第 i 个元组包含来自每个参数序列或可迭代对象的第 i 个元素</li>
+<li>当所输入可迭代对象中最短的一个被耗尽时，迭代器将停止迭代</li>
+<li>当只有一个可迭代对象参数时，它将返回一个单元组的迭代器</li>
+<li>不带参数时，它将返回一个空迭代器</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>list1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>list2 <span class="op">=</span> [<span class="st">&quot;hello&quot;</span>, <span class="st">&quot;world&quot;</span>]</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">zip</span>(list1, list2):</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co"># (1, &#39;hello&#39;)</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (2, &#39;world&#39;)</span></span></code></pre></div>
+<h2 id="流程控制语句">流程控制语句</h2>
+<h3 id="逻辑值检测">逻辑值检测</h3>
+<p>一个对象在默认情况下均被视为真值，除非当该对象被调用时其所属类定义了
+<code>__bool__()</code> 方法且返回 <code>False</code> 或是定义了
+<code>__len__()</code> 方法且返回零</p>
+<p>以下对象为假值</p>
+<ul>
+<li>常量 <code>None</code>, <code>False</code></li>
+<li>数值类型的零:
+<code>0, 0.0, 0j, Decimal(0), Fraction(0, 1)</code></li>
+<li>空的序列和多项集: <code>'', (), [], {}, set(), range(0)</code></li>
+</ul>
+<h3 id="布尔运算">布尔运算</h3>
+<ul>
+<li>x <code>or</code> y: 如果x 为假, 则y, 否则x（x 为真时短路）</li>
+<li>x <code>and</code> y: 如果x 为假, 则x, 否则y（x 为假时短路）</li>
+<li><code>not</code> x: 如果x 为假, 则<code>True</code>,
+否则<code>False</code></li>
+</ul>
+<h3 id="比较运算符">比较运算符</h3>
+<table>
+<thead>
+<tr class="header">
+<th>运算</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&lt;</code></td>
+<td>严格小于</td>
+</tr>
+<tr class="even">
+<td><code>&lt;=</code></td>
+<td>小于或等于</td>
+</tr>
+<tr class="odd">
+<td><code>&gt;</code></td>
+<td>严格大于</td>
+</tr>
+<tr class="even">
+<td><code>&gt;=</code></td>
+<td>大于或等于</td>
+</tr>
+<tr class="odd">
+<td><code>==</code></td>
+<td>等于</td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>不等于</td>
+</tr>
+<tr class="odd">
+<td><code>is</code></td>
+<td>对象标识</td>
+</tr>
+<tr class="even">
+<td><code>is not</code></td>
+<td>否定的对象标识</td>
+</tr>
+<tr class="odd">
+<td><code>in</code></td>
+<td>成员运算检测</td>
+</tr>
+<tr class="even">
+<td><code>not in</code></td>
+<td>否定的成员运算检测</td>
+</tr>
+</tbody>
+</table>
+<p>比较运算符优先级相同，且高于布尔运算</p>
+<p>比较运算可以任意串连；例如，x &lt; y &lt;= z 等价于 x &lt; y and y
+&lt;= z，前者的不同之处在于 y 只被求值一次（但在两种情况下当 x &lt; y
+结果为假值时 z 都不会被求值）</p>
+<h3 id="if">if</h3>
+<pre><code>if_stmt ::=  &quot;if&quot; assignment_expression &quot;:&quot; suite
+             (&quot;elif&quot; assignment_expression &quot;:&quot; suite)*
+             [&quot;else&quot; &quot;:&quot; suite]</code></pre>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>string <span class="op">=</span> <span class="st">&#39;hello&#39;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>lists <span class="op">=</span> [<span class="st">&#39;hello&#39;</span>, <span class="st">&#39;world&#39;</span>]</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> string <span class="kw">in</span> lists:</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(string, <span class="st">&quot;in&quot;</span>, lists)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(string, <span class="st">&quot;not in&quot;</span>, lists)</span></code></pre></div>
+<h3 id="while">while</h3>
+<pre><code>while_stmt ::=  &quot;while&quot; assignment_expression &quot;:&quot; suite
+                [&quot;else&quot; &quot;:&quot; suite]</code></pre>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>lists <span class="op">=</span> [<span class="st">&#39;hello&#39;</span>, <span class="st">&#39;world&#39;</span>]</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">len</span>(lists):</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(lists[i])</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div>
+<h3 id="for">for</h3>
+<pre><code>for_stmt ::=  &quot;for&quot; target_list &quot;in&quot; expression_list &quot;:&quot; suite
+              [&quot;else&quot; &quot;:&quot; suite]</code></pre>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>lists <span class="op">=</span> [<span class="st">&#39;hello&#39;</span>, <span class="st">&#39;world&#39;</span>]</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> lists:</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code></pre></div>
+<h3 id="break-continue">break, continue</h3>
+<p>while, for 语句中的 break, continue
+分别用以终止循环与跳过循环内剩余语句</p>
+<h3 id="try">try</h3>
+<pre><code>try_stmt  ::=  try1_stmt | try2_stmt
+try1_stmt ::=  &quot;try&quot; &quot;:&quot; suite
+               (&quot;except&quot; [expression [&quot;as&quot; identifier]] &quot;:&quot; suite)+
+               [&quot;else&quot; &quot;:&quot; suite]
+               [&quot;finally&quot; &quot;:&quot; suite]
+try2_stmt ::=  &quot;try&quot; &quot;:&quot; suite
+               &quot;finally&quot; &quot;:&quot; suite</code></pre>
+<div class="sourceCode" id="cb40"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span> <span class="op">/</span> <span class="dv">0</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ZeroDivisionError</span>:</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;division by zero&quot;</span>)</span></code></pre></div>
+<h3 id="with">with</h3>
+<pre><code>with_stmt ::=  &quot;with&quot; with_item (&quot;,&quot; with_item)* &quot;:&quot; suite
+with_item ::=  expression [&quot;as&quot; target]</code></pre>
+<div class="sourceCode" id="cb42"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;test.txt&quot;</span>, <span class="st">&quot;r&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code></pre></div>
+<h3 id="pass">pass</h3>
+<p><code>pass</code> 用以占位</p>
+<div class="sourceCode" id="cb43"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(arg): <span class="cf">pass</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> C: <span class="cf">pass</span></span></code></pre></div>
+<h2 id="容器">容器</h2>
+<h3 id="array.array"><code>array.array</code></h3>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> array <span class="im">import</span> array</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> array(<span class="st">&#39;i&#39;</span>, [<span class="dv">14</span>, <span class="dv">21</span>, <span class="dv">5</span>, <span class="dv">29</span>])</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th>类型码</th>
+<th>C类型</th>
+<th>Python 类型</th>
+<th>最小字节大小</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>'b'</code></td>
+<td><code>signed char</code></td>
+<td><code>int</code></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td><code>'B'</code></td>
+<td><code>unsigned char</code></td>
+<td><code>int</code></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td><code>'u'</code></td>
+<td><code>wchar_t</code></td>
+<td>Unicode 字符</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td><code>'h'</code></td>
+<td><code>signed short</code></td>
+<td><code>int</code></td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td><code>'H'</code></td>
+<td><code>unsigned short</code></td>
+<td><code>int</code></td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td><code>'i'</code></td>
+<td><code>signed int</code></td>
+<td><code>int</code></td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td><code>'I'</code></td>
+<td><code>unsigned int</code></td>
+<td><code>int</code></td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td><code>'l'</code></td>
+<td><code>signed long</code></td>
+<td><code>int</code></td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td><code>'L'</code></td>
+<td><code>unsigned long</code></td>
+<td><code>int</code></td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td><code>'q'</code></td>
+<td><code>signed long long</code></td>
+<td><code>int</code></td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td><code>'Q'</code></td>
+<td><code>unsigned long long</code></td>
+<td><code>int</code></td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td><code>'f'</code></td>
+<td><code>float</code></td>
+<td><code>float</code></td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td><code>'d'</code></td>
+<td><code>double</code></td>
+<td><code>float</code></td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="collections.namedtuple"><code>collections.namedtuple</code></h3>
+<p><code>collections.namedtuple(typename, field_names, *, rename=False, defaults=None, module=None)</code></p>
+<ul>
+<li>返回一个新的元组子类，名为 typename
+。这个新的子类用于创建类元组的对象，可以通过字段名来获取属性值，同样也可以通过索引和迭代获取值</li>
+<li>创建一个具名元组需要两个参数，一个是类名，另一个是类的各个字段的名字。后者可以是由数个字符串组成的可迭代对象，或者是由空格分隔开的字段名组成的字符串</li>
+<li>存放在对应字段里的数据要以一串参数的形式传入到构造函数中（注意，元组的构造函数却只接受单一的可迭代对象）</li>
+<li>可以通过字段名或者位置来获取一个字段的信息</li>
+</ul>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>Point <span class="op">=</span> collections.namedtuple(<span class="st">&#39;point&#39;</span>, [<span class="st">&#39;x&#39;</span>, <span class="st">&#39;y&#39;</span>])</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> Point(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)                <span class="co"># point(x=0, y=1)</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Point._fields)    <span class="co"># (&#39;x&#39;, &#39;y&#39;)</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Point._make((<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)                <span class="co"># point(x=1, y=2)</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b._asdict())      <span class="co"># {&#39;x&#39;: 1, &#39;y&#39;: 2}</span></span></code></pre></div>
+<p><code>namedtuple</code> 专有属性</p>
+<ul>
+<li><code>_fields</code> 属性是一个包含这个类所有字段名称的元组</li>
+<li>用 <code>_make()</code>
+通过接受一个可迭代对象来生成这个类的一个实例，它的作用跟
+<code>Class(*data)</code> 是一样的</li>
+<li><code>_asdict()</code> 把具名元组以
+<code>collections.OrderedDict</code> 的形式返回</li>
+</ul>
+<h2 id="类">类</h2>
+<h3 id="属性与实例化">属性与实例化</h3>
+<div class="sourceCode" id="cb46"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyClass:</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;A simple example class&quot;&quot;&quot;</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="dv">12345</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> f(<span class="va">self</span>):</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">&#39;hello world&#39;</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(MyClass.i) <span class="co"># 12345</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(MyClass.f) <span class="co"># &lt;function MyClass.f at 0x7f1c6e4b7280&gt;</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(MyClass.__doc__) <span class="co"># A simple example class</span></span></code></pre></div>
+<p>类的属性引用: <code>obj.name</code>，类无 <code>name</code>
+属性时，引发 <code>AttributeError</code></p>
+<p>类的实例化: <code>x = MyClass()</code></p>
+<h3 id="构造函数">构造函数</h3>
+<p>当定义了
+<code>__init__()</code>时，类的实例化操作会自动为新创建的类实例发起调用
+<code>__init__()</code></p>
+<p>init 函数还可以提供额外参数，例如</p>
+<div class="sourceCode" id="cb47"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.data <span class="op">=</span> []</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.x <span class="op">=</span> x</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.y <span class="op">=</span> y</span></code></pre></div>
+<h3 id="实例对象">实例对象</h3>
+<p>实例对象的唯一操作是属性引用；有两种有效的属性名称：数据属性和方法</p>
+<p>实例变量用于每个实例的唯一数据，而类变量用于类的所有实例共享的属性和方法</p>
+<p>如果同样的属性名称同时出现在实例和类中，则属性查找会优先选择实例</p>
+<div class="sourceCode" id="cb48"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyClass:</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># count += 1        # 错误，访问不存在的局部变量</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># self.count += 1   # 此变量为实例变量，先访问类变量 count 后创建实例变量 self.count</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>        MyClass.count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> MyClass()</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(MyClass.count)        <span class="co"># 1</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.count)              <span class="co"># 1 访问类变量</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>x.count <span class="op">=</span> <span class="dv">100</span>               <span class="co"># 创建实例变量</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.count)              <span class="co"># 100 访问实例变量</span></span></code></pre></div>
+<p>方法的第一个参数常常被命名为 <code>self</code>。
+这也不过就是一个约定: <code>self</code> 这一名称在 Python
+中绝对没有特殊含义</p>
+<h3 id="继承">继承</h3>
+<div class="sourceCode" id="cb49"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Base:</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> func(<span class="va">self</span>):</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="va">self</span>.i)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> func2(<span class="va">self</span>):</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Derived(Base):</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> func2(<span class="va">self</span>):</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>        Base.func2(<span class="va">self</span>)</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="va">self</span>.i)</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Derived()</span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.i)                          <span class="co"># 0 继承变量</span></span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>x.func()                            <span class="co"># 0 继承函数</span></span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>x.func2()                           <span class="co"># 1 覆盖函数</span></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">isinstance</span>(x, Base))          <span class="co"># True</span></span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">isinstance</span>(x, Derived))       <span class="co"># True</span></span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">issubclass</span>(Base, Derived))    <span class="co"># False</span></span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">issubclass</span>(Derived, Base))    <span class="co"># True</span></span></code></pre></div>
+<p><code>isinstance(obj, class)</code> 仅会在 <code>obj.__class__</code>
+为 <code>class</code> 或某个派生自 <code>class</code> 的类时为
+<code>True</code></p>
+<p><code>issubclass(classA, classB)</code> 在 <code>classA</code> 为
+<code>classB</code> 的子类是为 <code>True</code></p>
+<h3 id="多重继承">多重继承</h3>
+<p><code>class Derived(Base1, Base2, ...)</code></p>
+<p>从父类所继承属性的操作是深度优先、从左至右的，当层次结构中存在重叠时不会在同一个类中搜索两次</p>
+<p>如果某一属性在 DerivedClassName 中未找到，则会到 Base1
+中搜索它，然后（递归地）到 Base1 的基类中搜索，如果在那里未找到，再到
+Base2 中搜索，依此类推</p>
+<p>真实情况比这个更复杂一些；方法解析顺序会动态改变以支持对
+<code>super()</code> 的协同调用。
+这种方式在某些其他多重继承型语言中被称为后续方法调用，它比单继承型语言中的
+<code>super</code> 调用更强大。</p>
+<h3 id="特殊属性">特殊属性</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>__init__</code></td>
+<td>构造函数</td>
+</tr>
+<tr class="even">
+<td><code>__next__</code></td>
+<td>从容器中返回下一项</td>
+</tr>
+<tr class="odd">
+<td><code>__iter__</code></td>
+<td>返回迭代器对象本身</td>
+</tr>
+<tr class="even">
+<td><code>__dict__</code></td>
+<td>一个字典或其他类型的映射对象，用于存储对象的（可写）属性</td>
+</tr>
+<tr class="odd">
+<td><code>__getitem__</code></td>
+<td>调用此方法以实现 <code>self[key]</code> 的求值</td>
+</tr>
+<tr class="even">
+<td><code>__getattr__</code></td>
+<td>此方法应当返回（找到的）属性值或是引发一个
+<code>AttributeError</code> 异常</td>
+</tr>
+<tr class="odd">
+<td><code>__del__</code></td>
+<td>析构函数</td>
+</tr>
+<tr class="even">
+<td><code>__call__</code></td>
+<td>此方法会在实例作为一个函数被“调用”时被调用</td>
+</tr>
+<tr class="odd">
+<td><code>__class__</code></td>
+<td>类实例所属的类</td>
+</tr>
+<tr class="even">
+<td><code>__bases__</code></td>
+<td>由类对象的基类所组成的元组</td>
+</tr>
+<tr class="odd">
+<td><code>__name__</code></td>
+<td>类、函数、方法、描述器或生成器实例的名称</td>
+</tr>
+<tr class="even">
+<td><code>__repr__</code></td>
+<td>输出一个对象的“官方”字符串表示。如果可能，这应类似一个有效的 Python
+表达式，能被用来重建具有相同取值的对象</td>
+</tr>
+<tr class="odd">
+<td><code>__str__</code></td>
+<td>生成一个对象的“非正式”或格式良好的字符串表示；内置类型
+<code>object</code> 所定义的默认实现会调用
+<code>object.__repr__()</code></td>
+</tr>
+<tr class="even">
+<td><code>__bool__</code></td>
+<td>调用此方法以实现真值检测以及内置的 <code>bool()</code> 操作</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb50"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyClass:</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x <span class="op">=</span> <span class="dv">0</span>, y <span class="op">=</span> <span class="dv">0</span>):</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> x</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> y</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__repr__</span>(<span class="va">self</span>):</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f&quot;MyClass(</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>x<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>y<span class="sc">}</span><span class="ss">)&quot;</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f&quot;self.x = </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>x<span class="sc">}</span><span class="ss">, self.y = </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>y<span class="sc">}</span><span class="ss">&quot;</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> x</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> y</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__del__</span>(<span class="va">self</span>):</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;__del__ called&quot;</span>)</span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, key):</span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key <span class="op">==</span> <span class="dv">0</span> <span class="kw">or</span> key <span class="op">==</span> <span class="st">&#39;x&#39;</span>:</span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>.x</span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> key <span class="op">==</span> <span class="dv">1</span> <span class="kw">or</span> key <span class="op">==</span> <span class="st">&#39;y&#39;</span>:</span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>.y</span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-27"><a href="#cb50-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__bool__</span>(<span class="va">self</span>):</span>
+<span id="cb50-28"><a href="#cb50-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.x <span class="op">!=</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">self</span>.y <span class="op">!=</span> <span class="dv">0</span></span>
+<span id="cb50-29"><a href="#cb50-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-30"><a href="#cb50-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(MyClass.__class__)    <span class="co"># &lt;class &#39;type&#39;&gt;</span></span>
+<span id="cb50-31"><a href="#cb50-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(MyClass.<span class="va">__name__</span>)     <span class="co"># MyClass</span></span>
+<span id="cb50-32"><a href="#cb50-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(MyClass.__bases__)    <span class="co"># (&lt;class &#39;object&#39;&gt;,)</span></span>
+<span id="cb50-33"><a href="#cb50-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-34"><a href="#cb50-34" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> MyClass()</span>
+<span id="cb50-35"><a href="#cb50-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)                    <span class="co"># self.x = 0, self.y = 0</span></span>
+<span id="cb50-36"><a href="#cb50-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">str</span>(x))               <span class="co"># self.x = 0, self.y = 0</span></span>
+<span id="cb50-37"><a href="#cb50-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">repr</span>(x))              <span class="co"># MyClass(0, 0)</span></span>
+<span id="cb50-38"><a href="#cb50-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-39"><a href="#cb50-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(x))              <span class="co"># False</span></span>
+<span id="cb50-40"><a href="#cb50-40" aria-hidden="true" tabindex="-1"></a>x(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb50-41"><a href="#cb50-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)                    <span class="co"># self.x = 1, self.y = 2</span></span>
+<span id="cb50-42"><a href="#cb50-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(x))              <span class="co"># True</span></span>
+<span id="cb50-43"><a href="#cb50-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-44"><a href="#cb50-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[<span class="st">&quot;x&quot;</span>], x[<span class="st">&quot;y&quot;</span>])       <span class="co"># 1 2</span></span>
+<span id="cb50-45"><a href="#cb50-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-46"><a href="#cb50-46" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="va">None</span>                    <span class="co"># __del__ called</span></span></code></pre></div>
+<h2 id="ast---抽象语法树">ast - 抽象语法树</h2>
+<p>ast 模块帮助 Python 程序处理 Python 语法的抽象语法树</p>
+<h3 id="节点与函数">节点与函数</h3>
+<p><code>ast.AST</code> AST 节点类的基类</p>
+<p><code>ast.parse()</code> 把源码解析为AST节点</p>
+<p><code>ast.unparse()</code> 反解析为字符串</p>
+<div class="sourceCode" id="cb51"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ast</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>stat <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="st">i = 1</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="st">i += 1</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="st">import ABC</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="st">from X import x</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="st">def func():</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="st">    pass</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> ast.parse(stat)</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> node <span class="kw">in</span> tree.body:</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(node, ast.Assign):</span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;ast.Assign&quot;</span>, end <span class="op">=</span> <span class="st">&#39;: &#39;</span>)</span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> target <span class="kw">in</span> node.targets:</span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">isinstance</span>(target, ast.Name):</span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f&quot;target.id is </span><span class="sc">{</span>target<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">isinstance</span>(node, ast.Expr):</span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;ast.Expr&quot;</span>, end <span class="op">=</span> <span class="st">&#39;: &#39;</span>)</span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">isinstance</span>(node, ast.Import) <span class="kw">or</span> <span class="bu">isinstance</span>(node, ast.ImportFrom):</span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;ast.Import or ast.ImportFrom&quot;</span>, end <span class="op">=</span> <span class="st">&#39;: &#39;</span>)</span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(node)</span>
+<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(ast.unparse(node))</span></code></pre></div>
+<h3 id="ast.nodetransformer">ast.NodeTransformer</h3>
+<p><code>NodeTransformer</code> 将遍历抽象语法树并使用
+<code>visitor</code> 方法的返回值去替换或移除旧节点。 如果
+<code>visitor</code> 方法的返回值为 <code>None</code> ,
+则该节点将从其位置移除，否则将替换为返回值。当返回值是原始节点时，无需替换</p>
+<div class="sourceCode" id="cb52"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ast</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RewriteName(ast.NodeTransformer):</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, data <span class="op">=</span> [], prefix <span class="op">=</span> <span class="st">&#39;self&#39;</span>):</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data <span class="op">=</span> data</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.prefix <span class="op">=</span> prefix</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> visit_Name(<span class="va">self</span>, node):</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> node.<span class="bu">id</span> <span class="kw">in</span> <span class="va">self</span>.data:</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> ast.copy_location(ast.Name(<span class="bu">id</span> <span class="op">=</span> <span class="ss">f&#39;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>prefix<span class="sc">}</span><span class="ss">.</span><span class="sc">{</span>node<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">&#39;</span>, ctx <span class="op">=</span> node.ctx), node)</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> ast.Subscript(</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>                value <span class="op">=</span> ast.Name(<span class="bu">id</span> <span class="op">=</span> <span class="st">&#39;data&#39;</span>, ctx <span class="op">=</span> ast.Load()),</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>                <span class="bu">slice</span> <span class="op">=</span> ast.Constant(value <span class="op">=</span> node.<span class="bu">id</span>),</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>                ctx <span class="op">=</span> node.ctx</span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>stat <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a><span class="st">i = 1</span></span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a><span class="st">a = i + 1</span></span>
+<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> ast.parse(stat)</span>
+<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> ast.fix_missing_locations(RewriteName(data <span class="op">=</span> <span class="st">&quot;i&quot;</span>).visit(tree))</span>
+<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ast.unparse(tree))</span>
+<span id="cb52-27"><a href="#cb52-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-28"><a href="#cb52-28" aria-hidden="true" tabindex="-1"></a><span class="co"># self.i = 1</span></span>
+<span id="cb52-29"><a href="#cb52-29" aria-hidden="true" tabindex="-1"></a><span class="co"># data[&#39;a&#39;] = self.i + 1</span></span></code></pre></div>
+<h2 id="beautiful-soup">Beautiful Soup</h2>
+<p><a
+href="https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/">Beautiful
+Soup</a> 是第三方库，使用前需安装(<code>bs4</code>)</p>
+<p>Beautiful Soup 用于从 HTML 或 XML 文件中提取数据</p>
+<div class="sourceCode" id="cb53"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>html_doc <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;html&gt;&lt;head&gt;&lt;title&gt;The Dormouse&#39;s story&lt;/title&gt;&lt;/head&gt;</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;body&gt;</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;p class=&quot;title&quot;&gt;&lt;b&gt;The Dormouse&#39;s story&lt;/b&gt;&lt;/p&gt;</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;p class=&quot;story&quot;&gt;Once upon a time there were three little sisters; and their names were</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;a href=&quot;http://example.com/elsie&quot; class=&quot;sister&quot; id=&quot;link1&quot;&gt;Elsie&lt;/a&gt;,</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;a href=&quot;http://example.com/lacie&quot; class=&quot;sister&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt; and</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;a href=&quot;http://example.com/tillie&quot; class=&quot;sister&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;;</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="st">and they lived at the bottom of a well.&lt;/p&gt;</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;p class=&quot;story&quot;&gt;...&lt;/p&gt;</span></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(html_doc, <span class="st">&quot;html.parser&quot;</span>)</span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(soup.prettify())</span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(soup.head, soup.title)</span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取第一个 tag</span></span>
+<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(soup.body.a)</span>
+<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 搜索所有的 tag</span></span>
+<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> soup.find_all(<span class="st">&quot;a&quot;</span>):</span>
+<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(a)</span>
+<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a>head <span class="op">=</span> soup.head</span>
+<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> head.contents[<span class="dv">0</span>]</span>
+<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(title)</span>
+<span id="cb53-30"><a href="#cb53-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-31"><a href="#cb53-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> child <span class="kw">in</span> title.children:</span>
+<span id="cb53-32"><a href="#cb53-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(child)</span>
+<span id="cb53-33"><a href="#cb53-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-34"><a href="#cb53-34" aria-hidden="true" tabindex="-1"></a>sisters <span class="op">=</span> soup.select(<span class="st">&quot;.sister&quot;</span>)</span>
+<span id="cb53-35"><a href="#cb53-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sister <span class="kw">in</span> sisters:</span>
+<span id="cb53-36"><a href="#cb53-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(sister.get_text())</span></code></pre></div>
+<h2 id="json-yaml-模块">json, yaml 模块</h2>
+<p>yaml 不属于 python 标准库，需安装 <a
+href="https://pypi.org/project/PyYAML/">pyyaml</a></p>
+<div class="sourceCode" id="cb54"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yaml</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;a&quot;</span>: <span class="dv">0</span>,</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;b&quot;</span>: <span class="va">True</span>,</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;c&quot;</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;d&quot;</span>: {</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;e&quot;</span>: <span class="va">None</span>,</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(json.dumps(data))</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 紧凑编码</span></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a><span class="co"># {&quot;a&quot;: 0, &quot;b&quot;: true, &quot;c&quot;: [1, 2, 3], &quot;d&quot;: {&quot;e&quot;: null}}</span></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(json.loads(<span class="st">&#39;[&quot;foo&quot;, {&quot;bar&quot;:[&quot;baz&quot;, null, 1.0, 2]}]&#39;</span>))</span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 解码</span></span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a><span class="co"># [&#39;foo&#39;, {&#39;bar&#39;: [&#39;baz&#39;, None, 1.0, 2]}]</span></span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(yaml.dump(data))</span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 编码</span></span>
+<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;&#39;&#39;</span></span>
+<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a><span class="co">a: 0</span></span>
+<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a><span class="co">b: true</span></span>
+<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a><span class="co">c:</span></span>
+<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a><span class="co">- 1</span></span>
+<span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a><span class="co">- 2</span></span>
+<span id="cb54-29"><a href="#cb54-29" aria-hidden="true" tabindex="-1"></a><span class="co">- 3</span></span>
+<span id="cb54-30"><a href="#cb54-30" aria-hidden="true" tabindex="-1"></a><span class="co">d:</span></span>
+<span id="cb54-31"><a href="#cb54-31" aria-hidden="true" tabindex="-1"></a><span class="co">  e: null</span></span>
+<span id="cb54-32"><a href="#cb54-32" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;&#39;&#39;</span></span>
+<span id="cb54-33"><a href="#cb54-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-34"><a href="#cb54-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(yaml.load(<span class="st">&#39;&#39;&#39;</span></span>
+<span id="cb54-35"><a href="#cb54-35" aria-hidden="true" tabindex="-1"></a><span class="st">a: 1</span></span>
+<span id="cb54-36"><a href="#cb54-36" aria-hidden="true" tabindex="-1"></a><span class="st">b:</span></span>
+<span id="cb54-37"><a href="#cb54-37" aria-hidden="true" tabindex="-1"></a><span class="st">  c: 3</span></span>
+<span id="cb54-38"><a href="#cb54-38" aria-hidden="true" tabindex="-1"></a><span class="st">  d: 4</span></span>
+<span id="cb54-39"><a href="#cb54-39" aria-hidden="true" tabindex="-1"></a><span class="st">e:</span></span>
+<span id="cb54-40"><a href="#cb54-40" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;&#39;&#39;</span>, Loader <span class="op">=</span> yaml.Loader))</span>
+<span id="cb54-41"><a href="#cb54-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 解码</span></span>
+<span id="cb54-42"><a href="#cb54-42" aria-hidden="true" tabindex="-1"></a><span class="co"># {&#39;a&#39;: 1, &#39;b&#39;: {&#39;c&#39;: 3, &#39;d&#39;: 4}, &#39;e&#39;: None}</span></span></code></pre></div>
+<p>json 命令行工具</p>
+<p><code>python -m json.tool</code> 读取标准输入，验证 json
+并美化输出</p>
+<h2 id="logging-日志库">logging 日志库</h2>
+<h3 id="记录器对象-logging.logger">记录器对象
+<code>logging.Logger</code></h3>
+<div class="sourceCode" id="cb55"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>logger <span class="op">=</span> logging.getLogger(<span class="va">__name__</span>)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>handler <span class="op">=</span> logging.StreamHandler()</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>logger.addHandler(handler)</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>logger.setLevel(logging.INFO)</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 日志等级小于 level 会被忽略</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建记录器时，级别默认设置为 NOTSET （当记录器是根记录器时，将处理所有消息；如果记录器不是根记录器，则将委托给父级）</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 根记录器的默认级别为 </span><span class="al">WARNING</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>logger.debug(<span class="st">&quot;debug log&quot;</span>)</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>logger.info(<span class="st">&quot;info log&quot;</span>)</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>logger.warning(<span class="st">&quot;warning log&quot;</span>)</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>logger.error(<span class="st">&quot;error log&quot;</span>)</span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>logger.critical(<span class="st">&quot;critical log&quot;</span>)</span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a>logger.log(logging.WARNING, <span class="st">&quot;warning log&quot;</span>)</span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(logger.isEnabledFor(logging.DEBUG))</span>
+<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(logger.isEnabledFor(logging.INFO))</span></code></pre></div>
+<h3 id="日志级别">日志级别</h3>
+<table>
+<thead>
+<tr class="header">
+<th>级别</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CRITICAL</td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td>ERROR</td>
+<td>40</td>
+</tr>
+<tr class="odd">
+<td>WARNING</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>INFO</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td>DEBUG</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>NOTSET</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="处理器对象-logging.handler">处理器对象
+<code>logging.Handler</code></h3>
+<div class="sourceCode" id="cb56"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>handler <span class="op">=</span> logging.FileHandler(<span class="st">&#39;output.log&#39;</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>handler.setLevel(logging.ERROR)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>logger.addHandler(handler)</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>logger.setLevel(logging.INFO)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 日志级别为 error</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>logger.debug(<span class="st">&quot;debug log&quot;</span>)</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>logger.info(<span class="st">&quot;info log&quot;</span>)</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>logger.warning(<span class="st">&quot;warning log&quot;</span>)</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>logger.error(<span class="st">&quot;error log&quot;</span>)</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>logger.critical(<span class="st">&quot;critical log&quot;</span>)</span></code></pre></div>
+<h3 id="格式器对象-logging.formatter">格式器对象
+<code>logging.Formatter</code></h3>
+<div class="sourceCode" id="cb57"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>logger <span class="op">=</span> logging.getLogger(<span class="va">__name__</span>)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>logger.setLevel(logging.INFO)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>formatter <span class="op">=</span> logging.Formatter(fmt<span class="op">=</span><span class="st">&#39;</span><span class="sc">%(asctime)s</span><span class="st"> - </span><span class="sc">%(name)s</span><span class="st"> - </span><span class="sc">%(levelname)s</span><span class="st"> - </span><span class="sc">%(message)s</span><span class="st">&#39;</span>, datefmt<span class="op">=</span><span class="st">&#39;%Y/%m/</span><span class="sc">%d</span><span class="st"> %H:%M:%S&#39;</span>)</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>handler <span class="op">=</span> logging.StreamHandler()</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>handler.setFormatter(formatter)</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>logger.addHandler(handler)</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>logger.info(<span class="st">&quot;info log&quot;</span>)</span></code></pre></div>
+<h2 id="requests---http-库">requests - http 库</h2>
+<p><a href="https://docs.python-requests.org/zh_CN/latest/">requests</a>
+不是 Python 标准库，使用前需安装</p>
+<div class="sourceCode" id="cb58"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 发送请求</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(url)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.post(url, data <span class="op">=</span> {<span class="st">&#39;key&#39;</span>: <span class="st">&#39;value&#39;</span>})</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.put(url, data <span class="op">=</span> {<span class="st">&#39;key&#39;</span>: <span class="st">&#39;value&#39;</span>})</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.delete(url)</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.head(url)</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.options(url)</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 响应</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>r.url                       <span class="co"># 编码后的 url</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>r.status_code               <span class="co"># 状态码</span></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>r.headers[<span class="st">&#39;content-type&#39;</span>]   <span class="co"># 响应头</span></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>r.encoding                  <span class="co"># 编码</span></span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>r.text                      <span class="co"># 响应内容</span></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>r._content                  <span class="co"># 二进制响应内容</span></span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>r.json()                    <span class="co"># json 响应内容，json 解码失败则抛异常</span></span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>r.raw                       <span class="co"># 原始响应内容</span></span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>r.cookies                   <span class="co"># cookies</span></span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 请求头</span></span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {<span class="st">&#39;user-agent&#39;</span>: <span class="st">&#39;my-app/0.0.1&#39;</span>}</span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers)</span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 发送 cookies</span></span>
+<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a>cookies <span class="op">=</span> <span class="bu">dict</span>(cookies_are<span class="op">=</span><span class="st">&#39;working&#39;</span>)</span>
+<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(url, cookies<span class="op">=</span>cookies)</span>
+<span id="cb58-29"><a href="#cb58-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-30"><a href="#cb58-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 超时</span></span>
+<span id="cb58-31"><a href="#cb58-31" aria-hidden="true" tabindex="-1"></a>requests.get(url, timeout<span class="op">=</span><span class="fl">0.001</span>)</span></code></pre></div>
+<h2 id="sqlite3">sqlite3</h2>
+<p>Python 内置了 sqlite3 数据库的接口</p>
+<div class="sourceCode" id="cb59"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">&#39;test.db&#39;</span>)</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>cur <span class="op">=</span> conn.cursor()</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">&#39;&#39;&#39;create table IF NOT EXISTS user</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="st">                (name string, passwd string, email string, PRIMARY KEY (name))&#39;&#39;&#39;</span>)</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">&#39;&#39;&#39;insert into user values(&#39;abc&#39;, &#39;123&#39;, &#39;abc@example.com&#39;)&#39;&#39;&#39;</span>)</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>conn.commit()</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="st">&#39;abc&#39;</span>, )</span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">&#39;&#39;&#39;select * from user where name = ?&#39;&#39;&#39;</span>, t)</span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cur.fetchone())</span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>conn.close()</span></code></pre></div>
+<h2 id="url-处理模块">url 处理模块</h2>
+<div class="sourceCode" id="cb60"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>urllib.request.urlopen(url, data<span class="op">=</span><span class="va">None</span>, [timeout, ]<span class="op">*</span>, cafile<span class="op">=</span><span class="va">None</span>, capath<span class="op">=</span><span class="va">None</span>, cadefault<span class="op">=</span><span class="va">False</span>, context<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co"># url 为字符串或 Request 对象</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 对于 HTTP 与 HTTPS url，返回 http.client.HTTPResponse 对象</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>urllib.parse.urlparse(urlstring, scheme<span class="op">=</span><span class="st">&#39;&#39;</span>, allow_fragments<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 解析 url</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib <span class="im">import</span> request</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&#39;http://liph.ink&#39;</span></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> request.urlopen(url) <span class="im">as</span> res:</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(res.status, res.reason)</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k, v <span class="kw">in</span> res.getheaders():</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(k, v)</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> res.read()</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(data.decode(<span class="st">&#39;utf-8&#39;</span>))</span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>req <span class="op">=</span> request.Request(url)</span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> request.urlopen(req) <span class="im">as</span> res:</span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(res.read().decode(<span class="st">&#39;utf-8&#39;</span>))</span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib <span class="im">import</span> parse</span>
+<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a>user <span class="op">=</span> <span class="st">&#39;abc&#39;</span></span>
+<span id="cb61-20"><a href="#cb61-20" aria-hidden="true" tabindex="-1"></a>passwd <span class="op">=</span> <span class="st">&#39;123&#39;</span></span>
+<span id="cb61-21"><a href="#cb61-21" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> parse.urlencode([</span>
+<span id="cb61-22"><a href="#cb61-22" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&#39;username&#39;</span>, user),</span>
+<span id="cb61-23"><a href="#cb61-23" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&#39;passwd&#39;</span>, passwd)</span>
+<span id="cb61-24"><a href="#cb61-24" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb61-25"><a href="#cb61-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-26"><a href="#cb61-26" aria-hidden="true" tabindex="-1"></a>req <span class="op">=</span> request.Request(url)</span>
+<span id="cb61-27"><a href="#cb61-27" aria-hidden="true" tabindex="-1"></a>req.add_header(<span class="st">&#39;User-Agent&#39;</span>, <span class="st">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0&#39;</span>)</span>
+<span id="cb61-28"><a href="#cb61-28" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> request.urlopen(req, data <span class="op">=</span> data.encode(<span class="st">&#39;utf-8&#39;</span>)) <span class="im">as</span> res:</span>
+<span id="cb61-29"><a href="#cb61-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(res.status, res.reason)</span></code></pre></div>
+</body>
+</html>

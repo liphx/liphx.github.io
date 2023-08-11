@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tmux</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="/css/common.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="tmux">tmux</h1>
+<h2 id="tmux-的功能">tmux 的功能</h2>
+<ol type="1">
+<li>分屏: 多个窗口，窗口分屏</li>
+<li>detach, attach</li>
+<li>高效操作文本</li>
+<li>日志记录</li>
+<li>屏幕共享</li>
+</ol>
+<h2 id="命令速记">命令速记</h2>
+<p>$ for shell, ! for PREFIX(default CTRL-b), : for command mode</p>
+<pre><code>$ tmux -V                       # display version
+
+# session
+$ tmux new-session              # Creates a new session without a name. Can be shortened to tmux new or simply tmux.
+$ tmux new -s &lt;name&gt;            # Create named session
+$ tmux new -s &lt;s&gt; -n &lt;w&gt;        # Create named session and name first window
+$ tmux new -s &lt;name&gt; -d         # create new session, detach
+! d                             # detach session
+$ tmux list-sessions            # list sessions, shortened to tmux ls
+$ tmux attach                   # attach session, shortened to tmux at
+$ tmux attach -t &lt;session&gt;      # attach session
+$ tmux kill-session -t &lt;s&gt;      # kill session
+! (                             # goto previous session
+! )                             # goto next session
+! s                             # list sessions
+
+# window
+! c                             # create new window
+! ,                             # rename window
+! .                             # move window
+! n                             # next window
+! p                             # previous window
+! [0-9]                         # go to window
+! w                             # select window
+! f                             # find and select window
+! &amp;                             # close window
+! !                             # Turning a Pane into a Window
+: join-pane -s &lt;src&gt; -t &lt;dst&gt;   # take &lt;src&gt; join to &lt;dst&gt;, default is current window
+                                # the form of &lt;src&gt; is `[session_name]:[window].[pane]`
+: move-window -s &lt;src&gt; -t &lt;dst&gt; # move window
+
+# pane
+! %                             # vertically split
+! &quot;                             # horizontally split
+! q                             # display pane number
+! o                             # move to pane
+! &lt;UP&gt; &lt;DOWN&gt; &lt;LEFT&gt; &lt;RIGHT&gt;    # move to pane
+! &lt;SPACE&gt;                       # change pane layout
+! z                             # Maximizing and Restoring Panes
+! x                             # close pane, close window if no pane left
+$ exit                          # close pane, close window if no pane left, close session if no window left
+
+! :                             # command mode
+: new-window -n &lt;w&gt; &quot;proc&quot;      # create named window run proc
+
+! ?                             # help</code></pre>
+<h2 id="tmuxinator">tmuxinator</h2>
+<pre class="shell"><code>$ tmuxinator open &lt;name&gt;
+$ tmuxinator &lt;name&gt;
+$ tmuxinator debug &lt;name&gt;</code></pre>
+<h2 id="copy-mode">Copy Mode</h2>
+<p>~ for copy mode</p>
+<pre><code>! [                             # copy mode
+~ ENTER                         # quit copy mode
+~ w b &lt;C-f&gt; &lt;C-b&gt; h j k l f F G / ? n N     # the same as vi, use `g` goto top
+~ SPACE &lt;select text&gt; ENTER     # copy text
+! ]                             # paste text
+: capture-pane                  # capture pane into paste buffer
+$ tmux show-buffer              # display buffer
+$ tmux save-buffer &lt;path&gt;       # save buffer to file
+$ tmux list-buffers             # list buffers
+$ tmux choose-buffer            # choose buffer
+! =                             # choose buffer</code></pre>
+<h2 id="pair-programming">Pair Programming</h2>
+<h3 id="pairing-with-a-shared-account">Pairing with a Shared
+Account</h3>
+<ol type="1">
+<li><code>tmux new-session -s Pairing</code></li>
+<li><code>tmux attach -t Pairing</code></li>
+</ol>
+<h3 id="using-a-shared-account-and-grouped-sessions">Using a Shared
+Account and Grouped Sessions</h3>
+<ol type="1">
+<li><code>tmux new-session -s groupedsession</code></li>
+<li><code>tmux new-session -t groupedsession -s mysession</code></li>
+</ol>
+<h3 id="tmate"><a href="https://tmate.io/">tmate</a></h3>
+<pre><code>$ tmate
+$ tmux show-messages        # Displays a log of messages in the current window</code></pre>
+<h3 id="pairing-with-separate-accounts-and-sockets">Pairing with
+Separate Accounts and Sockets</h3>
+<ol type="1">
+<li><code>tmux -S &lt;socket-path&gt;</code></li>
+<li><code>tmux -S &lt;socket-path&gt; attach</code></li>
+</ol>
+<pre class="shell"><code>groupadd tmux-shared
+usermod -aG tmux-shared user1
+usermod -aG tmux-shared user2
+
+tmux -S /tmp/tmux-shared
+chgrp tmux-shared /tmp/tmux-shared
+tmux -S /tmp/tmux-shared attach</code></pre>
+</body>
+</html>

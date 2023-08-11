@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>hexo</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/css/common.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="hexo-搭建网站">hexo 搭建网站</h1>
+<ul>
+<li>https://hexo.io/zh-cn/docs/</li>
+<li>https://nodejs.org/en/download/</li>
+</ul>
+<p><code>npm install -g hexo-cli</code></p>
+<h2 id="使用">使用</h2>
+<p><code>hexo &lt;command&gt;</code></p>
+<pre><code>Commands:
+* clean     - Remove generated files and cache.
+* config    - Get or set configurations.
+* deploy    - Deploy your website.
+* generate  - Generate static files.
+* help      - Get help on a command.
+* init      - Create a new Hexo folder.
+* list      - List the information of the site
+* migrate   - Migrate your site from other system to Hexo.
+* new       - Create a new post.
+* publish   - Moves a draft post from _drafts to _posts folder.
+* render    - Render files with renderer plugins.
+* server    - Start the server.
+* version   - Display version information.</code></pre>
+<h2 id="配置">配置</h2>
+<p><code>_config.yml</code> 设置网站的信息、主题等</p>
+<h2 id="source">source</h2>
+<p>除 <code>_posts</code> 目录外（<code>init</code> 时会创建
+<code>_posts/hello-world.md</code>)，以 <code>_</code>
+开头的文件和隐藏文件会被忽略。<code>Markdown</code> 和 <code>HTML</code>
+文件会被解析并放到 public 文件夹，其他文件直接被拷贝过去。</p>
+<h2 id="主题">主题</h2>
+<p><code>themes</code> 目录存放主题，启用主题需要在
+<code>_config.yml</code> 中设置，如 <code>theme: next</code></p>
+<p><code>next</code> 主题下载 <a
+href="https://github.com/theme-next/hexo-theme-next/"
+class="uri">https://github.com/theme-next/hexo-theme-next/</a></p>
+<p><code>next</code> 的配置文件 <code>themes/next/_config.yml</code></p>
+<h2 id="搜索功能">搜索功能</h2>
+<p><code>npm install hexo-generator-search --save</code></p>
+<p>修改 <code>_config.yml</code></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">path</span><span class="kw">:</span><span class="at"> search.xml</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">field</span><span class="kw">:</span><span class="at"> all</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">limit</span><span class="kw">:</span><span class="at"> </span><span class="dv">10000</span></span></code></pre></div>
+<p><code>field</code> 字段可以为 <code>post/page/all</code>，
+<code>hexo g</code> 命令后该插件会将搜索内容放到
+<code>search.xml</code></p>
+<p>修改 <code>themes/next/_config.yml</code></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">local_search</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">enable</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div>
+<p>修改完后我发现搜索的结果一直为空，调试了下源代码，发现如下问题</p>
+<p>文件 <code>themes/next/source/js/local-search.js</code></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Only match articles with not empty titles</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>datas <span class="op">=</span> datas<span class="op">.</span><span class="fu">filter</span>(data <span class="kw">=&gt;</span> data<span class="op">.</span><span class="at">title</span>)<span class="op">.</span><span class="fu">map</span>(data <span class="kw">=&gt;</span> {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="at">title</span> <span class="op">=</span> data<span class="op">.</span><span class="at">title</span><span class="op">.</span><span class="fu">trim</span>()<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="at">content</span> <span class="op">=</span> data<span class="op">.</span><span class="at">content</span> <span class="op">?</span> data<span class="op">.</span><span class="at">content</span><span class="op">.</span><span class="fu">trim</span>()<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/&lt;</span><span class="sc">[^&gt;]+</span><span class="ss">&gt;/g</span><span class="op">,</span> <span class="st">&#39;&#39;</span>) <span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="at">url</span> <span class="op">=</span> <span class="pp">decodeURIComponent</span>(data<span class="op">.</span><span class="at">url</span>)<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">\/{2,}</span><span class="ss">/g</span><span class="op">,</span> <span class="st">&#39;/&#39;</span>)<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p>这里只会匹配带<code>title</code> 的文件，去掉
+<code>filter(data =&gt; data.title)</code> 即可</p>
+<h2 id="同步">同步</h2>
+<p>文档使用 <code>git</code> 来同步，启用 <code>hexo</code>
+的服务器(<code>hexo s -p 80 &amp;</code>)每10分钟(<code>crontab</code>)执行如下脚本进行更新</p>
+<pre class="shell"><code>cd $hexo_dir/source &amp;&amp;
+git pull origin master &amp;&amp;
+hexo g</code></pre>
+<h2 id="评论功能">评论功能</h2>
+<p>修改 <code>themes/next/layout/_layout.swig</code>, 添加前端代码</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;textarea</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;height:120px; width:80%; resize:none&quot;</span><span class="kw">&gt;&lt;/textarea&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;button</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;submit&quot;</span><span class="kw">&gt;</span>评论<span class="kw">&lt;/button&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">window</span><span class="op">.</span><span class="at">onload</span> <span class="op">=</span> <span class="kw">function</span>() {</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> b <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&quot;submit&quot;</span>)<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        b<span class="op">.</span><span class="at">onclick</span> <span class="op">=</span> <span class="kw">function</span>() {</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            <span class="kw">var</span> comment <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&quot;text&quot;</span>)<span class="op">.</span><span class="at">value</span><span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (comment <span class="op">==</span> <span class="st">&quot;&quot;</span>) {</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                <span class="fu">alert</span>(<span class="st">&quot;none&quot;</span>)<span class="op">;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>            } <span class="cf">else</span> {</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                <span class="kw">var</span> httpRequest <span class="op">=</span> <span class="kw">new</span> <span class="bu">XMLHttpRequest</span>()<span class="op">;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                httpRequest<span class="op">.</span><span class="fu">open</span>(<span class="st">&quot;POST&quot;</span><span class="op">,</span> <span class="st">&quot;/api/comment&quot;</span>)<span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                httpRequest<span class="op">.</span><span class="fu">setRequestHeader</span>(<span class="st">&quot;Content-type&quot;</span><span class="op">,</span> <span class="st">&quot;application/json&quot;</span>)<span class="op">;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                httpRequest<span class="op">.</span><span class="fu">send</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>({<span class="st">&quot;msg&quot;</span><span class="op">:</span> comment<span class="op">,</span> <span class="st">&quot;time&quot;</span><span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>()<span class="op">.</span><span class="fu">toLocaleString</span>()<span class="op">,</span><span class="st">&quot;url&quot;</span><span class="op">:</span> <span class="bu">window</span><span class="op">.</span><span class="at">location</span><span class="op">.</span><span class="at">href</span> }))<span class="op">;</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                <span class="fu">alert</span>(<span class="st">&quot;success&quot;</span>)<span class="op">;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                <span class="bu">window</span><span class="op">.</span><span class="at">location</span><span class="op">.</span><span class="at">href</span><span class="op">=</span><span class="st">&quot;/comment.html&quot;</span><span class="op">;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<p>后端代码</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> http <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;http&#39;</span>)<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> server <span class="op">=</span> http<span class="op">.</span><span class="fu">createServer</span>()<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> fs <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;fs&#39;</span>)<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>comment_path <span class="op">=</span> <span class="st">&#39;source/comment.md&#39;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">deal_msg</span>(msg) {</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    str <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    str <span class="op">=</span> str <span class="op">+</span> <span class="st">&#39;`&#39;</span> <span class="op">+</span> msg[<span class="st">&#39;time&#39;</span>] <span class="op">+</span> <span class="st">&#39;` &#39;</span> <span class="op">+</span> <span class="st">&#39;[link](&#39;</span> <span class="op">+</span> msg[<span class="st">&#39;url&#39;</span>] <span class="op">+</span> <span class="st">&#39;)</span><span class="sc">\n</span><span class="st">&#39;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    str <span class="op">=</span> str <span class="op">+</span> msg[<span class="st">&#39;msg&#39;</span>] <span class="op">+</span> <span class="st">&#39;</span><span class="sc">\n\n</span><span class="st">&#39;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> str</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">comment</span>(req<span class="op">,</span> res) {</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (req<span class="op">.</span><span class="at">url</span> <span class="op">!=</span> <span class="st">&#39;/api/comment&#39;</span>) {</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> buff <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    req<span class="op">.</span><span class="fu">on</span>(<span class="st">&quot;data&quot;</span><span class="op">,</span> <span class="kw">function</span>(data) {</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        buff <span class="op">+=</span> data<span class="op">.</span><span class="fu">toString</span>()<span class="op">;</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> json<span class="op">;</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    req<span class="op">.</span><span class="fu">on</span>(<span class="st">&quot;end&quot;</span><span class="op">,</span> <span class="kw">function</span>() {</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        json <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(buff)<span class="op">;</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (msg<span class="op">.</span><span class="at">length</span> <span class="op">!=</span> <span class="dv">0</span>) {</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>            fs<span class="op">.</span><span class="fu">writeFile</span>(comment_path<span class="op">,</span> <span class="fu">deal_msg</span>(json)<span class="op">,</span> { <span class="dt">flag</span><span class="op">:</span> <span class="st">&quot;a&quot;</span>}<span class="op">,</span> <span class="kw">function</span>(err) {})<span class="op">;</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>server<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;request&#39;</span><span class="op">,</span> comment)<span class="op">;</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>server<span class="op">.</span><span class="fu">listen</span>(<span class="dv">8080</span>)<span class="op">;</span></span></code></pre></div>
+<p>设置<code>hexo</code> 监听<code>8000</code>
+端口(<code>hexo s -p 8000 &amp;</code>)，并使用 <code>nginx</code>
+反向代理</p>
+<pre class="nginx"><code>location / {
+    proxy_pass http://localhost:8000;
+}
+
+location /api/ {
+    proxy_pass http://localhost:8080;
+}</code></pre>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>docker</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="/css/common.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="docker">docker</h1>
+<h2 id="docker-pull">docker pull</h2>
+<pre><code>docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]
+docker pull ubuntu:18.04</code></pre>
+<h2 id="docker-run">docker run</h2>
+<pre><code>docker run [选项] 镜像 [指令] [参数...]
+docker run -it --rm ubuntu:18.04 bash
+
+选项
+`-i` 交互模式，让容器的标准输入保持打开
+`-t` 让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上
+`-d` 容器在后台运行，打印容器id
+`--rm` 容器退出后随之将其删除</code></pre>
+<h2 id="docker-exec">docker exec</h2>
+<pre><code>docker exec [选项] 容器 [指令] [参数...]</code></pre>
+<h2 id="docker-image">docker image</h2>
+<pre><code>docker image ls
+docker image prune
+docker image rm</code></pre>
+<h2 id="docker-system">docker system</h2>
+<pre><code>docker system df # 查看镜像、容器、数据卷所占用的空间</code></pre>
+<h2 id="docker-info">docker info</h2>
+<pre><code>docker info</code></pre>
+<h2 id="docker-container">docker container</h2>
+<pre><code>docker container ls
+docker container stop container # 终止容器
+docker container start container # 重新启动处于终止状态的容器
+docker container restart container # 将一个运行态的容器终止，然后再重新启动它
+docker container rm container</code></pre>
+<h2 id="docker-ps">docker ps</h2>
+<pre><code>docker ps -a</code></pre>
+<h2 id="docker-login-urldocker-logout-url">docker login url/docker
+logout url</h2>
+<h2 id="dockerfile">Dockerfile</h2>
+<p>https://docs.docker.com/engine/reference/builder/</p>
+</body>
+</html>
