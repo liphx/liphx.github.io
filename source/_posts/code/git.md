@@ -1,6 +1,6 @@
 ---
 title: Git
-date:
+date: 2023-01-01
 tags: tools
 permalink: code/git/
 ---

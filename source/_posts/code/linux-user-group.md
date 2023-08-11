@@ -2,7 +2,7 @@
 title: Linux 用户和组
 date: 2023-08-11
 tags: Linux
-permalink: code/linux-user-group
+permalink: code/linux-user-group/
 ---
 
 ## `/etc/passwd`

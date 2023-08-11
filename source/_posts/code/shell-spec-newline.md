@@ -2,7 +2,7 @@
 title: spec 换行符问题
 date: 2023-08-11
 tags: Shell
-permalink: code/shell-spec-newline
+permalink: code/shell-spec-newline/
 ---
 
 最近把Windows上的文件上传到Linux上执行时报错

@@ -2,7 +2,7 @@
 title: chatgpt试用
 date: 2023-08-11
 tags:
-permalink: code/chatgpt-start
+permalink: code/chatgpt-start/
 ---
 
 ## Part 1

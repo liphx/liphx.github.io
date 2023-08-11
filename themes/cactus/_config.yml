@@ -15,8 +15,8 @@ direction: ltr
 # languages/*.yml
 nav:
   home: /
-  about: /readme/
-  简历: /resume/
+  about: /readme.html
+  简历: /resume.html
   articles: /archives/
   projects: https://github.com/liphx
   search: /search/
@@ -38,7 +38,7 @@ social_links:
 
 # Customize the overview with displaying a tagcloud on the index page.
 # Options: https://hexo.io/docs/helpers.html#tagcloud
-tags_overview: false
+tags_overview: true
 
 # Customize the overview with the most recent blog posts on the index page.
 # Options:
@@ -46,8 +46,8 @@ tags_overview: false
 #   - post_count: whether to show only the x most recent posts.
 #   - sort_updated: sort posts by last modification date instead of creation date.
 posts_overview:
-  show_all_posts: false
-  post_count: 5
+  show_all_posts: true
+  post_count: 10
   sort_updated: false
 
 # Customize the archive view.
@@ -74,7 +74,7 @@ copyright:
 # Options:
 #   - enabled: whether to enable the 404 page (404.html).
 error_404:
-  enabled: false
+  enabled: true
 #   title: "404 Page Not Found"
 #   description: "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
 
