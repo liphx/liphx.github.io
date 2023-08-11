@@ -77,7 +77,7 @@ copyright:
 error_404:
   enabled: true
   title: "404"
-  description: "FOUR-O-FOUR-NOT-FOUND"
+  description: "FOUR O FOUR NOT FOUND"
 
 
 ##############################################################################
