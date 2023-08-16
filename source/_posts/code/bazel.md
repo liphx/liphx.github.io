@@ -23,7 +23,7 @@ project/
 
 `WORKSPACE` 文件标识了项目的根目录，这个目录下也会存放 bazel 的输出。`WORKSPACE` 可以为空，也可以包含对外部依赖的引用。代码以仓库（Repositories）的形式组织，包含 `WORKSPACE` 文件的目录称为主仓库（main repository, `@`）。
 
-含有 `BUILD` 的目录是一个包。包包含该目录下的所有文件，包括子目录（含有`BUILD`文件的子目录除外，它是另一个包）。包中的元素称为目标（Targets），有以下几类目标。
+含有`BUILD`或`BUILD.bazel`的目录是一个包。包包含该目录下的所有文件，包括子目录（含有`BUILD`文件的子目录除外，它是另一个包）。包中的元素称为目标（Targets），有以下几类目标。
 
 * 文件（File）
   * 源文件（Source File）

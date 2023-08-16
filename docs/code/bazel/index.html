@@ -14,7 +14,7 @@
 <meta property="og:description" content="Bazel https:&#x2F;&#x2F;bazel.build https:&#x2F;&#x2F;github.com&#x2F;bazelbuild&#x2F;bazel https:&#x2F;&#x2F;github.com&#x2F;bazelbuild&#x2F;examples  Workspace, Repositories, Packages, Targets, Labels123456project&#x2F;|-- package1|   &#96;-- BUILD|-- packa">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-08-16T02:25:54.155Z">
+<meta property="article:modified_time" content="2023-08-16T02:30:16.095Z">
 <meta property="article:author" content="liph">
 <meta property="article:tag" content="tools">
 <meta name="twitter:card" content="summary">
@@ -172,7 +172,7 @@
 <h3 id="Workspace-Repositories-Packages-Targets-Labels"><a href="#Workspace-Repositories-Packages-Targets-Labels" class="headerlink" title="Workspace, Repositories, Packages, Targets, Labels"></a>Workspace, Repositories, Packages, Targets, Labels</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">project/</span><br><span class="line">|-- package1</span><br><span class="line">|   `-- BUILD</span><br><span class="line">|-- package2</span><br><span class="line">|   `-- BUILD</span><br><span class="line">`-- WORKSPACE</span><br></pre></td></tr></table></figure>
 
 <p><code>WORKSPACE</code> 文件标识了项目的根目录，这个目录下也会存放 bazel 的输出。<code>WORKSPACE</code> 可以为空，也可以包含对外部依赖的引用。代码以仓库（Repositories）的形式组织，包含 <code>WORKSPACE</code> 文件的目录称为主仓库（main repository, <code>@</code>）。</p>
-<p>含有 <code>BUILD</code> 的目录是一个包。包包含该目录下的所有文件，包括子目录（含有<code>BUILD</code>文件的子目录除外，它是另一个包）。包中的元素称为目标（Targets），有以下几类目标。</p>
+<p>含有<code>BUILD</code>或<code>BUILD.bazel</code>的目录是一个包。包包含该目录下的所有文件，包括子目录（含有<code>BUILD</code>文件的子目录除外，它是另一个包）。包中的元素称为目标（Targets），有以下几类目标。</p>
 <ul>
 <li>文件（File）<ul>
 <li>源文件（Source File）</li>
