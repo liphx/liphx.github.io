@@ -3,6 +3,7 @@ title: 塞尔达传说：王国之泪
 date: 2023-08-11 20:00:00
 updated: 2023-08-11 22:00:00
 tags: game
+categories: game
 ---
 
 ## 官方

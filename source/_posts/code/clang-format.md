@@ -4,6 +4,7 @@ date: 2023-08-11
 updated:
 tags: cplusplus
 permalink: code/clang-format/
+categories: code
 ---
 
 0. clang-format文档

@@ -1,7 +1,10 @@
 ---
 title: Bazel
 date: 2023-08-16
-tags: tools
+tags:
+  - tools
+  - cplusplus
+categories: code
 ---
 
 ## Bazel

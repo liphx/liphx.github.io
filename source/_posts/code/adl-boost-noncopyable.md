@@ -1,7 +1,9 @@
+---
 title: C++ ADL 与 boost::noncopyable
 date: 2023-08-11
 tags: cplusplus
 permalink: code/adl-boost-noncopyable/
+categories: code
 ---
 
 C++ [ADL](https://zh.cppreference.com/w/cpp/language/adl) 即实参依赖查找（argument-dependent lookup）, 允许调用其他命名空间中的函数。
