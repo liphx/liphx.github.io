@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="flaregithub地址 https:&#x2F;&#x2F;github.com&#x2F;Tencent&#x2F;flare 简介：腾讯广告使用的C++后台服务框架，包含一系列基础库，fiber库，RPC等特性 环境支持：Linux x86-64 gcc8+ 编译1234567apt install git-lfsgit lfs installgit lfs pullcd thirdparty&#x2F;blade&#x2F;.&#x2F;installso">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flare 0 - start">
+<meta property="og:url" content="https://liph.ink/code/flare-0-start/">
+<meta property="og:site_name" content="李鹏华的主页">
+<meta property="og:description" content="flaregithub地址 https:&#x2F;&#x2F;github.com&#x2F;Tencent&#x2F;flare 简介：腾讯广告使用的C++后台服务框架，包含一系列基础库，fiber库，RPC等特性 环境支持：Linux x86-64 gcc8+ 编译1234567apt install git-lfsgit lfs installgit lfs pullcd thirdparty&#x2F;blade&#x2F;.&#x2F;installso">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-18T09:30:48.865Z">
+<meta property="article:author" content="liph">
+<meta property="article:tag" content="cplusplus">
+<meta property="article:tag" content="flare">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>flare 0 - start</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://photo.liph.ink">摄影</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/code/python2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/code/bazel/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://liph.ink/code/flare-0-start/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://liph.ink/code/flare-0-start/&text=flare 0 - start"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://liph.ink/code/flare-0-start/&title=flare 0 - start"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://liph.ink/code/flare-0-start/&is_video=false&description=flare 0 - start"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=flare 0 - start&body=Check out this article: https://liph.ink/code/flare-0-start/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://liph.ink/code/flare-0-start/&title=flare 0 - start"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://liph.ink/code/flare-0-start/&title=flare 0 - start"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://liph.ink/code/flare-0-start/&title=flare 0 - start"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://liph.ink/code/flare-0-start/&title=flare 0 - start"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://liph.ink/code/flare-0-start/&name=flare 0 - start&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://liph.ink/code/flare-0-start/&t=flare 0 - start"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#flare"><span class="toc-number">1.</span> <span class="toc-text">flare</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-number">2.</span> <span class="toc-text">编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#example"><span class="toc-number">3.</span> <span class="toc-text">example</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        flare 0 - start
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">liph</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-08-17T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-08-18</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/code/">code</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/cplusplus/" rel="tag">cplusplus</a>, <a class="p-category" href="/tags/flare/" rel="tag">flare</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h4 id="flare"><a href="#flare" class="headerlink" title="flare"></a>flare</h4><p>github地址 <a target="_blank" rel="noopener" href="https://github.com/Tencent/flare">https://github.com/Tencent/flare</a></p>
+<p>简介：腾讯广告使用的C++后台服务框架，包含一系列基础库，fiber库，RPC等特性</p>
+<p>环境支持：Linux x86-64 gcc8+</p>
+<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt install git-lfs</span><br><span class="line">git lfs install</span><br><span class="line">git lfs pull</span><br><span class="line">cd thirdparty/blade/</span><br><span class="line">./install</span><br><span class="line">source ~/.profile</span><br><span class="line">blade build ...</span><br></pre></td></tr></table></figure>
+
+<h4 id="example"><a href="#example" class="headerlink" title="example"></a>example</h4><p>示例文档 <a target="_blank" rel="noopener" href="https://github.com/Tencent/flare/blob/master/flare/doc/intro-rpc.md">https://github.com/Tencent/flare/blob/master/flare/doc/intro-rpc.md</a></p>
+<ol>
+<li><p><code>flare/init.h</code></p>
+<ol>
+<li><code>int flare::Start(int argc, char** argv, Function&lt;int(int, char**)&gt; cb);</code> 执行用户回调前后初始化与清理环境。</li>
+<li><code>flare::WaitForQuitSignal()</code></li>
+</ol>
+</li>
+<li><p><code>flare/rpc/server.h</code></p>
+<ol>
+<li><code>Server::Server(Options options = Options())</code>  以<code>options</code>初始化<code>Server</code></li>
+<li><code>Server::AddProtocol(const std::vector&lt;std::string&gt;&amp; names)</code> 在服务上注册通信协议</li>
+<li><code>Server::AddService()</code> 添加服务类的实例</li>
+<li><code>Server::ListenOn()</code> listen on endpoint</li>
+<li><code>Server::Start()</code></li>
+<li><code>Server::Stop()</code></li>
+<li><code>Server::Join()</code></li>
+</ol>
+</li>
+<li><p><code>flare/rpc/protocol/protobuf/rpc_channel.h</code></p>
+<ol>
+<li><code>class flare::RpcChannel : public google::protobuf::RpcChannel</code></li>
+</ol>
+</li>
+<li><p><code>flare/rpc/protocol/protobuf/rpc_client_controller.h</code></p>
+<ol>
+<li><code>class flare::RpcClientController : public protobuf::RpcControllerCommon</code></li>
+</ol>
+</li>
+</ol>
+<p>运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./server</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./client</span></span><br><span class="line">I0818 08:14:46.082238  3432 init.cc:114] Flare started.</span><br><span class="line">I0818 08:14:46.088726  3432 runtime.cc:425] Using fiber scheduling profile [neutral].</span><br><span class="line">I0818 08:14:46.088794  3432 runtime.cc:220] Starting 6 worker threads per group, for a total of 1 groups. The system is treated as UMA.</span><br><span class="line">I0818 08:14:46.095507  3432 init.cc:122] Flare runtime initialized.</span><br><span class="line">I0818 08:14:46.128015  3447 client.cc:43] Received: [Hello there.]</span><br><span class="line">I0818 08:14:46.268503  3432 init.cc:162] Exited</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/readme">关于</a></li>
+        
+          <li><a href="/resume">简历</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://photo.liph.ink">摄影</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#flare"><span class="toc-number">1.</span> <span class="toc-text">flare</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-number">2.</span> <span class="toc-text">编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#example"><span class="toc-number">3.</span> <span class="toc-text">example</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://liph.ink/code/flare-0-start/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://liph.ink/code/flare-0-start/&text=flare 0 - start"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://liph.ink/code/flare-0-start/&title=flare 0 - start"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://liph.ink/code/flare-0-start/&is_video=false&description=flare 0 - start"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=flare 0 - start&body=Check out this article: https://liph.ink/code/flare-0-start/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://liph.ink/code/flare-0-start/&title=flare 0 - start"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://liph.ink/code/flare-0-start/&title=flare 0 - start"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://liph.ink/code/flare-0-start/&title=flare 0 - start"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://liph.ink/code/flare-0-start/&title=flare 0 - start"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://liph.ink/code/flare-0-start/&name=flare 0 - start&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://liph.ink/code/flare-0-start/&t=flare 0 - start"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    liph
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://photo.liph.ink">摄影</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

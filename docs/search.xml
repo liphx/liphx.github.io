@@ -23,6 +23,33 @@
     
     
     <entry>
+      <title>flare 0 - start</title>
+      <link href="/code/flare-0-start/"/>
+      <url>/code/flare-0-start/</url>
+      
+        <content type="html"><![CDATA[<h4 id="flare"><a href="#flare" class="headerlink" title="flare"></a>flare</h4><p>github地址 <a href="https://github.com/Tencent/flare">https://github.com/Tencent/flare</a></p><p>简介：腾讯广告使用的C++后台服务框架，包含一系列基础库，fiber库，RPC等特性</p><p>环境支持：Linux x86-64 gcc8+</p><h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt install git-lfs</span><br><span class="line">git lfs install</span><br><span class="line">git lfs pull</span><br><span class="line">cd thirdparty/blade/</span><br><span class="line">./install</span><br><span class="line">source ~/.profile</span><br><span class="line">blade build ...</span><br></pre></td></tr></table></figure><h4 id="example"><a href="#example" class="headerlink" title="example"></a>example</h4><p>示例文档 <a href="https://github.com/Tencent/flare/blob/master/flare/doc/intro-rpc.md">https://github.com/Tencent/flare/blob/master/flare/doc/intro-rpc.md</a></p><ol><li><p><code>flare/init.h</code></p><ol><li><code>int flare::Start(int argc, char** argv, Function&lt;int(int, char**)&gt; cb);</code> 执行用户回调前后初始化与清理环境。</li><li><code>flare::WaitForQuitSignal()</code></li></ol></li><li><p><code>flare/rpc/server.h</code></p><ol><li><code>Server::Server(Options options = Options())</code>  以<code>options</code>初始化<code>Server</code></li><li><code>Server::AddProtocol(const std::vector&lt;std::string&gt;&amp; names)</code> 在服务上注册通信协议</li><li><code>Server::AddService()</code> 添加服务类的实例</li><li><code>Server::ListenOn()</code> listen on endpoint</li><li><code>Server::Start()</code></li><li><code>Server::Stop()</code></li><li><code>Server::Join()</code></li></ol></li><li><p><code>flare/rpc/protocol/protobuf/rpc_channel.h</code></p><ol><li><code>class flare::RpcChannel : public google::protobuf::RpcChannel</code></li></ol></li><li><p><code>flare/rpc/protocol/protobuf/rpc_client_controller.h</code></p><ol><li><code>class flare::RpcClientController : public protobuf::RpcControllerCommon</code></li></ol></li></ol><p>运行</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./server</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./client</span></span><br><span class="line">I0818 08:14:46.082238  3432 init.cc:114] Flare started.</span><br><span class="line">I0818 08:14:46.088726  3432 runtime.cc:425] Using fiber scheduling profile [neutral].</span><br><span class="line">I0818 08:14:46.088794  3432 runtime.cc:220] Starting 6 worker threads per group, for a total of 1 groups. The system is treated as UMA.</span><br><span class="line">I0818 08:14:46.095507  3432 init.cc:122] Flare runtime initialized.</span><br><span class="line">I0818 08:14:46.128015  3447 client.cc:43] Received: [Hello there.]</span><br><span class="line">I0818 08:14:46.268503  3432 init.cc:162] Exited</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> code </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> cplusplus </tag>
+            
+            <tag> flare </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Bazel</title>
       <link href="/code/bazel/"/>
       <url>/code/bazel/</url>
