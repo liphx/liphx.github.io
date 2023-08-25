@@ -18,7 +18,7 @@ public:
     int second;
 };
 
-int main() { A(100); }cpp
+int main() { A(100); }
 ```
 
 gcc编译会给出`Wreorder`的警告
