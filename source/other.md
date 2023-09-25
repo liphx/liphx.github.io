@@ -1,3 +1,4 @@
+要想解决大规模问题，你必须先了解最微末的细节。
 
 "What I cannot create, I do not understand." – Richard Feynman
 

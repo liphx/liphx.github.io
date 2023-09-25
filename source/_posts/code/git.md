@@ -178,6 +178,9 @@ git branch -d iss99 # 删除分支
 
 `git rebase` 变基
 
+https://stackoverflow.com/questions/22992543/how-do-i-git-rebase-the-first-commit
+`git rebase -i --root`
+
 ## reset
 
 `git reset` 回退
