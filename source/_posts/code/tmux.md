@@ -2,8 +2,9 @@
 title: tmux
 date: 2023-08-11
 tags: tools
-permalink: code/tmux/
 ---
+
+<https://github.com/tmux/tmux/wiki/Getting-Started>
 
 ## tmux 的功能
 

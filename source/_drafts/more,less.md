@@ -17,3 +17,5 @@ v                       /usr/bin/vi
 ```
 
 less is more...
+
+`less -R` show colors

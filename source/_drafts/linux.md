@@ -303,3 +303,8 @@ perf top -p $(pidof sf) -e cache-references,cache-misses,cycles,instructions,bra
 perf record -g -p $(pidof sf)
 
 
+core dumped
+
+`man 5 core`
+`ulimit -c unlimited`
+`/proc/sys/kernel/core_pattern`
