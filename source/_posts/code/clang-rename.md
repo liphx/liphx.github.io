@@ -1,3 +1,11 @@
+---
+title: clang-rename
+date: 2023-10-18
+updated:
+tags: cplusplus
+categories: code
+---
+
 ```cpp
 #include <iostream>
 
