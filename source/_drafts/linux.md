@@ -1,3 +1,7 @@
+---
+title: linux
+---
+
 # Linux 是一种生活态度
 
 ## X Window System

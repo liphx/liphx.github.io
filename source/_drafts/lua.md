@@ -1,10 +1,14 @@
-```
+---
+title: lua
+---
+
+```lua
 do
 end -- 相当于c中的代码段{}，有局部变量作用域
 ```
 
 
-```
+```lua
 if .. then .. elseif .. then .. else .. end
 while .. do .. end
 repeat .. until ..
