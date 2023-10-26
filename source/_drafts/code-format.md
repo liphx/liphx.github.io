@@ -2,7 +2,7 @@
 
 1. C/C++
 
-<https://liph.ink/code/clang-format/>
+clang-format
 
 2. python
 

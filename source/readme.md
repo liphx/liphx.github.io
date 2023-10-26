@@ -3,7 +3,7 @@ permalink: /readme.html
 
 # LIPH's Personal Homepage: A Reader, Coder and Gamer
 
-- Homepage: <https://liph.ink>
+- Homepage: <https://lipenghua.com>
 - Email: <3138519115@qq.com>
 - Douban: <https://www.douban.com/people/liphx>
 - Github: <https://github.com/liphx>
