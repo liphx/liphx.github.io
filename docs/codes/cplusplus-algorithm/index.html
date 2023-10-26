@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="#include &lt;algorithm&gt; std::for_each12345template&lt;class InputIt, class UnaryFunction&gt;UnaryFunction for_each(InputIt first, InputIt last, UnaryFunction f);std::vector&lt;int&gt; data &amp;#123; 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 算法库">
+<meta property="og:url" content="https://liph.ink/codes/cplusplus-algorithm/">
+<meta property="og:site_name" content="李鹏华的主页">
+<meta property="og:description" content="#include &lt;algorithm&gt; std::for_each12345template&lt;class InputIt, class UnaryFunction&gt;UnaryFunction for_each(InputIt first, InputIt last, UnaryFunction f);std::vector&lt;int&gt; data &amp;#123; 1">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-26T07:57:01.234Z">
+<meta property="article:author" content="liph">
+<meta property="article:tag" content="cplusplus">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>C++ 算法库</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://photo.liph.ink">摄影</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/codes/cplusplus-11/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/codes/cpp-basename-dirname/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://liph.ink/codes/cplusplus-algorithm/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://liph.ink/codes/cplusplus-algorithm/&text=C++ 算法库"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://liph.ink/codes/cplusplus-algorithm/&title=C++ 算法库"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://liph.ink/codes/cplusplus-algorithm/&is_video=false&description=C++ 算法库"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=C++ 算法库&body=Check out this article: https://liph.ink/codes/cplusplus-algorithm/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://liph.ink/codes/cplusplus-algorithm/&title=C++ 算法库"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://liph.ink/codes/cplusplus-algorithm/&title=C++ 算法库"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://liph.ink/codes/cplusplus-algorithm/&title=C++ 算法库"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://liph.ink/codes/cplusplus-algorithm/&title=C++ 算法库"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://liph.ink/codes/cplusplus-algorithm/&name=C++ 算法库&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://liph.ink/codes/cplusplus-algorithm/&t=C++ 算法库"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#std-for-each"><span class="toc-number">1.</span> <span class="toc-text">std::for_each</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-all-of-std-any-of-std-none-of"><span class="toc-number">2.</span> <span class="toc-text">std::all_of, std::any_of, std::none_of</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-count-std-count-if"><span class="toc-number">3.</span> <span class="toc-text">std::count, std::count_if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-transform"><span class="toc-number">4.</span> <span class="toc-text">std::transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-generate-std-generate-n"><span class="toc-number">5.</span> <span class="toc-text">std::generate, std::generate_n</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-copy-std-copy-backward"><span class="toc-number">6.</span> <span class="toc-text">std::copy, std::copy_backward</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-is-sorted"><span class="toc-number">7.</span> <span class="toc-text">std::is_sorted</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-sort"><span class="toc-number">8.</span> <span class="toc-text">std::sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-binary-search-std-lower-bound-std-upper-bound"><span class="toc-number">9.</span> <span class="toc-text">std::binary_search, std::lower_bound, std::upper_bound</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-next-permutation"><span class="toc-number">10.</span> <span class="toc-text">std::next_permutation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-merge"><span class="toc-number">11.</span> <span class="toc-text">std::merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-reverse"><span class="toc-number">12.</span> <span class="toc-text">std::reverse</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        C++ 算法库
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">liph</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-08-10T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-08-11</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/cplusplus/" rel="tag">cplusplus</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p><code>#include &lt;algorithm&gt;</code></p>
+<h2 id="std-for-each"><a href="#std-for-each" class="headerlink" title="std::for_each"></a><code>std::for_each</code></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> InputIt, <span class="keyword">class</span> UnaryFunction&gt;</span></span><br><span class="line"><span class="function">UnaryFunction <span class="title">for_each</span><span class="params">(InputIt first, InputIt last, UnaryFunction f)</span></span>;</span><br><span class="line"></span><br><span class="line">std::vector&lt;<span class="type">int</span>&gt; data &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> &#125;;</span><br><span class="line">std::for_each(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), [](<span class="type">const</span> <span class="type">int</span>&amp; x)&#123; std::cout &lt;&lt; x &lt;&lt; <span class="string">&quot; &quot;</span>; &#125;); <span class="comment">//=&gt;1 2 3</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="std-all-of-std-any-of-std-none-of"><a href="#std-all-of-std-any-of-std-none-of" class="headerlink" title="std::all_of, std::any_of, std::none_of"></a><code>std::all_of, std::any_of, std::none_of</code></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> InputIt, <span class="keyword">class</span> UnaryPredicate&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">all_of</span><span class="params">(InputIt first, InputIt last, UnaryPredicate p)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> InputIt, <span class="keyword">class</span> UnaryPredicate&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">any_of</span><span class="params">(InputIt first, InputIt last, UnaryPredicate p)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> InputIt, <span class="keyword">class</span> UnaryPredicate&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">none_of</span><span class="params">(InputIt first, InputIt last, UnaryPredicate p)</span></span>;</span><br><span class="line"></span><br><span class="line">std::vector&lt;<span class="type">int</span>&gt; data &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> &#125;;</span><br><span class="line">std::cout &lt;&lt; std::<span class="built_in">all_of</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), [](<span class="type">const</span> <span class="type">int</span>&amp; x) &#123; <span class="keyword">return</span> x &gt; <span class="number">0</span>; &#125;); <span class="comment">//=&gt;1</span></span><br><span class="line">std::cout &lt;&lt; std::<span class="built_in">any_of</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), [](<span class="type">const</span> <span class="type">int</span>&amp; x) &#123; <span class="keyword">return</span> x &gt; <span class="number">0</span>; &#125;); <span class="comment">//=&gt;1</span></span><br><span class="line">std::cout &lt;&lt; std::<span class="built_in">none_of</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), [](<span class="type">const</span> <span class="type">int</span>&amp; x) &#123; <span class="keyword">return</span> x &gt; <span class="number">0</span>; &#125;); <span class="comment">//=&gt;0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="std-count-std-count-if"><a href="#std-count-std-count-if" class="headerlink" title="std::count, std::count_if"></a><code>std::count, std::count_if</code></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">InputIt</span>, <span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">typename</span> iterator_traits&lt;InputIt&gt;::<span class="function">difference_type <span class="title">count</span><span class="params">(InputIt first, InputIt last, <span class="type">const</span> T &amp;value)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">InputIt</span>, <span class="keyword">class</span> <span class="title class_">UnaryPredicate</span>&gt;</span><br><span class="line"><span class="keyword">typename</span> iterator_traits&lt;InputIt&gt;::<span class="function">difference_type <span class="title">count_if</span><span class="params">(InputIt first, InputIt last, UnaryPredicate p)</span></span>;</span><br><span class="line"></span><br><span class="line">std::vector&lt;<span class="type">int</span>&gt; data &#123; <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span> &#125;;</span><br><span class="line">std::cout &lt;&lt; std::<span class="built_in">count</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), <span class="number">1</span>); <span class="comment">//=&gt;2</span></span><br><span class="line">std::cout &lt;&lt; std::<span class="built_in">count_if</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), [](<span class="type">const</span> <span class="type">int</span>&amp; x) &#123; <span class="keyword">return</span> x %<span class="number">2</span> == <span class="number">0</span>; &#125;); <span class="comment">//=&gt;1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="std-transform"><a href="#std-transform" class="headerlink" title="std::transform"></a><code>std::transform</code></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> InputIt, <span class="keyword">class</span> OutputIt, <span class="keyword">class</span> UnaryOperation&gt;</span></span><br><span class="line"><span class="function">OutputIt <span class="title">transform</span><span class="params">(InputIt first1, InputIt last1, OutputIt d_first, UnaryOperation unary_op)</span></span>;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; data &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line"><span class="built_in">transform</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), <span class="built_in">ostream_iterator</span>&lt;<span class="type">int</span>&gt;(cout, <span class="string">&quot; &quot;</span>), [](<span class="type">int</span> x) &#123; <span class="keyword">return</span> x * x; &#125;);</span><br><span class="line"><span class="comment">// 1 4 9 16 25</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="std-generate-std-generate-n"><a href="#std-generate-std-generate-n" class="headerlink" title="std::generate, std::generate_n"></a><code>std::generate, std::generate_n</code></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> Generator&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">generate</span><span class="params">(ForwardIt first, ForwardIt last, Generator g)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> OutputIt, <span class="keyword">class</span> Size, <span class="keyword">class</span> Generator&gt;</span></span><br><span class="line"><span class="function">OutputIt <span class="title">generate_n</span><span class="params">(OutputIt first, Size count, Generator g)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">data</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line"><span class="built_in">generate</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), [n = <span class="number">0</span>] () <span class="keyword">mutable</span> &#123; <span class="keyword">return</span> n++; &#125;);</span><br><span class="line"><span class="comment">// 0 1 2 3 4 5 6 7 8 9</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">generate_n</span>(data.<span class="built_in">begin</span>(), <span class="number">5</span>, [n = <span class="number">1</span>] () <span class="keyword">mutable</span> &#123; <span class="keyword">return</span> <span class="number">2</span> * n++; &#125;);</span><br><span class="line"><span class="comment">// 2 4 6 8 10 5 6 7 8 9</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="std-copy-std-copy-backward"><a href="#std-copy-std-copy-backward" class="headerlink" title="std::copy, std::copy_backward"></a><code>std::copy, std::copy_backward</code></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> InputIt, <span class="keyword">class</span> OutputIt&gt;</span></span><br><span class="line"><span class="function">OutputIt <span class="title">copy</span><span class="params">(InputIt first, InputIt last, OutputIt d_first)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> BidirIt1, <span class="keyword">class</span> BidirIt2&gt;</span></span><br><span class="line"><span class="function">BidirIt2 <span class="title">copy_backward</span><span class="params">(BidirIt1 first, BidirIt1 last, BidirIt2 d_last)</span></span>;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; data;</span><br><span class="line"><span class="built_in">copy</span>(<span class="built_in">istream_iterator</span>&lt;<span class="type">int</span>&gt;(cin), <span class="built_in">istream_iterator</span>&lt;<span class="type">int</span>&gt;(), <span class="built_in">back_inserter</span>(data));</span><br><span class="line"><span class="built_in">copy</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), <span class="built_in">ostream_iterator</span>&lt;<span class="type">int</span>&gt;(cout, <span class="string">&quot; &quot;</span>));</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; data &#123; <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span> &#125;;</span><br><span class="line">data.<span class="built_in">resize</span>(data.<span class="built_in">size</span>() + <span class="number">1</span>);</span><br><span class="line"><span class="built_in">copy_backward</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">begin</span>() + <span class="number">6</span>, data.<span class="built_in">end</span>());</span><br><span class="line">data[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">copy</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), <span class="built_in">ostream_iterator</span>&lt;<span class="type">int</span>&gt;(cout, <span class="string">&quot; &quot;</span>));</span><br><span class="line"><span class="comment">// 1 2 3 4 5 6 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="std-is-sorted"><a href="#std-is-sorted" class="headerlink" title="std::is_sorted"></a><code>std::is_sorted</code></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">is_sorted</span><span class="params">(ForwardIt first, ForwardIt last)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">is_sorted</span><span class="params">(ForwardIt first, ForwardIt last, Compare comp)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> arr[] = &#123; <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span> &#125;;</span><br><span class="line">cout &lt;&lt; boolalpha &lt;&lt; <span class="built_in">is_sorted</span>(<span class="built_in">begin</span>(arr), <span class="built_in">end</span>(arr)) &lt;&lt; endl;       <span class="comment">// false</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">is_sorted</span>(<span class="built_in">begin</span>(arr), <span class="built_in">end</span>(arr), <span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;()) &lt;&lt; endl;    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="std-sort"><a href="#std-sort" class="headerlink" title="std::sort"></a><code>std::sort</code></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> RandomIt&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sort</span><span class="params">(RandomIt first, RandomIt last)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> RandomIt, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sort</span><span class="params">(RandomIt first, RandomIt last, Compare comp)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> data[<span class="number">5</span>] = &#123; <span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span> &#125;;</span><br><span class="line"><span class="built_in">sort</span>(data, data + <span class="number">5</span>);</span><br><span class="line"><span class="comment">// 1 2 3 4 5</span></span><br><span class="line"><span class="built_in">sort</span>(data, data + <span class="number">5</span>, <span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;());</span><br><span class="line"><span class="comment">// 5 4 3 2 1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="std-binary-search-std-lower-bound-std-upper-bound"><a href="#std-binary-search-std-lower-bound-std-upper-bound" class="headerlink" title="std::binary_search, std::lower_bound, std::upper_bound"></a><code>std::binary_search, std::lower_bound, std::upper_bound</code></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">binary_search</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">binary_search</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">lower_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">lower_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">upper_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">upper_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a[<span class="number">5</span>] = &#123; <span class="number">-2</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">-3</span>, <span class="number">4</span> &#125;;</span><br><span class="line"><span class="built_in">sort</span>(a, a + <span class="number">5</span>);</span><br><span class="line"><span class="comment">// -3 -2 4 5 7</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt; <span class="built_in">binary_search</span>(a, a + <span class="number">5</span>, <span class="number">4</span>) &lt;&lt; endl; <span class="comment">// 1</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">binary_search</span>(a, a + <span class="number">5</span>, <span class="number">1</span>) &lt;&lt; endl; <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt; *<span class="built_in">lower_bound</span>(a, a + <span class="number">5</span>, <span class="number">5</span>) &lt;&lt; endl;  <span class="comment">// 5</span></span><br><span class="line">cout &lt;&lt; *<span class="built_in">lower_bound</span>(a, a + <span class="number">5</span>, <span class="number">1</span>) &lt;&lt; endl;  <span class="comment">// 4</span></span><br><span class="line">cout &lt;&lt; *<span class="built_in">lower_bound</span>(a, a + <span class="number">4</span>, <span class="number">8</span>) &lt;&lt; endl;  <span class="comment">// 7</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt; *<span class="built_in">upper_bound</span>(a, a + <span class="number">5</span>, <span class="number">5</span>) &lt;&lt; endl;  <span class="comment">// 7</span></span><br><span class="line">cout &lt;&lt; *<span class="built_in">upper_bound</span>(a, a + <span class="number">4</span>, <span class="number">8</span>) &lt;&lt; endl;  <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="std-next-permutation"><a href="#std-next-permutation" class="headerlink" title="std::next_permutation"></a><code>std::next_permutation</code></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> BidirIt&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">next_permutation</span><span class="params">(BidirIt first, BidirIt last)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> BidirIt, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">next_permutation</span><span class="params">(BidirIt first, BidirIt last, Compare comp)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="string">&quot;aba&quot;</span>)</span></span>;</span><br><span class="line"><span class="built_in">sort</span>(str.<span class="built_in">begin</span>(), str.<span class="built_in">end</span>());</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">next_permutation</span>(str.<span class="built_in">begin</span>(), str.<span class="built_in">end</span>()))</span><br><span class="line">    cout &lt;&lt; str &lt;&lt; endl;</span><br><span class="line"><span class="comment">// aba</span></span><br><span class="line"><span class="comment">// baa</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="std-merge"><a href="#std-merge" class="headerlink" title="std::merge"></a><code>std::merge</code></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> InputIt1, <span class="keyword">class</span> InputIt2, <span class="keyword">class</span> OutputIt&gt;</span></span><br><span class="line"><span class="function">OutputIt <span class="title">merge</span><span class="params">(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, OutputIt d_first)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> InputIt1, <span class="keyword">class</span> InputIt2, <span class="keyword">class</span> OutputIt, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">OutputIt <span class="title">merge</span><span class="params">(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, OutputIt d_first, Compare comp)</span></span>;</span><br><span class="line"></span><br><span class="line">array&lt;<span class="type">int</span>, 5&gt; data &#123; <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span> &#125;;</span><br><span class="line">array&lt;<span class="type">int</span>, 5&gt; data2 &#123; <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span> &#125;;</span><br><span class="line">array&lt;<span class="type">int</span>, 10&gt; output;</span><br><span class="line"><span class="built_in">merge</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), data2.<span class="built_in">begin</span>(), data2.<span class="built_in">end</span>(), output.<span class="built_in">begin</span>());</span><br><span class="line"><span class="built_in">copy</span>(output.<span class="built_in">begin</span>(), output.<span class="built_in">end</span>(), <span class="built_in">ostream_iterator</span>&lt;<span class="type">int</span>&gt;(cout, <span class="string">&quot; &quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="std-reverse"><a href="#std-reverse" class="headerlink" title="std::reverse"></a><code>std::reverse</code></h2><p>反转范围内的元素</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> BidirIt&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">reverse</span><span class="params">(BidirIt first, BidirIt last)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> arr[] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">std::<span class="built_in">reverse</span>(arr, arr + <span class="number">5</span>);</span><br><span class="line">std::<span class="built_in">copy</span>(arr, arr + <span class="number">5</span>, std::<span class="built_in">ostream_iterator</span>&lt;<span class="type">int</span>&gt;(std::cout, <span class="string">&quot; &quot;</span>));</span><br><span class="line"><span class="comment">// 4 3 2 1 0</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/readme">关于</a></li>
+        
+          <li><a href="/resume">简历</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://photo.liph.ink">摄影</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#std-for-each"><span class="toc-number">1.</span> <span class="toc-text">std::for_each</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-all-of-std-any-of-std-none-of"><span class="toc-number">2.</span> <span class="toc-text">std::all_of, std::any_of, std::none_of</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-count-std-count-if"><span class="toc-number">3.</span> <span class="toc-text">std::count, std::count_if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-transform"><span class="toc-number">4.</span> <span class="toc-text">std::transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-generate-std-generate-n"><span class="toc-number">5.</span> <span class="toc-text">std::generate, std::generate_n</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-copy-std-copy-backward"><span class="toc-number">6.</span> <span class="toc-text">std::copy, std::copy_backward</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-is-sorted"><span class="toc-number">7.</span> <span class="toc-text">std::is_sorted</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-sort"><span class="toc-number">8.</span> <span class="toc-text">std::sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-binary-search-std-lower-bound-std-upper-bound"><span class="toc-number">9.</span> <span class="toc-text">std::binary_search, std::lower_bound, std::upper_bound</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-next-permutation"><span class="toc-number">10.</span> <span class="toc-text">std::next_permutation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-merge"><span class="toc-number">11.</span> <span class="toc-text">std::merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-reverse"><span class="toc-number">12.</span> <span class="toc-text">std::reverse</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://liph.ink/codes/cplusplus-algorithm/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://liph.ink/codes/cplusplus-algorithm/&text=C++ 算法库"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://liph.ink/codes/cplusplus-algorithm/&title=C++ 算法库"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://liph.ink/codes/cplusplus-algorithm/&is_video=false&description=C++ 算法库"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=C++ 算法库&body=Check out this article: https://liph.ink/codes/cplusplus-algorithm/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://liph.ink/codes/cplusplus-algorithm/&title=C++ 算法库"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://liph.ink/codes/cplusplus-algorithm/&title=C++ 算法库"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://liph.ink/codes/cplusplus-algorithm/&title=C++ 算法库"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://liph.ink/codes/cplusplus-algorithm/&title=C++ 算法库"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://liph.ink/codes/cplusplus-algorithm/&name=C++ 算法库&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://liph.ink/codes/cplusplus-algorithm/&t=C++ 算法库"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    liph
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://photo.liph.ink">摄影</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

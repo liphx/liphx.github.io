@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="1 nullptr空指针字面量，强类型std::nullptr_t，可以隐式转换为任何指针类型。 12345#ifndef __cplusplus#define NULL ((void *)0)#else   &#x2F;* C++ *&#x2F;#define NULL 0#endif  C++中，NULL 是字面量 0，而不是(void *)0 123456789class A&amp;#123;&amp;#125;;int m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++11速览">
+<meta property="og:url" content="https://liph.ink/codes/cplusplus-11/">
+<meta property="og:site_name" content="李鹏华的主页">
+<meta property="og:description" content="1 nullptr空指针字面量，强类型std::nullptr_t，可以隐式转换为任何指针类型。 12345#ifndef __cplusplus#define NULL ((void *)0)#else   &#x2F;* C++ *&#x2F;#define NULL 0#endif  C++中，NULL 是字面量 0，而不是(void *)0 123456789class A&amp;#123;&amp;#125;;int m">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-26T07:57:01.234Z">
+<meta property="article:author" content="liph">
+<meta property="article:tag" content="cplusplus">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>C++11速览</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://photo.liph.ink">摄影</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/codes/clang-format/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/codes/cplusplus-algorithm/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://liph.ink/codes/cplusplus-11/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://liph.ink/codes/cplusplus-11/&text=C++11速览"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://liph.ink/codes/cplusplus-11/&title=C++11速览"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://liph.ink/codes/cplusplus-11/&is_video=false&description=C++11速览"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=C++11速览&body=Check out this article: https://liph.ink/codes/cplusplus-11/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://liph.ink/codes/cplusplus-11/&title=C++11速览"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://liph.ink/codes/cplusplus-11/&title=C++11速览"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://liph.ink/codes/cplusplus-11/&title=C++11速览"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://liph.ink/codes/cplusplus-11/&title=C++11速览"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://liph.ink/codes/cplusplus-11/&name=C++11速览&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://liph.ink/codes/cplusplus-11/&t=C++11速览"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-nullptr"><span class="toc-number">1.</span> <span class="toc-text">1 nullptr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-initialization-std-initializer-list"><span class="toc-number">2.</span> <span class="toc-text">2 initialization&#x2F;std::initializer_list</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-auto-decltype"><span class="toc-number">3.</span> <span class="toc-text">3 auto&#x2F;decltype</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-lambda"><span class="toc-number">4.</span> <span class="toc-text">4 lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Rvalue-reference-std-move"><span class="toc-number">5.</span> <span class="toc-text">5 Rvalue reference&#x2F;std::move</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-forEach"><span class="toc-number">6.</span> <span class="toc-text">6 forEach</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-constexpr"><span class="toc-number">7.</span> <span class="toc-text">7 constexpr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-raw-string-literal"><span class="toc-number">8.</span> <span class="toc-text">8 raw string literal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-variadic-templates"><span class="toc-number">9.</span> <span class="toc-text">9 variadic templates</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10"><span class="toc-number">10.</span> <span class="toc-text">10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">11.</span> <span class="toc-text">Reference</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        C++11速览
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">liph</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-08-10T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-08-11</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/cplusplus/" rel="tag">cplusplus</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="1-nullptr"><a href="#1-nullptr" class="headerlink" title="1 nullptr"></a>1 nullptr</h2><p>空指针字面量，强类型<code>std::nullptr_t</code>，可以隐式转换为任何指针类型。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __cplusplus</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> NULL ((void *)0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span>   <span class="comment">/* C++ */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> NULL 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>C++中，NULL 是字面量 0，而不是<code>(void *)0</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    A *p1 = <span class="literal">nullptr</span>;</span><br><span class="line">    A *p2 = <span class="literal">NULL</span>;</span><br><span class="line">    A *p3 = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// A *p4 = (void *)0;</span></span><br><span class="line">    <span class="comment">// error: cannot initialize a variable of type &#x27;A *&#x27; with an rvalue of type &#x27;void *&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>C++中，NULL是为兼容C代码而定义的，C++11前，C++代码推荐使用0代替NULL（0即是空值，false，空指针）。<br>C++代码中大量使用NULL，一方面是习惯，另一方面NULL比0更方便阅读，让人看上去就知道变量、参数是指针类型。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>-&gt;ptr = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">this</span>-&gt;ptr = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">func</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">func</span>(<span class="number">0</span>, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+
+<p>C++98&#x2F;03中，模板函数调用时，0作为无类型值，无法进行类型推导（往往当成int）。C++11新增<code>nullptr</code>就是为了更好地支持泛型（模板）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstddef&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> T <span class="title">clone</span><span class="params">(<span class="type">const</span> T&amp; t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">g</span><span class="params">(<span class="type">int</span> *)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">g</span>(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">g</span>(<span class="literal">NULL</span>);</span><br><span class="line">    <span class="built_in">g</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">g</span>(<span class="built_in">clone</span>(<span class="literal">nullptr</span>));</span><br><span class="line">    <span class="comment">// g(clone(NULL));</span></span><br><span class="line">    <span class="comment">// g(clone(0));</span></span><br><span class="line">    <span class="comment">// error: no matching function for call to &#x27;g&#x27;</span></span><br><span class="line">    <span class="comment">// candidate function not viable: no known conversion from &#x27;int&#x27; to &#x27;int *&#x27; for 1st argument</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>作为强类型的<code>nullptr</code>还可以解决如下二义性问题</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstddef&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">(<span class="type">int</span> *)</span> </span>&#123; std::cout &lt;&lt; <span class="string">&quot;f(int *) called.&quot;</span> &lt;&lt; std::endl; &#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">(<span class="type">int</span>)</span> </span>&#123; std::cout &lt;&lt; <span class="string">&quot;f(int) called.&quot;</span> &lt;&lt; std::endl; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">g</span><span class="params">(<span class="type">char</span> *)</span> </span>&#123; std::cout &lt;&lt; <span class="string">&quot;g(char *) called.&quot;</span> &lt;&lt; std::endl; &#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">g</span><span class="params">(<span class="type">char</span>)</span> </span>&#123; std::cout &lt;&lt; <span class="string">&quot;g(char) called.&quot;</span> &lt;&lt; std::endl; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">f</span>(<span class="literal">nullptr</span>);  <span class="comment">// f(int *) called.</span></span><br><span class="line">    <span class="built_in">f</span>(<span class="number">0</span>);        <span class="comment">// f(int) called.</span></span><br><span class="line">    <span class="comment">// f(NULL); error: call to &#x27;f&#x27; is ambiguous</span></span><br><span class="line">    <span class="comment">// assert(typeid(long) == typeid(NULL));</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">g</span>(<span class="literal">nullptr</span>);  <span class="comment">// g(char *) called.</span></span><br><span class="line">    <span class="comment">// g(0);    error: call to &#x27;g&#x27; is ambiguous</span></span><br><span class="line">    <span class="comment">// g(NULL); error: call to &#x27;g&#x27; is ambiguous</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结：C++11后，使用强类型的<code>nullptr</code>替代<code>NULL/0</code>;</p>
+<h2 id="2-initialization-std-initializer-list"><a href="#2-initialization-std-initializer-list" class="headerlink" title="2 initialization&#x2F;std::initializer_list"></a>2 initialization&#x2F;std::initializer_list</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstddef&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">A</span>() : <span class="built_in">p</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">A</span>(<span class="type">int</span>) : <span class="built_in">p</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">A</span>(<span class="type">long</span>) : p&#123;<span class="literal">nullptr</span>&#125; &#123;&#125;  <span class="comment">// c++11</span></span><br><span class="line">    <span class="built_in">A</span>(<span class="type">double</span>) : <span class="built_in">A</span>() &#123;&#125;       <span class="comment">// delegating constructors, c++11</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">char</span> *p;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A2</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">char</span> *p = <span class="literal">nullptr</span>;  <span class="comment">// c++11</span></span><br><span class="line">    <span class="type">char</span> *p2&#123;<span class="literal">nullptr</span>&#125;;  <span class="comment">// c++11</span></span><br><span class="line">    <span class="comment">// char *p3(nullptr); // error</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">i1</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="type">int</span> i2 = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> i3&#123;<span class="number">0</span>&#125;;             <span class="comment">// c++11</span></span><br><span class="line">    <span class="type">int</span> *pi = <span class="keyword">new</span> <span class="type">int</span>&#123;<span class="number">0</span>&#125;;  <span class="comment">// c++11</span></span><br><span class="line">    A a&#123;<span class="number">0</span>&#125;;                <span class="comment">// c++11</span></span><br><span class="line"></span><br><span class="line">    std::atomic&lt;<span class="type">int</span>&gt; ai1&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="function">std::atomic&lt;<span class="type">int</span>&gt; <span class="title">ai2</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="comment">// std::atomic&lt;int&gt; ai3 = 0;</span></span><br><span class="line">    <span class="comment">// error in c++11, atomic(const atomic&amp;) = delete;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结: C++11后新的初始化方式使代码更简洁，统一。</p>
+<h2 id="3-auto-decltype"><a href="#3-auto-decltype" class="headerlink" title="3 auto&#x2F;decltype"></a>3 auto&#x2F;decltype</h2><p>auto在C++11前就是一个关键字, 变量前加auto(或不加)表示自动存储期, C++11起用作自动类型推导。</p>
+<p>C++11里auto用于推导变量的类型, C++14里可以推导函数返回类型, 其规则同模板实参推导规则。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">auto</span> x = <span class="number">0</span>;  <span class="comment">// int</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">auto</span> x = <span class="number">0u</span>;  <span class="comment">// unsigned int</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">auto</span> x&#123;<span class="number">0</span>&#125;;  <span class="comment">// int</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// auto x&#123;0, 1&#125;;</span></span><br><span class="line">    <span class="comment">// error: initializer for variable &#x27;x&#x27; with type &#x27;auto&#x27; contains multiple expressions</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">auto</span> x = &#123;<span class="number">0</span>&#125;;  <span class="comment">// std::initializer_list&lt;int&gt;</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">const</span> <span class="keyword">auto</span>&amp; x = <span class="number">0</span>;  <span class="comment">// const int&amp;</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    std::map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; map;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> x : map) &#123;</span><br><span class="line">    &#125;  <span class="comment">// std::pair&lt;const int, int&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; x : map) &#123;</span><br><span class="line">    &#125;  <span class="comment">// &amp;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; x : map) &#123;</span><br><span class="line">    &#125;  <span class="comment">// const std::pair&lt;const int, int&gt;&amp;</span></span><br><span class="line"></span><br><span class="line">    map&lt;string, <span class="type">int</span>&gt; map2;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> std::pair&lt;std::string, <span class="type">int</span>&gt;&amp; kv : map2) ;       <span class="comment">// copy</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> std::pair&lt;<span class="type">const</span> std::string, <span class="type">int</span>&gt;&amp; kv : map2) ;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; kv : map2) ;</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// c++17</span></span><br><span class="line">    std::map&lt;std::string, <span class="type">int</span>&gt; data&#123;&#123;<span class="string">&quot;abc&quot;</span>, <span class="number">1</span>&#125;, &#123;<span class="string">&quot;bcd&quot;</span>, <span class="number">2</span>&#125;&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; [k, v] : data) &#123;</span><br><span class="line">        std::cout &lt;&lt; k &lt;&lt; <span class="string">&quot;: &quot;</span> &lt;&lt; v &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">auto</span> x = <span class="keyword">new</span> <span class="type">int</span>&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="comment">// int *</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">auto</span> *x = <span class="keyword">new</span> <span class="type">int</span>&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="comment">// int *</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// auto x = 1, y = 2.0;</span></span><br><span class="line">    <span class="comment">// error: &#x27;auto&#x27; deduced as &#x27;int&#x27; in declaration of &#x27;x&#x27; and deduced as &#x27;double&#x27; in declaration of &#x27;y&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> x&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">int</span>&amp; y = x;</span><br><span class="line">    <span class="keyword">auto</span> z = y;  <span class="comment">// int, not int&amp;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> x&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">volatile</span> <span class="type">int</span> y&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">auto</span> z1 = x;  <span class="comment">// int, not const int</span></span><br><span class="line">    <span class="keyword">auto</span> z2 = x;  <span class="comment">// int, not volatile int</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> x&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">auto</span>&amp; y = x;  <span class="comment">// const int&amp;</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> x[]&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>&#125;;</span><br><span class="line">    <span class="keyword">auto</span> y = x;  <span class="comment">// int *, not int[3]</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> x[]&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>&#125;;</span><br><span class="line">    <span class="keyword">auto</span>&amp; y = x;  <span class="comment">// int[3]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">add</span><span class="params">(T t, U u)</span> -&gt; <span class="title">decltype</span><span class="params">(t + u)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> t + u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> x&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">decltype</span>(x) y;  <span class="comment">// int</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">decltype</span>(f) func;  <span class="comment">// void ()</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">decltype</span>(<span class="number">0.1</span>) f;  <span class="comment">// double</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> g = [](<span class="type">int</span> a, <span class="type">int</span> b) &#123; <span class="keyword">return</span> a + b; &#125;;</span><br><span class="line">    <span class="keyword">decltype</span>(g) func2 = g;                  <span class="comment">// lambda</span></span><br><span class="line">    std::cout &lt;&lt; <span class="built_in">func2</span>(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; std::endl;  <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> i&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">decltype</span>(i) j = i;  <span class="comment">// const int</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> a&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">int</span>&amp; b = a;</span><br><span class="line">    <span class="keyword">decltype</span>(b) c = a;  <span class="comment">// int&amp;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> ret = <span class="built_in">add</span>(<span class="number">1.0</span>, <span class="number">2.1</span>);  <span class="comment">// double</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结: auto&#x2F;decltype 有助于简化代码, 但细节很多<code>(*, &amp;, const, volatile)</code>, 将其理解为占位符而不是一种新类型。</p>
+<h2 id="4-lambda"><a href="#4-lambda" class="headerlink" title="4 lambda"></a>4 lambda</h2><p>Lambda 表达式: 可以捕获变量的匿名函数对象。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">data</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">std::<span class="built_in">generate</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), [n = <span class="number">0</span>]() <span class="keyword">mutable</span> &#123; <span class="keyword">return</span> n++; &#125;);</span><br><span class="line"><span class="comment">// 0 1 2 3 4 5 6 7 8 9</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*func)</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    func f = []() &#123; std::cout &lt;&lt; <span class="string">&quot;func1&quot;</span> &lt;&lt; std::endl; &#125;;</span><br><span class="line">    <span class="built_in">f</span>();  <span class="comment">// func1</span></span><br><span class="line">    <span class="type">int</span> x = <span class="number">100</span>;</span><br><span class="line">    <span class="comment">// func f2 = [x]() &#123; std::cout &lt;&lt; &quot;func2, x = &quot; &lt;&lt; x &lt;&lt; std::endl; &#125;;</span></span><br><span class="line">    <span class="comment">// error: no viable conversion from &#x27;(lambda)&#x27; to &#x27;func&#x27; (aka &#x27;void (*)()&#x27;)</span></span><br><span class="line">    std::function&lt;<span class="type">void</span>()&gt; f2 = [x]() &#123; std::cout &lt;&lt; <span class="string">&quot;func2, x = &quot;</span> &lt;&lt; x &lt;&lt; std::endl; &#125;;</span><br><span class="line">    <span class="built_in">f2</span>();  <span class="comment">// func2, x = 100</span></span><br><span class="line"></span><br><span class="line">    std::function&lt;<span class="type">void</span>()&gt; f3 = std::<span class="built_in">bind</span>([](<span class="type">int</span> x) &#123; std::cout &lt;&lt; <span class="string">&quot;func3, x = &quot;</span> &lt;&lt; x &lt;&lt; std::endl; &#125;, <span class="number">200</span>);</span><br><span class="line">    <span class="built_in">f3</span>();  <span class="comment">// func3, x = 200</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结：lambda可以简化代码，可以用来实现闭包（包括operator(), std::function, std::bind 等）。</p>
+<h2 id="5-Rvalue-reference-std-move"><a href="#5-Rvalue-reference-std-move" class="headerlink" title="5 Rvalue reference&#x2F;std::move"></a>5 Rvalue reference&#x2F;std::move</h2><p>5.1 左值&#x2F;右值</p>
+<p>一般而言，左值出现在等号左边，右值出现在等号右边，左值可以取地址，右值不能取地址。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a++             // 右值</span><br><span class="line">++a             // 左值</span><br><span class="line">&amp;a              // r</span><br><span class="line">a, b            // a是左值，b是右值</span><br><span class="line">&quot;hello&quot;         // 字符串字面量，左值</span><br><span class="line">nullptr 0 true  // 其他字面量，右值</span><br><span class="line">this            // 右值</span><br><span class="line">string()        // 右值</span><br><span class="line">枚举项          // 右值</span><br><span class="line"></span><br><span class="line">变量的名字，不论其类型(右值引用)，由其名字构成的表达式仍是左值表达式</span><br></pre></td></tr></table></figure>
+
+<p>5.2 左值引用&#x2F;右值引用</p>
+<p>C++支持引用（创建对象的别名），C++11起，支持右值引用。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 左值引用，可拥有不同的 cv 限定</span></span><br><span class="line">std::string s;</span><br><span class="line">std::string&amp; s2 = s;                <span class="comment">// s的引用，可通过s2修改s</span></span><br><span class="line"><span class="type">const</span> std::string&amp; s3 = s;          <span class="comment">// s的常量引用，不可通过s3修改s</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">(<span class="type">const</span> std::string&amp; s)</span></span>;       <span class="comment">// 参数为引用</span></span><br><span class="line"></span><br><span class="line"><span class="comment">///////////</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 右值引用</span></span><br><span class="line"><span class="type">int</span>&amp; n = <span class="number">42</span>;                <span class="comment">// error, 不能绑定到左值引用</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span>&amp; n = <span class="number">42</span>;          <span class="comment">// ok, const</span></span><br><span class="line"><span class="type">int</span>&amp;&amp; n = <span class="number">42</span>;               <span class="comment">// ok, 右值引用</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 右值引用/到const的左值引用 可用于为临时对象延长生存期</span></span><br><span class="line">std::string s1 = <span class="string">&quot;hello, &quot;</span>;</span><br><span class="line">std::string s2 = <span class="string">&quot;world.&quot;</span>;</span><br><span class="line">string&amp;&amp; s3 = s1 + s2;</span><br><span class="line">std::cout &lt;&lt; s3 &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    ~<span class="built_in">A</span>() &#123; std::cout &lt;&lt; <span class="string">&quot;~A()&quot;</span> &lt;&lt; std::endl; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    A&amp;&amp; a = <span class="built_in">A</span>();</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;here&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// g++ -fno-elide-constructors -std=c++11, 关闭返回值优化</span></span><br><span class="line"><span class="comment">// here</span></span><br><span class="line"><span class="comment">// ~A()</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    A a = <span class="built_in">A</span>();</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;here&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ~A()</span></span><br><span class="line"><span class="comment">// here</span></span><br><span class="line"><span class="comment">// ~A()</span></span><br></pre></td></tr></table></figure>
+
+<p>5.3 std::move</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// from gcc 11.3.0, 等价于static_cast到相应类型的右值引用</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</span><br><span class="line">_GLIBCXX_NODISCARD</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">typename</span> std::remove_reference&lt;_Tp&gt;::<span class="function">type&amp;&amp;</span></span><br><span class="line"><span class="function"><span class="title">move</span><span class="params">(_Tp&amp;&amp; <span class="type">__t</span>)</span> <span class="keyword">noexcept</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;<span class="keyword">typename</span> std::remove_reference&lt;_Tp&gt;::type&amp;&amp;&gt;(<span class="type">__t</span>); &#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.4 移动构造函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="built_in">A</span>() &#123;&#125;</span><br><span class="line">    <span class="built_in">A</span>(<span class="type">const</span> A&amp;) &#123; std::cout &lt;&lt; <span class="string">&quot;A(const A&amp;)&quot;</span> &lt;&lt; std::endl; &#125;</span><br><span class="line">    <span class="built_in">A</span>(A&amp;&amp;) &#123; std::cout &lt;&lt; <span class="string">&quot;A(A&amp;&amp;)&quot;</span> &lt;&lt; std::endl; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::vector&lt;A&gt; vc;</span><br><span class="line">    vc.<span class="built_in">emplace_back</span>(<span class="built_in">A</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// A(A&amp;&amp;)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::string <span class="title">s</span><span class="params">(<span class="string">&quot;hello&quot;</span>)</span></span>;</span><br><span class="line">    std::string s2 = std::<span class="built_in">move</span>(s);</span><br><span class="line">    std::cout &lt;&lt; std::boolalpha &lt;&lt; s.<span class="built_in">empty</span>() &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; s2 &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="comment">// hello</span></span><br></pre></td></tr></table></figure>
+
+<p>5.5 std::forward</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用折叠</span></span><br><span class="line">T&amp; &amp;   =&gt;  T&amp;</span><br><span class="line">T&amp;&amp; &amp;  =&gt;  T&amp;</span><br><span class="line">T&amp; &amp;&amp;  =&gt;  T&amp;</span><br><span class="line">T&amp;&amp; &amp;&amp; =&gt;  T&amp;&amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">// from gcc 11.3.0</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</span><br><span class="line">_GLIBCXX_NODISCARD</span><br><span class="line"><span class="keyword">constexpr</span> _Tp&amp;&amp;</span><br><span class="line">forward(<span class="keyword">typename</span> std::remove_reference&lt;_Tp&gt;::type&amp; <span class="type">__t</span>) <span class="keyword">noexcept</span></span><br><span class="line">&#123; <span class="keyword">return</span> <span class="built_in">static_cast</span>&lt;_Tp&amp;&amp;&gt;(<span class="type">__t</span>); &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 完美转发</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">()</span> &amp; </span>&#123; std::cout &lt;&lt; <span class="string">&quot;&amp;&quot;</span> &lt;&lt; std::endl; &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">()</span> &amp;&amp; </span>&#123; std::cout &lt;&lt; <span class="string">&quot;&amp;&amp;&quot;</span> &lt;&lt; std::endl; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Print</span><span class="params">(T&amp;&amp; t)</span> </span>&#123;    <span class="comment">// 转发引用(无cv限定的模板函数形参、auto&amp;&amp;)</span></span><br><span class="line">    t.<span class="built_in">f</span>();                   <span class="comment">// &amp;</span></span><br><span class="line">    std::<span class="built_in">move</span>(t).<span class="built_in">f</span>();        <span class="comment">// &amp;&amp;</span></span><br><span class="line">    std::forward&lt;T&gt;(t).<span class="built_in">f</span>();  <span class="comment">// &amp; or &amp;&amp;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    A a;</span><br><span class="line">    <span class="built_in">Print</span>(a);</span><br><span class="line">    <span class="built_in">Print</span>(<span class="built_in">A</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// std::vector::emplace_back =&gt; placement new 根据左值/右值决定拷贝构造/移动构造</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp;&amp; x: <span class="built_in">f</span>()); <span class="comment">// 转发引用，f() 可以是左值/右值</span></span><br></pre></td></tr></table></figure>
+
+<p>总结：移动语义节省拷贝构造的开销，是升级至C++11最重要的特性之一；没有移动语义，就没有unique_ptr（C++11前只能用auto_ptr）；std::move&#x2F;std::forward 不移动&#x2F;转发任何东西，只做cast。</p>
+<h2 id="6-forEach"><a href="#6-forEach" class="headerlink" title="6 forEach"></a>6 forEach</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> arr[]&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span>&amp; x : arr) &#123;</span><br><span class="line">    x++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// https://cppinsights.io/</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> arr[<span class="number">3</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>&#125;;</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">int</span> (&amp;__range1)[<span class="number">3</span>] = arr;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> * __begin1 = __range1, *__end1 = __range1 + <span class="number">3L</span>; __begin1 != __end1; ++__begin1) &#123;</span><br><span class="line">  <span class="type">int</span> &amp; x = *__begin1;</span><br><span class="line">  x++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组 定义了begin和end 花括号初始化器列表</span></span><br></pre></td></tr></table></figure>
+
+<p>总结：用于遍历，方便，更可读。</p>
+<h2 id="7-constexpr"><a href="#7-constexpr" class="headerlink" title="7 constexpr"></a>7 constexpr</h2><p>修饰变量或函数，用于常量表达式，（要求编译器）进行编译期求值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用std::numeric_limits&lt;int&gt;::max()替代INT_MAX</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt; <span class="keyword">class</span> <span class="title class_">numeric_limits</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="keyword">constexpr</span> T <span class="title">max</span><span class="params">()</span> <span class="keyword">noexcept</span> </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>总结：扩展了常量表达式的范围，显示要求编译器。</p>
+<h2 id="8-raw-string-literal"><a href="#8-raw-string-literal" class="headerlink" title="8 raw string literal"></a>8 raw string literal</h2><p>原始字符串字面量。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">std::cout &lt;&lt; <span class="string">R&quot;dxxx( hello, world. )dxxx&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"><span class="comment">//  hello, world.</span></span><br><span class="line"></span><br><span class="line">std::cout &lt;&lt; <span class="string">R&quot;(ABC</span></span><br><span class="line"><span class="string">123)&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"><span class="comment">// ABC\n123</span></span><br><span class="line"></span><br><span class="line">std::cout &lt;&lt; <span class="string">R&quot;(</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">  &quot;k1&quot; : true,</span></span><br><span class="line"><span class="string">  &quot;k2&quot; : &quot;str&quot;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">)&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line"><span class="function">std::regex <span class="title">word_regex</span><span class="params">(<span class="string">R&quot;(\w+)&quot;</span>)</span></span>;</span><br><span class="line"><span class="comment">// \\w+</span></span><br></pre></td></tr></table></figure>
+
+<p>总结：避免转义字符，json、regex、换行时好用。</p>
+<h2 id="9-variadic-templates"><a href="#9-variadic-templates" class="headerlink" title="9 variadic templates"></a>9 variadic templates</h2><p>可变模版参数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123; std::cout &lt;&lt; std::endl; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>, <span class="keyword">class</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">const</span> T&amp; arg0, <span class="type">const</span> Args&amp;...args)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; arg0 &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="built_in">print</span>(args...);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="number">1</span>, <span class="number">1.0</span>, <span class="literal">true</span>, <span class="string">&quot;hello&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// c++14, auto in lambda parameter</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">const</span> Args&amp;...args)</span> </span>&#123;</span><br><span class="line">    (<span class="type">void</span>)std::initializer_list&lt;<span class="type">int</span>&gt;&#123;([](<span class="keyword">auto</span> i) &#123; std::cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span>; &#125;(args), <span class="number">0</span>)...&#125;;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结：强大，优美！</p>
+<h2 id="10"><a href="#10" class="headerlink" title="10"></a>10</h2><p><strong>lang</strong></p>
+<ul>
+<li>noexcept</li>
+<li>thread_local</li>
+<li>static_assert</li>
+<li>…</li>
+</ul>
+<p><strong>library</strong></p>
+<ul>
+<li>容器：std::array, std::unordered_map, std::unordered_set, std::unordered_multiset, std::unordered_multimap, std::forward_list</li>
+<li>智能指针：std::unique_ptr, std::shared_ptr, std::weak_ptr</li>
+<li>正则表达式库：regex</li>
+<li>并发：std::thread, std::atomic, std::mutex, std::condition_variable</li>
+<li>…</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zh.cppreference.com/">https://zh.cppreference.com</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3242.pdf">https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3242.pdf</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/CnTransGroup/EffectiveModernCppChinese">https://github.com/CnTransGroup/EffectiveModernCppChinese</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/readme">关于</a></li>
+        
+          <li><a href="/resume">简历</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://photo.liph.ink">摄影</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-nullptr"><span class="toc-number">1.</span> <span class="toc-text">1 nullptr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-initialization-std-initializer-list"><span class="toc-number">2.</span> <span class="toc-text">2 initialization&#x2F;std::initializer_list</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-auto-decltype"><span class="toc-number">3.</span> <span class="toc-text">3 auto&#x2F;decltype</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-lambda"><span class="toc-number">4.</span> <span class="toc-text">4 lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Rvalue-reference-std-move"><span class="toc-number">5.</span> <span class="toc-text">5 Rvalue reference&#x2F;std::move</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-forEach"><span class="toc-number">6.</span> <span class="toc-text">6 forEach</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-constexpr"><span class="toc-number">7.</span> <span class="toc-text">7 constexpr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-raw-string-literal"><span class="toc-number">8.</span> <span class="toc-text">8 raw string literal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-variadic-templates"><span class="toc-number">9.</span> <span class="toc-text">9 variadic templates</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10"><span class="toc-number">10.</span> <span class="toc-text">10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">11.</span> <span class="toc-text">Reference</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://liph.ink/codes/cplusplus-11/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://liph.ink/codes/cplusplus-11/&text=C++11速览"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://liph.ink/codes/cplusplus-11/&title=C++11速览"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://liph.ink/codes/cplusplus-11/&is_video=false&description=C++11速览"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=C++11速览&body=Check out this article: https://liph.ink/codes/cplusplus-11/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://liph.ink/codes/cplusplus-11/&title=C++11速览"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://liph.ink/codes/cplusplus-11/&title=C++11速览"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://liph.ink/codes/cplusplus-11/&title=C++11速览"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://liph.ink/codes/cplusplus-11/&title=C++11速览"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://liph.ink/codes/cplusplus-11/&name=C++11速览&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://liph.ink/codes/cplusplus-11/&t=C++11速览"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    liph
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://photo.liph.ink">摄影</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
