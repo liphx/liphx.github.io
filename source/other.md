@@ -1,3 +1,7 @@
+Programming is only the road, not the way.
+
+因为我们的性文化里，把生育当作性的目的，把无知当纯洁，把愚昧当德行，把偏见当原则。
+
 要想解决大规模问题，你必须先了解最微末的细节。
 
 "What I cannot create, I do not understand." – Richard Feynman
