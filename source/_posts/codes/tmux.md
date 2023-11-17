@@ -67,7 +67,16 @@ $ exit                          # close pane, close window if no pane left, clos
 ! ?                             # help
 ```
 
+## tmux alias
+
+```
+new-session -> new
+new-window  -> neww
+```
+
 ## tmuxinator
+
+<https://github.com/tmuxinator/tmuxinator>
 
 ```shell
 $ tmuxinator open <name>
