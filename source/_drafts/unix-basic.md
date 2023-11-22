@@ -36,11 +36,3 @@ UNIX为进程维护了3个进程时间值，时钟时间、用户CPU时间、系
 5、限制：编译时限制（如短整型最大值，可在头文件中定义）；运行时限制（如文件名有多少个字符，要求进程调用一个函数获得限制值）
 
 6、函数`sysconf`, `pathconf`, `fpathconf` ：运行时限制
-
-```c
-#include <unistd.h>
-long sysconf(int name);
-long pathconf(const char *pathname, int name);
-long fpathconf(int fd, int name);
-/* 三个函数若出错，均返回-1 */
-```

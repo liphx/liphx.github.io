@@ -10,8 +10,8 @@ sds(simple dynamic string)的定义
 typedef char *sds;
 
 struct sdshdr {
-    int len; // buf 中已占用空间的长度
-    int free; // buf 中剩余可用空间的长度
+    int len;    // buf 中已占用空间的长度
+    int free;   // buf 中剩余可用空间的长度
     char buf[]; // 数据空间
 };
 ```
