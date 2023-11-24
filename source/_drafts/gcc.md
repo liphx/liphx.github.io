@@ -76,3 +76,29 @@ gcc 4.9.2 文档
 
 https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html
 
+## install gcc-13.2.0 for mac
+
+```shell
+brew install gcc@13
+alias gcc=gcc-13
+```
+
+- <https://gcc.gnu.org/install/configure.html>
+- <https://github.com/Homebrew/homebrew-core/blob/master/Formula/g/gcc.rb>
+
+```shell
+$ ./contrib/download_prerequisites
+$ mkdir build && cd build
+$ ../configure --prefix=$HOME/usr/gcc-13.2.0    \
+               --enable-languages=c,c++         \
+               --disable-multilib               \
+               --enable-threads=posix           \
+               --enable-checking=release        \
+               --disable-nls                    \
+               --with-sysroot=/Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk \
+               --with-ld=/Library/Developer/CommandLineTools/usr/bin/ld-classic     \
+               --target=xxx
+
+$ make -j10
+$ make install
+```
