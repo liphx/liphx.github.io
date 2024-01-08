@@ -1,4 +1,4 @@
-permalink: /readme/
+permalink: /readme.html
 ---
 
 # LIPH's Personal Homepage: A Reader, Coder and Gamer
