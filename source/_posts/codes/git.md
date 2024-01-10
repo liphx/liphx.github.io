@@ -10,8 +10,8 @@ tags: tools
 `git config` 进行配置
 
 ```shell
-git config --global user.name "liph"
-git config --global user.email "3138519115@qq.com"
+git config --global user.name <name>
+git config --global user.email <email>
 git config -l, --list
 ```
 
