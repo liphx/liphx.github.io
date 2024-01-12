@@ -1,3 +1,5 @@
+Do not multiply entities beyond necessity. -- William Occam
+
 Programming is only the road, not the way.
 
 因为我们的性文化里，把生育当作性的目的，把无知当纯洁，把愚昧当德行，把偏见当原则。

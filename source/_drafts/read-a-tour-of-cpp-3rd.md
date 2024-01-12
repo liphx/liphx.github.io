@@ -10,6 +10,16 @@
 8. Concepts and Generic Programming
 9. Library Overview
 10. Strings and Regular Expressions
+11. Input and Output
+12. Containers
+13. Algorithms
+
+14. Ranges
+15. Pointers and Containers
+16. Utilities
+17. Numerics
+18. Concurrency
+19. History and Compatibility
 
 Concrete classes – especially classes with small representations – are much like built-in types: we define them as local variables, access them using their names, copy them around, etc. Classes in class hierarchies are different: we tend to allocate them on the free store using new, and we access them through pointers or references.
 
