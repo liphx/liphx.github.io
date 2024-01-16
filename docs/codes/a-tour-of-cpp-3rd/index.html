@@ -6,16 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="https:&#x2F;&#x2F;www.stroustrup.com&#x2F;tour3.html">
+    <meta name="description" content="https:&#x2F;&#x2F;www.stroustrup.com&#x2F;tour3.html  The Basics User-Defined Types Modularity Error Handling Classes Essential Operations Templates Concepts and Generic Programming Library Overview Strings and Regu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="李鹏华的主页">
+<meta property="og:title" content="A Tour of C++, 3rd">
 <meta property="og:url" content="https://lipenghua.com/codes/a-tour-of-cpp-3rd/">
 <meta property="og:site_name" content="李鹏华的主页">
-<meta property="og:description" content="https:&#x2F;&#x2F;www.stroustrup.com&#x2F;tour3.html">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.stroustrup.com&#x2F;tour3.html  The Basics User-Defined Types Modularity Error Handling Classes Essential Operations Templates Concepts and Generic Programming Library Overview Strings and Regu">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-01-08T09:26:09.719Z">
-<meta property="article:modified_time" content="2024-01-08T09:26:09.719Z">
+<meta property="article:published_time" content="2024-01-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-16T09:06:56.722Z">
 <meta property="article:author" content="liph">
+<meta property="article:tag" content="cplusplus">
 <meta name="twitter:card" content="summary">
     
     
@@ -36,7 +37,7 @@
       
     
     <!-- title -->
-    <title>李鹏华的主页</title>
+    <title>A Tour of C++, 3rd</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -85,10 +86,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="上一篇" href="/movie/friends/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" aria-label="下一篇" href="/game/god-of-war/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/movie/friends/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -102,16 +101,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/codes/a-tour-of-cpp-3rd/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://lipenghua.com/codes/a-tour-of-cpp-3rd/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&text=A Tour of C++, 3rd"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title=A Tour of C++, 3rd"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&is_video=false&description=A Tour of C++, 3rd"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A Tour of C++, 3rd&body=Check out this article: https://lipenghua.com/codes/a-tour-of-cpp-3rd/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title=A Tour of C++, 3rd"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title=A Tour of C++, 3rd"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title=A Tour of C++, 3rd"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title=A Tour of C++, 3rd"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&name=A Tour of C++, 3rd&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&t=A Tour of C++, 3rd"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -127,7 +126,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        
+        A Tour of C++, 3rd
     </h1>
 
 
@@ -139,7 +138,7 @@
       
     <div class="postdate">
       
-        <time datetime="2024-01-08T09:26:09.719Z" class="dt-published" itemprop="datePublished">2024-01-08</time>
+        <time datetime="2024-01-15T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-01-16</time>
         
       
     </div>
@@ -148,6 +147,11 @@
       
 
       
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/cplusplus/" rel="tag">cplusplus</a>
+    </div>
+
 
     </div>
   </header>
@@ -155,6 +159,47 @@
 
   <div class="content e-content" itemprop="articleBody">
     <p><a target="_blank" rel="noopener" href="https://www.stroustrup.com/tour3.html">https://www.stroustrup.com/tour3.html</a></p>
+<ol>
+<li>The Basics</li>
+<li>User-Defined Types</li>
+<li>Modularity</li>
+<li>Error Handling</li>
+<li>Classes</li>
+<li>Essential Operations</li>
+<li>Templates</li>
+<li>Concepts and Generic Programming</li>
+<li>Library Overview</li>
+<li>Strings and Regular Expressions</li>
+<li>Input and Output</li>
+<li>Containers</li>
+<li>Algorithms</li>
+<li>Ranges</li>
+<li>Pointers and Containers</li>
+<li>Utilities</li>
+<li>Numerics</li>
+<li>Concurrency</li>
+<li>History and Compatibility</li>
+</ol>
+<p>Concrete classes – especially classes with small representations – are much like built-in types:<br>we define them as local variables, access them using their names, copy them around, etc.<br>Classes in class hierarchies are different: we tend to allocate them on the free store using new,<br>and we access them through pointers or references.</p>
+<p>For historical reasons realated to optimization,<br>the order of evaluation of other expressions (e.g., f(x) + g(y))<br>and of function arguments (e.g., h(f(x), g(y))) is unfortunately unspecified.</p>
+<p>When we want a function to be used only for evaluation at compile time,<br>we declare it consteval rather than constexpr.</p>
+<p>The size of an array must be a constant expression</p>
+<p>Don’t panic! All will become clear in time</p>
+<p>Keep common and local names short; keep uncommon and nonlocal names longer</p>
+<p>Since we don’t know anything about the representation of an abstract type (not even its size),<br>we must allocate objects on the free store and access them through references or pointers.</p>
+<p>The destructor (<del>Vector_container()) overrides the base class destructor (</del>Container()).<br>Note that the member destructor (<del>Vector()) is implicitly invoked by its class’s destructor<br>(</del>Vector_container()).</p>
+<p>Objects are constructed “bottom up” (base first) by constructors<br>and destroyed “top down” (derived first) by destructors.</p>
+<p>In many languages, resource management is primarily delegated to a garbage collector.<br>In C++, you can plug in a garbage collector.<br>However, I consider garbage collection the last choice after cleaner, more general,<br>and better localized alternatives to resource management have been exhausted.<br>My ideal is not to create any garbage, thus eliminating the need for a garbage collector: Do not litter!</p>
+<p>A function template can be a member function, but not a virtual member.<br>The compiler would not know all instantiations of such a template in a program,<br>so it could not generate a vtbl .</p>
+<p>The best way to develop a template is often to</p>
+<ul>
+<li>first, write a concrete version</li>
+<li>then, debug, test, and measure it</li>
+<li>finally, replace the concrete types with template arguments.</li>
+</ul>
+<p>Templates offer compile-time “duck typing”</p>
+<p>Don’t reinvent the wheel; use libraries.</p>
+<p>Work at the highest level of abstraction that you can afford.</p>
 
   </div>
 </article>
@@ -189,16 +234,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/codes/a-tour-of-cpp-3rd/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://lipenghua.com/codes/a-tour-of-cpp-3rd/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&text=A Tour of C++, 3rd"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title=A Tour of C++, 3rd"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&is_video=false&description=A Tour of C++, 3rd"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A Tour of C++, 3rd&body=Check out this article: https://lipenghua.com/codes/a-tour-of-cpp-3rd/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title=A Tour of C++, 3rd"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title=A Tour of C++, 3rd"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title=A Tour of C++, 3rd"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&title=A Tour of C++, 3rd"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&name=A Tour of C++, 3rd&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/codes/a-tour-of-cpp-3rd/&t=A Tour of C++, 3rd"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
