@@ -4,6 +4,63 @@
   
     
     <entry>
+      <title>银河系漫游指南系列</title>
+      <link href="/book/the-hitchhiker-s-guide/"/>
+      <url>/book/the-hitchhiker-s-guide/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> book </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Friends</title>
+      <link href="/movie/friends/"/>
+      <url>/movie/friends/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://www.imdb.com/title/tt0108778/">https://www.imdb.com/title/tt0108778/</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> movie </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>战神系列</title>
+      <link href="/game/god-of-war/"/>
+      <url>/game/god-of-war/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> game </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>A Tour of C++, 3rd</title>
       <link href="/codes/a-tour-of-cpp-3rd/"/>
       <url>/codes/a-tour-of-cpp-3rd/</url>
@@ -17,45 +74,6 @@
             <tag> cplusplus </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/movie/friends/"/>
-      <url>/movie/friends/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/game/god-of-war/"/>
-      <url>/game/god-of-war/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/book/the-hitchhiker-s-guide/"/>
-      <url>/book/the-hitchhiker-s-guide/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
       
     </entry>
     
