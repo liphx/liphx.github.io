@@ -1,7 +1,8 @@
+---
 permalink: /readme.html
 ---
 
-# LIPH's Personal Homepage: A Reader, Coder and Gamer
+# LIPH's Personal Homepage
 
 - Homepage: <https://lipenghua.com>
 - Email: <lipenghua@lipenghua.com>
