@@ -102,3 +102,21 @@ $ ../configure --prefix=$HOME/usr/gcc-13.2.0    \
 $ make -j10
 $ make install
 ```
+
+## install gcc-13.2.0 for linux
+
+```shell
+mktmp
+repo=https://github.com/gcc-mirror/gcc.git
+git clone $repo -b releases/gcc-13.2.0
+cd gcc
+./contrib/download_prerequisites
+mkdir build && cd build
+../configure --prefix=$HOME/usr/gcc-13.2.0    \
+             --enable-languages=c,c++         \
+             --disable-multilib               \
+             --enable-threads=posix           \
+             --enable-checking=release        \
+             --disable-nls
+make && make install
+```

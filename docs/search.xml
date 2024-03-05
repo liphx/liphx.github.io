@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>申请letsencrypt ssl证书</title>
+      <link href="/tools/letsencrypt/"/>
+      <url>/tools/letsencrypt/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install --upgrade certbot</span><br><span class="line">sudo certbot --text --agree-tos --email lipenghua@lipenghua.com -d &#x27;*.lipenghua.com&#x27; --manual --preferred-challenges dns --expand --renew-by-default certonly</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> tools </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>终端模拟器：Alacritty</title>
       <link href="/tools/alacritty/"/>
       <url>/tools/alacritty/</url>
