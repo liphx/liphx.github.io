@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="为了学习交互设计，豆瓣上找到了这本评分8.0的《瞬间之美》。书写的比较早，很多设计现在看来已经是显而易见。以下为摘抄。  良好的用户体验，全在于那些完美的瞬间。 我们的工作不是设计花哨的屏幕，而是要设计美好的瞬间。 大声地做出所有决定：持续改进，记录做出决定的详细过程。 好的设计绝不是单纯因为天才的创意或者灵感爆发的一瞬间而产生的，它是持续前进的永恒动力所造就的产物。 第一部分 指引用户 发现页面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Designing the Moment">
+<meta property="og:url" content="https://lipenghua.com/book/designing-the-moment/">
+<meta property="og:site_name" content="李鹏华的主页">
+<meta property="og:description" content="为了学习交互设计，豆瓣上找到了这本评分8.0的《瞬间之美》。书写的比较早，很多设计现在看来已经是显而易见。以下为摘抄。  良好的用户体验，全在于那些完美的瞬间。 我们的工作不是设计花哨的屏幕，而是要设计美好的瞬间。 大声地做出所有决定：持续改进，记录做出决定的详细过程。 好的设计绝不是单纯因为天才的创意或者灵感爆发的一瞬间而产生的，它是持续前进的永恒动力所造就的产物。 第一部分 指引用户 发现页面">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-09T09:31:49.058Z">
+<meta property="article:author" content="liph">
+<meta property="article:tag" content="book">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Designing the Moment</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/tools/letsencrypt/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/book/designing-the-moment/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/book/designing-the-moment/&text=Designing the Moment"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/book/designing-the-moment/&title=Designing the Moment"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/book/designing-the-moment/&is_video=false&description=Designing the Moment"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Designing the Moment&body=Check out this article: https://lipenghua.com/book/designing-the-moment/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/book/designing-the-moment/&title=Designing the Moment"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/book/designing-the-moment/&title=Designing the Moment"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/book/designing-the-moment/&title=Designing the Moment"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/book/designing-the-moment/&title=Designing the Moment"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/book/designing-the-moment/&name=Designing the Moment&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/book/designing-the-moment/&t=Designing the Moment"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Designing the Moment
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">liph</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-04-08T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-04-09</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/book/" rel="tag">book</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>为了学习交互设计，豆瓣上找到了这本评分8.0的<a target="_blank" rel="noopener" href="https://book.douban.com/subject/3886044/">《瞬间之美》</a>。书写的比较早，很多设计现在看来已经是显而易见。以下为摘抄。</p>
+<hr>
+<p>良好的用户体验，全在于那些完美的瞬间。</p>
+<p>我们的工作不是设计花哨的屏幕，而是要设计美好的瞬间。</p>
+<p>大声地做出所有决定：持续改进，记录做出决定的详细过程。</p>
+<p>好的设计绝不是单纯因为天才的创意或者灵感爆发的一瞬间而产生的，它是持续前进的永恒动力所造就的产物。</p>
+<p>第一部分 指引用户</p>
+<p>发现页面布局：布局是内容组织的必然结果，它往往是自己逐渐成形的。一旦周全考虑了页面的所有需求，并且确定了每一块的内容，你的工作就变成了看着所想要的布局自己展现在你眼前。</p>
+<p>简单来说，我把所有的栏目区域都扔到显示屏上，然后移来移去不断地调整让它们彼此协调。</p>
+<p>古腾堡图表中，左上角是第一视觉落点区（Primary Optical Area，POA），而右下角则是最终视觉落点区（Terminal Anchor，TA）。与之相对，右上角和左下角则是视觉盲点。因此，采用对角线平衡通常都是一个好设计所需要考虑的因素，因为设计师遵从了用户习惯性的眼动规律。</p>
+<p>我们人类不喜欢感觉到自己正按软件的要求去做事情。在决定采取某个行为的瞬间，我们希望由自己控制软件，由自己告诉它应该做些什么，而不是相反。任何违反这一意愿的软件都会让人感到愚蠢而糟糕，结果会敬而远之。</p>
+<p>名词改动词 <code>Login -&gt; Sign in</code> </p>
+<p>第二部分 学习</p>
+<p>人们通常不会在网页上阅读文字，他们只是扫描。</p>
+<p>对用户来说，一个简短的句子远比一大段文字要来得有意义，即使这段文字的文笔很好。重要的并不是我们提供的信息量有多大，而是我们能否给他们提供真正需要的信息。</p>
+<p>设计不能只基于我们自己一厢情愿的“假设”。相反，我们需要假设用户毫不了解我们的软件，随后给他们足够的信息以便帮助他们理解。<br>说明性文字、What’s this？（这是什么？）链接以及表意清楚的标记都能达到这一目的。</p>
+<p>运用文字显得困难时，考虑使用视频来帮助你的用户快速上手吧。</p>
+<p>第三部分 搜索</p>
+<p>Poka-yoke 机制：防止错误发生</p>
+<p>自动完成：尝试猜测用户输入的文字，并且动态地搜索出适配的结果，然后推荐给用户，辅助他们完成输入。</p>
+<p>我现在常常鼓励人们挑战标准，然而至关重要的一点是，在准备挑战标准时请确保你的目标是为了改进它们。如果你的新设计并没有做到改进，那么你的用户将不仅得不到任何好处，反而有可能失去更多。</p>
+<p>提供回到搜索结果列表的出口</p>
+<p>递进显示（Read more）：根据实际需要（即依靠用户的输入）而逐步显示控件，而不是默认把它们一股脑全堆在眼前。</p>
+<p>第四部分 深入</p>
+<p>表单需要呈现出延续的流动性，而表单的布局则极大地影响到用户是否能够成功地填写表单。</p>
+<p>Above the fold：位于默认的可视区域，无需滚动条</p>
+<p>费茨法则（Fitts’Law）：用鼠标移动指针时，屏幕上目标的某些特征会使得点击变得轻松或者困难。目标离得越远，到达就越费劲。目标越小，就越难点中。</p>
+<p>警告对话框用得越多，就越没有效果。</p>
+<p>标准绝不是永恒不变的。事实上，绝大多数时间里，在某些人刚树立起标准的下一秒钟它们就改变了。用崭新的眼光看待那些公认为陈腐的事物，这对于任何产品都是改进其用户体验的一种极佳方式。</p>
+<p>第五部分 参与</p>
+<p>在正确时间里显示的正确工具。</p>
+<p><code>friends -&gt; followers</code></p>
+<p>比效率更重要的是清晰。</p>
+<p>第六部分 管理信息</p>
+<p><code>RSS -&gt; News Reader/Subscribe</code></p>
+<p>为改变而设计</p>
+<p>第七部分 离开</p>
+<p>Export Your Data</p>
+<p>设计即传达。要想设计出伟大的体验，我们必须成为伟大的传达者。</p>
+<p>用几句话来描述一段说明文字，远比写上整整一大段要容易。在应用程序里只提供必需的内容，远比把我们能想到的一切细枝末节都添加进去要容易。在页面中留下一些空白，也远比把每个角落都塞得满满的要容易。</p>
+<p>跟随你自己的福祉。找到你自己的禅。设计属于你自己的瞬间。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/readme">关于</a></li>
+        
+          <li><a href="/resume">简历</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lipenghua.com/book/designing-the-moment/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lipenghua.com/book/designing-the-moment/&text=Designing the Moment"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lipenghua.com/book/designing-the-moment/&title=Designing the Moment"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lipenghua.com/book/designing-the-moment/&is_video=false&description=Designing the Moment"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Designing the Moment&body=Check out this article: https://lipenghua.com/book/designing-the-moment/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lipenghua.com/book/designing-the-moment/&title=Designing the Moment"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lipenghua.com/book/designing-the-moment/&title=Designing the Moment"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lipenghua.com/book/designing-the-moment/&title=Designing the Moment"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lipenghua.com/book/designing-the-moment/&title=Designing the Moment"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lipenghua.com/book/designing-the-moment/&name=Designing the Moment&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lipenghua.com/book/designing-the-moment/&t=Designing the Moment"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023-2024
+    liph
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/readme">关于</a></li><!--
+     --><!--
+       --><li><a href="/resume">简历</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/liphx">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
