@@ -4,7 +4,7 @@ date: 2024-04-12
 tags: book
 ---
 
-> Here's to the crazy ones.  The misfits, the rebels, the troublemakers, the round pegs in the square holes... the ones who see things differently.  They're not fond of rules. And they have no respect for the status quo.  You can quote them, disagree with them, glorify or vilify them. But the only thing you can't do is ignore them.  Because they change things. They push the human race forward. While some may see them as the crazy ones, we see genius.  Because the ones who are crazy enough to think that they can change the world, are the ones who do.
+> Here's to the crazy ones. The misfits, the rebels, the troublemakers, the round pegs in the square holes... the ones who see things differently. They're not fond of rules. And they have no respect for the status quo. You can quote them, disagree with them, glorify or vilify them. But the only thing you can't do is ignore them. Because they change things. They push the human race forward. While some may see them as the crazy ones, we see genius. Because the people who are crazy enough to think that they can change the world, are the ones who do.
 > Steve Jobs, 1997
 
 > 致疯狂的人
