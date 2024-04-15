@@ -151,5 +151,45 @@ SVG规范 <https://www.w3.org/Graphics/SVG/>
 
 `rotate(angle, x, y)` 以`(x, y)` 为中心旋转
 
+### 组合
 
+```svg
+<defs><text id="hello" style="font-size: 12px;">Hello World!</text></defs>
+<use href="#hello" transform="translate(100, 100) scale(3)" style="font-family: monospace;"/>
+```
 
+平移后缩放
+
+## 渐变
+
+### 线性渐变
+
+```svg
+<defs>
+    <linearGradient id="two">
+        <stop offset="0%" style="stop-color: #ffcc00;"/>
+        <stop offset="100%" style="stop-color: #0099cc;"/>
+    </linearGradient>
+</defs>
+
+<rect x="20" y="20" width="200" height="100" style="fill: url(#two);"/>
+```
+
+`linearGradient` 线性渐变
+
+`stop` 渐变点
+
+### 径向渐变
+
+```svg
+<defs>
+    <radialGradient id="two">
+        <stop offset="0%" style="stop-color: #ffcc00;"/>
+        <stop offset="100%" style="stop-color: #0099cc;"/>
+    </radialGradient>
+</defs>
+
+<rect x="20" y="20" width="200" height="100" style="fill: url(#two);"/>
+```
+
+`radialGradient` 径向渐变
