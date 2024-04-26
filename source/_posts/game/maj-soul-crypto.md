@@ -6,11 +6,11 @@ tags:
 
 每局游戏对局开始，点击左上角，可查看`牌山编码+盐`及`盐字符串`的 `SHA256码`
 
-<img src="begin.jpg" style="zoom:30%;" />
+<img src="./begin.jpg" style="zoom:30%;" />
 
 对局结束，可通过牌谱查看牌山及盐字符串编码
 
-<img src="end.jpg" style="zoom:30%;" />
+<img src="./end.jpg" style="zoom:30%;" />
 
 雀魂每张牌都使用两位字符编码：1万-9万的编码是`1m-9m`，1筒-9筒的编码是`1p-9p`，1索-9索的编码是`1s-9s`，东南西北白发中的编码是`1z-7z`，红5万5筒5索的编码为`0m,0p,0s`
 
