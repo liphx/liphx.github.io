@@ -6,3 +6,5 @@ categories: game
 ---
 
 <https://elden_ring.lipenghua.com>
+
+[steam achievements](https://steamcommunity.com/profiles/76561198373797938/stats/appid/1245620/achievements)
